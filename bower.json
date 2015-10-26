@@ -1,0 +1,11 @@
+{
+  "name": "mg4.tv",
+  "description": "The front end for mg4.tv",
+  "authors": [
+    "David J Felix"
+  ],
+  "dependencies": {
+    "foundation": "zurb/foundation#master"
+  },
+  "private": true
+}
