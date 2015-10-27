@@ -5,7 +5,8 @@
     "David J Felix"
   ],
   "dependencies": {
-    "foundation": "zurb/foundation#master"
+    "foundation": "zurb/foundation#master",
+    "backbone": "jashkenas/backbone#master"
   },
   "private": true
 }
