@@ -22,3 +22,10 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.VideoContainer {
+  background-color: #111;
+  height: 912px;
+  width: 693px;
+}
+
