@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../App.css';
 
-import Footer from './components/Footer';
-import PageHeader from './components/PageHeader';
-import VideoContainer from './components/VideoContainer';
+import Footer from './Footer';
+import PageHeader from './PageHeader';
+import VideoContainer from './VideoContainer';
 
-class App extends Component {
+class VideoView extends Component {
   render() {
     return (
       <div className="App">
@@ -19,5 +19,5 @@ class App extends Component {
   }
 }
 
-export default App;
+export default VideoView;
 
