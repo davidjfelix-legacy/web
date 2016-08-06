@@ -1,9 +1,16 @@
 import React from 'react';
 import '../App.css';
 
+import Footer from './Footer';
+import PageHeader from './PageHeader';
+
 const App = ({children, history}) => {
   return (
-    <div>{children}</div>
+    <div>
+      <PageHeader />
+      {children}
+      <Footer />
+    </div>
   );
 }
 
