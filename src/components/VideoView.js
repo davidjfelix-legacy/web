@@ -6,7 +6,7 @@ import VideoContainer from './VideoContainer';
 class VideoView extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="container">
         <VideoContainer
           videoWidth={960}
           videoSources={["https://s3.amazonaws.com/buukkittt/bbb_sunflower_1080p_60fps_normal.mp4"]}></VideoContainer>
