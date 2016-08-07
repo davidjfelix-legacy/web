@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class VideoContainer extends Component {
   render() {
     return (
@@ -20,3 +21,4 @@ VideoContainer.propTypes = {
 }
 
 export default VideoContainer;
+
