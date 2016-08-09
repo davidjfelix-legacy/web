@@ -1,0 +1,15 @@
+.PageHeader {
+  background-color: #dd800b;
+  display: block;
+  line-height: 1;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  position: relative;
+}
+
+.PageHeader_Brand {
+  color: white;
+}
+

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
+import './PageHeader.css';
+
 
 class PageHeader extends Component {
   render() {
     return (
-      <header>
-        <nav className="navbar navbar-dark bg-primary">
-          <Link to={"/"} className="navbar-brand">Mg4.tv</Link>
+      <header className="PageHeader">
+        <nav> 
+          <Link to={"/"} className="PageHeader_Brand">></Link>
         </nav>
       </header>
     );

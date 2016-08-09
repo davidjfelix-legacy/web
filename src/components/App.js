@@ -1,8 +1,10 @@
 import React from 'react';
-import '../App.css';
 
 import Footer from './Footer';
 import PageHeader from './PageHeader';
+
+import './App.css';
+
 
 const App = ({children, history}) => {
   return (

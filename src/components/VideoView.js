@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import '../App.css';
 
 import VideoContainer from './VideoContainer';
+
+import './App.css';
+
 
 class VideoView extends Component {
   render() {
