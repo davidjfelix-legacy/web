@@ -4,7 +4,11 @@ import React, { Component } from 'react';
 class VideoPreview extends Component {
   render() {
     return (
-      <div></div>
+      <div className="VideoPreview">
+        <h3 className="VideoPreview__Title">{this.props.videoTitle}</h3>
+        <img />
+        <p className="VideoPreview__Description">{this.props.videoDescription}</p>
+      </div>
     );
   }
 }
