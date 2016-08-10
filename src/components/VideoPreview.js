@@ -14,9 +14,9 @@ class VideoPreview extends Component {
 }
 
 VideoPreview.propTypes = {
-  videoId: React.PropTypes.string.isRequired;
-  videoTitle: React.PropTypes.string.isRequired;
-  videoDescription: React.PropTypes.string.isRequired;
+  videoId: React.PropTypes.string.isRequired,
+  videoTitle: React.PropTypes.string.isRequired,
+  videoDescription: React.PropTypes.string.isRequired,
 }
 
 export default VideoPreview;

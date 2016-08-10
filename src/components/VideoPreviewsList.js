@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 import VideoPreview from './VideoPreview';
 
@@ -7,10 +8,12 @@ class VideoPreviewsList extends Component {
   render() {
     return (
       <ul className="VideoPreviewsList">
-        {this.props.videoPreviews.map((videoPreview, index) => ()
+        {this.props.videoPreviews.map((videoPreview, index) => (
           <li key={index}>
-            <VideoPreview {...videoPreview} />
-          <li>
+            <Link to={"v/1"}>
+              <VideoPreview {...videoPreview} />
+            </Link>
+          </li>
         ))}
       </ul>
     );
@@ -18,7 +21,7 @@ class VideoPreviewsList extends Component {
 }
 
 VideoPreviewsList.propTypes = {
-  videosPreviews: React.PropTypes.arrayOf(
+  videoPreviews: React.PropTypes.arrayOf(
     React.PropTypes.shape({
       videoId: React.PropTypes.string.isRequired,
       videoTitle: React.PropTypes.string.isRequired,

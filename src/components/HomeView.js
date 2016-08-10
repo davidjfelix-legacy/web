@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+
+import VideoPreviewsList from './VideoPreviewsList';
+
 
 class HomeView extends Component {
   constructor() {
     super();
     this.state = {
-      videos: ["hello", "world"]
+      videos: [
+        {
+          videoId: "hello",
+          videoTitle: "hello",
+          videoDescription: "hello"
+        },
+        {
+          videoId: "world",
+          videoTitle: "world",
+          videoDescription: "world",
+        }
+      ]
     };
   }
   
   render() {
     return (
       <div>
-        {this.state.videos.map((video, index) => (
-          <Link to={"v/1"} key={index}>Video Link</Link>
-        ))}
+        <VideoPreviewsList videoPreviews={this.state.videos} />
       </div>
     );
   }
