@@ -9,14 +9,18 @@ class HomeView extends Component {
     this.state = {
       videos: [
         {
-          videoId: "hello",
+          videoLinkURL: "/v/1",
+          videoThumbnailURL: "https://placekitten.com/g/400/225",
           videoTitle: "hello",
-          videoDescription: "hello"
+          videoUser: "hello",
+          videoUserLinkURL: "/u/1",
         },
         {
-          videoId: "world",
+          videoLinkURL: "v/1",
+          videoThumbnailURL: "https://placekitten.com/g/400/225",
           videoTitle: "world",
-          videoDescription: "world",
+          videoUser: "world",
+          videoUserLinkURL: "/u/1",
         }
       ]
     };

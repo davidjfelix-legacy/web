@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
+
+import './VideoPreview.css';
 
 
 class VideoPreview extends Component {
   render() {
     return (
-      <div className="VideoPreview">
-        <h3 className="VideoPreview__Title">{this.props.videoTitle}</h3>
-        <img />
-        <p className="VideoPreview__Description">{this.props.videoDescription}</p>
-      </div>
+      <Link to={this.props.videoLinkURL}>
+        <div className="VideoPreview">
+          <img src={this.props.videoThumbnailURL}/>
+          <h3 className="VideoPreview__Title">{this.props.videoTitle}</h3>
+          <Link to={this.props.videoUserLinkURL} className="VideoPreview__User">{this.props.videoUser}</Link>
+        </div>
+      </Link>
     );
   }
 }
 
 VideoPreview.propTypes = {
-  videoId: React.PropTypes.string.isRequired,
+  videoLinkURL: React.PropTypes.string.isRequired,
+  videoThumbnailURL: React.PropTypes.string.isRequired,
   videoTitle: React.PropTypes.string.isRequired,
-  videoDescription: React.PropTypes.string.isRequired,
+  videoUser: React.PropTypes.string.isRequired,
+  videoUserLinkURL: React.PropTypes.string.isRequired,
 }
 
 export default VideoPreview;
