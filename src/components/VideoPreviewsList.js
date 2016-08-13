@@ -3,13 +3,14 @@ import { Link } from 'react-router';
 
 import VideoPreview from './VideoPreview';
 
+import './VideoPreviewsList.css';
 
 class VideoPreviewsList extends Component {
   render() {
     return (
       <ul className="VideoPreviewsList">
         {this.props.videoPreviews.map((videoPreview, index) => (
-          <li key={index}>
+          <li className="VideoPreviewsList__Item" key={index}>
             <Link to={"v/1"}>
               <VideoPreview {...videoPreview} />
             </Link>
