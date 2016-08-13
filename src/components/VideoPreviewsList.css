@@ -5,5 +5,9 @@
 
 .VideoPreviewsList__Item {
   display: inline-block;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-right: 0px;
+  margin-top: 10px;
 }
 
