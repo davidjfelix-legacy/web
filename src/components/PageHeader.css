@@ -2,14 +2,18 @@
   background-color: #dd800b;
   display: block;
   line-height: 1;
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.255rem;
   position: relative;
 }
 
 .PageHeader_Brand {
   color: white;
+  font-family: Exo;
+  font-size: 1.5em;
+  font-weight: 900;
+  text-decoration: none;
 }
 

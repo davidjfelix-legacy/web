@@ -9,7 +9,7 @@ class PageHeader extends Component {
     return (
       <header className="PageHeader">
         <nav> 
-          <Link to={"/"} className="PageHeader_Brand">></Link>
+          <Link to={"/"} className="PageHeader_Brand">MG4.tv</Link>
         </nav>
       </header>
     );
