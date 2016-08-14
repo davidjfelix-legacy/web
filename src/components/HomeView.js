@@ -11,15 +11,15 @@ class HomeView extends Component {
         {
           videoLinkURL: "/v/1",
           videoThumbnailURL: "https://placekitten.com/g/400/225",
-          videoTitle: "hello",
-          videoUser: "hello",
+          videoTitle: "A video hello",
+          videoUser: "hellouser",
           videoUserLinkURL: "/u/1",
         },
         {
           videoLinkURL: "v/1",
           videoThumbnailURL: "https://placekitten.com/g/400/225",
-          videoTitle: "world",
-          videoUser: "world",
+          videoTitle: "A video world",
+          videoUser: "worlduser",
           videoUserLinkURL: "/u/1",
         }
       ]

@@ -7,12 +7,10 @@ import './VideoPreview.css';
 class VideoPreview extends Component {
   render() {
     return (
-      <Link to={this.props.videoLinkURL}>
-        <div className="VideoPreview">
-          <img src={this.props.videoThumbnailURL}/>
-          <h3 className="VideoPreview__Title">{this.props.videoTitle}</h3>
-          <Link to={this.props.videoUserLinkURL} className="VideoPreview__User">{this.props.videoUser}</Link>
-        </div>
+      <Link to={this.props.videoLinkURL}  className="VideoPreview">
+        <img src={this.props.videoThumbnailURL} className="VideoPreview__Image"/>
+        <h3 className="VideoPreview__Title">{this.props.videoTitle}</h3>
+        <Link to={this.props.videoUserLinkURL} className="VideoPreview__User">{this.props.videoUser}</Link>
       </Link>
     );
   }

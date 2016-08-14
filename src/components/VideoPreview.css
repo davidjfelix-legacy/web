@@ -1,11 +1,21 @@
 .VideoPreview {
-  background-color: red;
+  display: block;
+}
+
+.VideoPreview:hover {
+  text-decoration: none;
 }
 
 .VideoPreview__Image {
+  border-radius: 3px;
+  width: 20em;
 }
 
 .VideoPreview__Title {
+  font-size: 1.25em;
+  color: #222;
+  font-weight: 1000;
+  margin: 0px;
 }
 
 .VideoPreview__User {
