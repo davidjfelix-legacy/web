@@ -15,8 +15,9 @@
   font-size: 1.25em;
   color: #222;
   font-weight: 1000;
-  margin: 0px;
+  margin: 0em 0.25em;
 }
 
 .VideoPreview__User {
+  margin: 0em 0.25em;
 }
