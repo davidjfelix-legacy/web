@@ -1,13 +1,15 @@
 .VideoPreview {
   display: block;
+  border-radius: 2px
 }
 
 .VideoPreview:hover {
+  background-color: #fafafa;
   text-decoration: none;
 }
 
 .VideoPreview__Image {
-  border-radius: 3px;
+  border-radius: 2px;
   width: 20em;
 }
 
