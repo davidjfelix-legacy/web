@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-import './PageHeader.css';
+import '../css/PageHeader.css';
 
 
 class PageHeader extends Component {

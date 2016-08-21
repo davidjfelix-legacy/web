@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import VideoPreview from './VideoPreview';
 
-import './VideoPreviewsList.css';
+import '../css/VideoPreviewsList.css';
 
 class VideoPreviewsList extends Component {
   render() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-import './VideoPreview.css';
+import '../css/VideoPreview.css';
 
 
 class VideoPreview extends Component {

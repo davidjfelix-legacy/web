@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import VideoContainer from './VideoContainer';
 
-import './VideoView.css';
+import '../css/VideoView.css';
 
 
 class VideoView extends Component {

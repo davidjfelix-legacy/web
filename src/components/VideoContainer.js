@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import CommentStream from './CommentStream';
 
-import './VideoContainer.css';
+import '../css/VideoContainer.css';
 
 
 class VideoContainer extends Component {

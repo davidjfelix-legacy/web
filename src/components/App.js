@@ -3,7 +3,7 @@ import React from 'react';
 import Footer from './Footer';
 import PageHeader from './PageHeader';
 
-import './App.css';
+import '../css/App.css';
 
 
 const App = ({children, history}) => {
