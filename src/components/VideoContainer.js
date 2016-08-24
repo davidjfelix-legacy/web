@@ -1,28 +1,22 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+
+import CommentStream from './CommentStream';
 
 import '../css/VideoContainer.css';
 
 
-class VideoContainer extends Component {
-  render() {
-    return (
-      <div className="VideoContainer">
-        <video width={this.props.videoWidth.toString()} controls>
-          {this.props.videoSources.map((videoSource, index) => (
-            <source src={videoSource} key={index} />
-          ))}
-        </video>
-      </div>
-    );
-  }
-}
+const VideoContainer = ({ dispatch }) => (
+  <div className="VideoContainer">
+    <video width="960" controls onTimeUpdate={""}>
+      <source src="https://s3.amazonaws.com/buukkittt/bbb_sunflower_1080p_60fps_normal.mp4" />
+    </video>
+    <CommentStream />
+  </div>
+);
 
 VideoContainer.propTypes = {
-  videoWidth: PropTypes.number.isRequired,
-  videoSources: PropTypes.arrayOf(
-    PropTypes.string.isRequired
-  ).isRequired,
-}
+  dispatch: PropTypes.func.isRequired,
+};
 
-export default VideoContainer;
-
+export default connect()(VideoContainer);

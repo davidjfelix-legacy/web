@@ -2,9 +2,8 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 
-export default function get() {
-  return combineReducers({
-    routing: routerReducer,
-  });
-}
+const mg4App = combineReducers({
+  routing: routerReducer,
+});
 
+export default mg4App;

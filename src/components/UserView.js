@@ -1,14 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
-class UserView extends Component {
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
-}
+const UserView = () => (
+  <div></div>
+);
 
 export default UserView;
-

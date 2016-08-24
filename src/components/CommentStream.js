@@ -1,21 +1,15 @@
-import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
+import CommentList from './CommentList';
 
-class CommentStream extends Component {
-  render() {
-    return (
-      <ul>
-        {this.props.events.map((event, index) => (
-          <li key={index}>{JSON.stringify(event)}</li>
-        ))}
-      </ul>
-    );
-  }
-}
+const mapStateToProps = (state) => {
+  return {
+    comments: ["this is a comment", "so is this"],
+  };
+};
 
-CommentStream.propTypes = {
-  events: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
-}
+const CommentStream = connect(
+  mapStateToProps
+)(CommentList);
 
 export default CommentStream;
-

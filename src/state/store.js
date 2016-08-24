@@ -5,7 +5,7 @@ import thunkMiddleware from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux'
 import { browserHistory } from 'react-router'
 
-import getRootReducer from './root-reducer';
+import mg4App from './root-reducer';
 
 const finalCreateStore = applyMiddleware(
   routerMiddleware(browserHistory),
@@ -17,13 +17,13 @@ const finalCreateStore = applyMiddleware(
 let store;
 
 export function configure(initialState) {
-  store = finalCreateStore(getRootReducer(), initialState);
+  store = finalCreateStore(mg4App, initialState);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./root-reducer', () => store.replaceReducer(getRootReducer()));
+    module.hot.accept('./root-reducer', () => store.replaceReducer(mg4App));
   }
-    
+
   return store;
 }
 

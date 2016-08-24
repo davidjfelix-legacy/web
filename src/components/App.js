@@ -17,4 +17,3 @@ const App = ({children, history}) => {
 }
 
 export default App;
-
