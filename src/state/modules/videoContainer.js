@@ -2,6 +2,7 @@ import keyMirror from 'keymirror';
 
 export const actionTypes = keyMirror({
   UPDATE_TIME: null,
+  FRAME_RESIZE: null,
 });
 
 const initialState = {
