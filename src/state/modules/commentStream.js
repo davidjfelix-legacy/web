@@ -1,4 +1,4 @@
-import keyMirror from 'keyMirror';
+import keyMirror from 'keymirror';
 import { actionTypes as videoContainerActionTypes } from './videoContainer';
 
 export const actionTypes = keyMirror({
