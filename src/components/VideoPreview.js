@@ -22,6 +22,7 @@ const VideoPreview = ({
 );
 
 VideoPreview.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   videoLinkURL: PropTypes.string.isRequired,
   videoThumbnailURL: PropTypes.string.isRequired,
   videoTitle: PropTypes.string.isRequired,
