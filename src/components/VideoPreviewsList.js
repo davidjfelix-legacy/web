@@ -1,22 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 
 import VideoPreview from './VideoPreview';
 
 import '../css/VideoPreviewsList.css';
 
-class VideoPreviewsList extends Component {
-  render() {
-    return (
-      <ul className="VideoPreviewsList">
-        {this.props.videoPreviews.map((videoPreview, index) => (
-          <li className="VideoPreviewsList__Item" key={index}>
-            <VideoPreview {...videoPreview} />
-          </li>
-        ))}
-      </ul>
-    );
-  }
-}
+const VideoPreviewsList = ({videoPreviews}) => (
+  <ul className="VideoPreviewsList">
+    {videoPreviews.map((videoPreview, index) => (
+      <li className="VideoPreviewsList__Item" key={index}>
+        <VideoPreview {...videoPreview} />
+      </li>
+    ))}
+  </ul>
+);
 
 VideoPreviewsList.propTypes = {
   videoPreviews: React.PropTypes.arrayOf(
@@ -30,4 +27,4 @@ VideoPreviewsList.propTypes = {
   ).isRequired
 }
 
-export default VideoPreviewsList;
+export default connect()(VideoPreviewsList);
