@@ -1,12 +1,32 @@
 import keyMirror from 'keyMirror';
+import { actionTypes as videoContainerActionTypes } from './videoContainer';
 
-const actionTypes = keyMirror({
+export const actionTypes = keyMirror({
   ADD_COMMENT: null,
 });
 
 const initialState = {
   comments: [],
-  events: [],
+  events: [{
+    type: 'COMMENT_AT',
+    actionTime: 5,
+    comment: 'This is a comment'
+  },
+  {
+    type: 'COMMENT_AT',
+    actionTime: 10,
+    comment: 'This is too'
+  }],
+}
+
+const triggerEvents = ({comments, events}, currentTime) => {
+  const eventsToTrigger = events.filter((event) => event.actionTime <= currentTime);
+  const newEvents = events.filter((event) => event.actionTime > currentTime);
+  const newComments = eventsToTrigger.map((event) => event.comment);
+  return {
+    comments: [...comments, ...newComments],
+    events: [...newEvents],
+  };
 }
 
 export function addComment(comment) {
@@ -22,10 +42,12 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         comments: [
-          ...state,
+          ...state.comments,
           action.comment
         ]
       };
+    case videoContainerActionTypes.UPDATE_TIME:
+      return triggerEvents(state, action.currentTime);
     default:
       return state;
   }

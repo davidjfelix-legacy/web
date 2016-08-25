@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { updateTime } from '../state/modules/VideoContainer'
+import { updateTime } from '../state/modules/videoContainer'
 
 import CommentStream from './CommentStream';
 

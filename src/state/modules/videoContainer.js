@@ -1,6 +1,6 @@
 import keyMirror from 'keyMirror';
 
-const actionTypes = keyMirror({
+export const actionTypes = keyMirror({
   UPDATE_TIME: null,
 });
 

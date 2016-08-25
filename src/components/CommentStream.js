@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import CommentList from './CommentList';
 
 const mapStateToProps = (state) => {
-  return {
-    comments: ["this is a comment", "so is this"],
-  };
+  return state.commentStream;
 };
 
 const CommentStream = connect(
