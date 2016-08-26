@@ -4,8 +4,8 @@ import CommentList from './CommentList';
 
 const getVisibleComments = (comments, currentTime) => {
   return comments
-    .filter((streamedComment) => streamedComment.time <= currentTime)
-    .map((streamedComment) => streamedComment.comment);
+    .filter((streamedComment) => (streamedComment.time <= currentTime))
+    .map((streamedComment) => (streamedComment.comment));
 };
 
 const mapStateToProps = (state) => {
