@@ -4,7 +4,7 @@ import CommentList from './CommentList';
 
 const getVisibleComments = (comments, currentTime) => {
   return comments
-    .filter((streamedComment) => (streamedComment.time <= currentTime))
+    .filter((streamedComment) => (currentTime >= streamedComment.time))
     .map((streamedComment) => (streamedComment.comment));
 };
 
