@@ -1,14 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
-class GroupView extends Component {
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
-}
+const GroupView = () => (
+  <div></div>
+);
 
 export default GroupView;
-

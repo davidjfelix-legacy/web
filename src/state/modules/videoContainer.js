@@ -7,6 +7,14 @@ export const actionTypes = keyMirror({
 
 const initialState = {
   currentTime: 0,
+  addOns: [
+    {
+      type: 'CommentStream'
+    },
+    {
+      type: 'UnrecognizedAddOn'
+    }
+  ]
 }
 
 export function updateTime(currentTime) {
