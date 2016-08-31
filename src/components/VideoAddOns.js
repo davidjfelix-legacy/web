@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux'
 
 import CommentStream from './CommentStream';
+import StreamingPoll from './StreamingPoll';
 
 
 const mapStateToProps = ({videoContainer}) => {
@@ -16,6 +17,8 @@ const VideoAddOns = ({addOns}) => (
       switch (addOn) {
         case "CommentStream":
           return (<CommentStream key={index}/>)
+        case "StreamingPoll":
+          return (<StreamingPoll key={index}/>)
         default:
           return null;
     }})}

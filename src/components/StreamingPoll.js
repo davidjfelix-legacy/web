@@ -1,4 +1,3 @@
-import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import Poll, { PollTypes } from './Poll';
@@ -8,9 +7,9 @@ const mapStateToProps = (state) => {
     pollValues: {
       "Turd Sandwich": 99,
       "Giant Douche": 1
-    }
-    pollType: ""
+    },
+    pollType: PollTypes.RADIO,
   }
 }
 
-export default connect()(Poll);
+export default connect(mapStateToProps)(Poll);

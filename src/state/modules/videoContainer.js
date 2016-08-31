@@ -12,6 +12,9 @@ const initialState = {
       type: 'CommentStream'
     },
     {
+      type: 'StreamingPoll'
+    },
+    {
       type: 'UnrecognizedAddOn'
     }
   ]
