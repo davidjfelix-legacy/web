@@ -7,7 +7,7 @@ import '../css/PageHeader.css';
 const PageHeader = () => (
   <header className="PageHeader">
     <nav>
-      <Link to={"/"} className="PageHeader_Brand">MG4.tv</Link>
+      <Link to={"/"} className="PageHeader__Brand">MG4.tv</Link>
     </nav>
   </header>
 );

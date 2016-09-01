@@ -9,7 +9,7 @@
   position: relative;
 }
 
-.PageHeader_Brand {
+.PageHeader__Brand {
   color: white;
   font-family: Exo;
   font-size: 1.5em;
@@ -17,4 +17,3 @@
   text-decoration: none;
   text-weight: 1px black;
 }
-

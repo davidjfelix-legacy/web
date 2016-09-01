@@ -5,8 +5,8 @@ import Poll, { PollTypes } from './Poll';
 const mapStateToProps = (state) => {
   return {
     pollValues: {
-      "Turd Sandwich": 99,
-      "Giant Douche": 1
+      "Red": 70,
+      "Blue": 30
     },
     pollType: PollTypes.RADIO,
   }

@@ -1,0 +1,11 @@
+.Poll {}
+
+.Poll__ItemLabel {
+  display: block;
+}
+
+.Poll__ItemValue {
+  display: block;
+  background-color: blue;
+  height: 1em;
+}
