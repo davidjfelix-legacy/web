@@ -13,7 +13,7 @@ const renderPollItem = (itemName, itemVotes, totalVotes, index) => {
   return (
     <div key={index}>
       <span className="Poll__ItemLabel">{itemName}</span>
-      <span style={{width: (votePercent +"%")}} className="Poll__ItemValue"/>
+      <span style={{width: (votePercent +"%")}} className="Poll__ItemValue">{itemVotes}</span>
     </div>
   );
 };

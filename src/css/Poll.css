@@ -6,6 +6,7 @@
 
 .Poll__ItemValue {
   display: block;
-  background-color: blue;
+  color: white;
+  background-color: #dd800b;
   height: 1em;
 }
