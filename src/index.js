@@ -5,10 +5,12 @@ import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import App from './components/App';
-import GroupView from './components/GroupView';
-import HomeView from './components/HomeView';
-import UserView from './components/UserView';
-import VideoView from './components/VideoView';
+import GroupView from './views/GroupView';
+import HomeView from './views/HomeView';
+import PerformanceView from './views/PerformanceView';
+import UserView from './views/UserView';
+import VideoView from './views/VideoView';
+
 import { configure as configureStore } from './state/store';
 
 import './index.css';
@@ -20,12 +22,14 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
-        <Route path="v/:videoId" component={VideoView} />
-        <Route path="videos/:videoId"  component={VideoView} />
-        <Route path="u/:userName" component={UserView} />
-        <Route path="users/:userName" component={UserView} />
         <Route path="g/:groupName" component={GroupView} />
         <Route path="groups/:groupName" component={GroupView} />
+        <Route path="p/:performanceId" component={PerformanceView} />
+        <Route path="performance/:performanceId" component={PerformanceView} />
+        <Route path="u/:userName" component={UserView} />
+        <Route path="users/:userName" component={UserView} />
+        <Route path="v/:videoId" component={VideoView} />
+        <Route path="videos/:videoId"  component={VideoView} />
         <IndexRoute component={HomeView} />
       </Route>
     </Router>

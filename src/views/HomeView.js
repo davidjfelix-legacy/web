@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import VideoPreviewsList from './VideoPreviewsList';
+import VideoPreviewsList from '../components/VideoPreviewsList';
 
 
 class HomeView extends Component {
@@ -25,7 +25,7 @@ class HomeView extends Component {
       ]
     };
   }
-  
+
   render() {
     return (
       <div>
@@ -36,4 +36,3 @@ class HomeView extends Component {
 }
 
 export default HomeView;
-

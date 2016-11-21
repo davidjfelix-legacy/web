@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import VideoAddOns from './VideoAddOns';
-import VideoContainer from './VideoContainer';
+import VideoAddOns from '../components/VideoAddOns';
+import VideoContainer from '../components/VideoContainer';
 
 import '../css/VideoView.css';
 
