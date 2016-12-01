@@ -10,7 +10,7 @@ const getVisibleComments = (comments, currentTime) => {
 
 const mapStateToProps = (state) => {
   return {
-    comments: getVisibleComments(state.commentStream, state.videoContainer.currentTime),
+    comments: getVisibleComments(state.commentStream, state.videoStreamsContainer.currentTime),
   };
 };
 

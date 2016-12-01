@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import VideoAddOns from '../components/VideoAddOns';
-import VideoContainer from '../components/VideoContainer';
+import VideoStreamsContainer from '../containers/VideoStreamsContainer';
 
 import '../css/VideoView.css';
 
 const VideoView = () => (
   <div className='VideoView'>
-    <VideoContainer />
+    <VideoStreamsContainer />
     <VideoAddOns />
   </div>
 );

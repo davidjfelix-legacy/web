@@ -27,19 +27,18 @@ export const indexVideos = () => {};
 export const showVideo = (videoId) => {};
 
 // POST /videos
-export const createVideo = (text) =>
+export const createVideo = (video) => {
   delay(500).then(() => {
     const video = {
+      ...video,
       id: v4(),
-      text,
-      completed: false,
     };
-    fakeDatabase.videos.push(todo);
+    fakeDatabase.videos.push(video);
     return video;
-  });
+  })};
 
 // PATCH /videos/:videoId
-export const partiallyUpdateVideo = () => {};
+export const partiallyUpdateVideo = (video) => {};
 
 // PUT /videos/:videoId
 export const updateVideo = () => {};

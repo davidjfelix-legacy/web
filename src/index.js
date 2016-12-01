@@ -7,7 +7,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import App from './components/App';
 import GroupView from './views/GroupView';
 import HomeView from './views/HomeView';
-import PerformanceView from './views/PerformanceView';
 import UserView from './views/UserView';
 import VideoView from './views/VideoView';
 
@@ -24,8 +23,6 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <Route path="g/:groupName" component={GroupView} />
         <Route path="groups/:groupName" component={GroupView} />
-        <Route path="p/:performanceId" component={PerformanceView} />
-        <Route path="performance/:performanceId" component={PerformanceView} />
         <Route path="u/:userName" component={UserView} />
         <Route path="users/:userName" component={UserView} />
         <Route path="v/:videoId" component={VideoView} />

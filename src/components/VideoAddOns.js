@@ -5,9 +5,9 @@ import CommentStream from './CommentStream';
 import StreamingPoll from './StreamingPoll';
 
 
-const mapStateToProps = ({videoContainer}) => {
+const mapStateToProps = ({videoStreamsContainer}) => {
   return {
-    addOns: videoContainer.addOns.map((addOn) => addOn.type)
+    addOns: videoStreamsContainer.addOns.map((addOn) => addOn.type)
   };
 }
 

@@ -18,7 +18,7 @@ const getPollValues = (votes, currentTime) => {
 
 const mapStateToProps = (state) => {
   return {
-    pollValues: getPollValues(state.streamingPoll, state.videoContainer.currentTime),
+    pollValues: getPollValues(state.streamingPoll, state.videoStreamsContainer.currentTime),
     pollType: PollTypes.RADIO,
   }
 }
