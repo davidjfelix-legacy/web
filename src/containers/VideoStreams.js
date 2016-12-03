@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { updateTime } from '../state/modules/videoStreamsContainer'
+import { updateTime } from '../state/modules/videoStreams'
 
-import '../css/VideoStreamsContainer.css';
+import '../css/VideoStreams.css';
 
 const mapStateToProps = (state) => ({
   width: state.browser.width,

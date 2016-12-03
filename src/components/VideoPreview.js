@@ -15,7 +15,7 @@ const VideoPreview = ({
   videoUserLinkURL,
 }) => (
   <div onClick={() => dispatch(push(videoLinkURL))}  className="VideoPreview">
-    <img src={videoThumbnailURL} className="VideoPreview__Image"/>
+    <img src={videoThumbnailURL} alt={`${videoTitle} preview thumbnail`} className="VideoPreview__Image"/>
     <h3 className="VideoPreview__Title">{videoTitle}</h3>
     <Link to={videoUserLinkURL} className="VideoPreview__User">{videoUser}</Link>
   </div>
