@@ -15,11 +15,13 @@
 .LoginOrSignupForm__FacebookLoginButton {
   color: #fff;
   cursor: pointer;
+  display: block;
   background-color: #3b5998;
   border-radius: 4px;
   font-size: 14px;
   margin-top: 5px;
   padding: 6px 12px 6px 44px;
+  text-decoration: none;
   width: 300px;
 }
 
