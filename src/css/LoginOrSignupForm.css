@@ -7,6 +7,11 @@
   width: 346px;
 }
 
+.LoginOrSignupForm__DividerText {
+  text-align: center;
+  width: 346px;
+}
+
 .LoginOrSignupForm__FacebookLoginButton {
   color: #fff;
   cursor: pointer;
