@@ -27,7 +27,7 @@ export function updateTime(currentTime) {
   }
 };
 
-export default function reducer(state = initialState, action) {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_TIME:
       return {
@@ -38,3 +38,5 @@ export default function reducer(state = initialState, action) {
       return state;
   }
 };
+
+export default reducer;

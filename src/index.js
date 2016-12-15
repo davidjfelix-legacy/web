@@ -11,7 +11,7 @@ import LoginView from './views/LoginView';
 import UserView from './views/UserView';
 import VideoView from './views/VideoView';
 
-import { configure as configureStore } from './state/store';
+import configureStore from './store';
 
 import './index.css';
 

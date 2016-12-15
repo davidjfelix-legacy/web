@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { responsiveStateReducer } from 'redux-responsive';
-import commentStream from './modules/commentStream';
-import streamingPoll from './modules/streamingPoll';
-import videoStreamsContainer from './modules/videoStreams';
+import authentication from './authentication';
+import commentStream from './commentStream';
+import streamingPoll from './streamingPoll';
+import videoStreamsContainer from './videoStreams';
 
 const mg4App = combineReducers({
   browser: responsiveStateReducer,
+  authentication,
   commentStream,
   streamingPoll,
   videoStreamsContainer,
