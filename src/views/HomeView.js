@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import VideoPreviewsList from '../components/VideoPreviewsList';
+import VideoPreviewsList from '../containers/VideoPreviewsList';
 
 
 class HomeView extends Component {

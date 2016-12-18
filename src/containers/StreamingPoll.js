@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Poll, { PollTypes } from './Poll';
+import Poll, { PollTypes } from '../components/Poll';
 
 const getPollValues = (votes, currentTime) => {
   return votes

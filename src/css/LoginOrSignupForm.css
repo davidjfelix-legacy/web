@@ -3,13 +3,15 @@
   display: block;
   font-size: 14px;
   margin-top: 5px;
-  padding: 6px 0px 6px 6px;
-  width: 346px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 300px;
 }
 
 .LoginOrSignupForm__DividerText {
   text-align: center;
-  width: 346px;
+  width: 300px;
 }
 
 .LoginOrSignupForm__FacebookLoginButton {
@@ -20,8 +22,10 @@
   border-radius: 4px;
   font-size: 14px;
   margin-top: 5px;
-  padding: 6px 12px 6px 44px;
   text-decoration: none;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   width: 300px;
 }
 
@@ -32,39 +36,33 @@
   border-radius: 4px;
   font-size: 14px;
   margin-top: 5px;
-  padding: 6px 12px 6px 44px;
-  width: 300px;
-}
-
-.LoginOrSignupForm__TwitterLoginButton {
-  color: #fff;
-  cursor: pointer;
-  background-color: #55acee;
-  border-radius: 4px;
-  font-size: 14px;
-  margin-top: 5px;
-  padding: 6px 12px 6px 44px;
   width: 300px;
 }
 
 .LoginOrSignupForm__SubmitButton {
   color: #fff;
   cursor: pointer;
-  background-color: green;
+  background-color: #dd800b;
   border-radius: 4px;
   font-size: 14px;
   margin-top: 5px;
-  padding: 6px 12px 6px 44px;
+  text-decoration: none;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   width: 300px;
 }
 
 .LoginOrSignupForm__RegisterButton {
   color: #fff;
   cursor: pointer;
-  background-color: red;
+  background-color: #dd800b;
   border-radius: 4px;
   font-size: 14px;
   margin-top: 5px;
-  padding: 6px 12px 6px 44px;
+  text-decoration: none;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   width: 300px;
 }

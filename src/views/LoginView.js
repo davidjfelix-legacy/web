@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import LoginOrSignupForm from '../components/LoginOrSignupForm';
+import LoginOrSignupForm from '../containers/LoginOrSignupForm';
 
 
 const LoginView = () => (
