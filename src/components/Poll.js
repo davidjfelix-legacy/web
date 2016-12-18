@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import keyMirror from 'keymirror';
 
-import '../css/Poll.css'
+import styles from '../css/Poll.css'
 
 
 export const PollTypes = keyMirror({
@@ -12,8 +12,8 @@ const renderPollItem = (itemName, itemVotes, totalVotes, index) => {
   const votePercent = ((itemVotes / totalVotes) * 100 ).toString();
   return (
     <div key={index}>
-      <span className="Poll__ItemLabel">{itemName}</span>
-      <span style={{width: (votePercent +"%")}} className="Poll__ItemValue">{itemVotes}</span>
+      <span className={styles.Poll__ItemLabel}>{itemName}</span>
+      <span style={{width: (votePercent +"%")}} className={styles.Poll__ItemValue}>{itemVotes}</span>
     </div>
   );
 };
@@ -31,7 +31,7 @@ const renderPollItems = (pollValues) => {
 
 
 const Poll = ({ pollValues, pollType }) => (
-  <div className="Poll">
+  <div className={styles.Poll}>
     {renderPollItems(pollValues)}
   </div>
 );

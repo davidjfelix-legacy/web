@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import '../css/PageHeader.css';
+import styles from '../css/PageHeader.css';
 
 
 const PageHeader = () => (
-  <header className="PageHeader">
+  <header className={styles.PageHeader}>
     <nav>
-      <Link to={"/"} className="PageHeader__Brand">MG4.tv</Link>
+      <Link to={"/"} className={styles.PageHeader__Brand}>MG4.tv</Link>
     </nav>
   </header>
 );

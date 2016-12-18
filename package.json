@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "react-scripts": "^0.7.0",
+    "@mg4tv/react-scripts": "^0.8.0",
     "@kadira/storybook": "^2.21.0"
   },
   "dependencies": {

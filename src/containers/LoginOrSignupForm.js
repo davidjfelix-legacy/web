@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { loginUser } from '../actions/authentication';
 
-import '../css/LoginOrSignupForm.css';
+import styles from '../css/LoginOrSignupForm.css';
 
 
 class LoginOrSignupForm extends React.Component {
@@ -18,29 +18,29 @@ class LoginOrSignupForm extends React.Component {
         this.props.dispatch(loginUser(creds));
       }}>
         <button
-          className="LoginOrSignupForm__FacebookLoginButton"
+          className={styles.LoginOrSignupForm__FacebookLoginButton}
           href="https://www.facebook.com/v2.8/dialog/oauth?client_id=1932441930316848&redirect_uri=http://localhost:3000/a/login"
           >Log in with Facebook</button>
         <button
-          className="LoginOrSignupForm__GoogleLoginButton"
+          className={styles.LoginOrSignupForm__GoogleLoginButton}
           >Log in with Google</button>
-        <div className="LoginOrSignupForm__DividerText">- or -</div>
+        <div className={styles.LoginOrSignupForm__DividerText}>- or -</div>
         <input
-          className="LoginOrSignupForm__InputField" 
+          className={styles.LoginOrSignupForm__InputField}
           type="text"
           ref="username"
           name="username"
           placeholder="Email or Username"
         />
         <input
-          className="LoginOrSignupForm__InputField"
+          className={styles.LoginOrSignupForm__InputField}
           type="password"
           ref="password"
           name="password"
           placeholder="Password"
         />
-        <input className="LoginOrSignupForm__SubmitButton" type="submit" name="Log in" />
-        <div className="LoginOrSignupForm__DividerText">Don't have an accont? Sign Up</div>
+        <input className={styles.LoginOrSignupForm__SubmitButton} type="submit" name="Log in" />
+        <div className={styles.LoginOrSignupForm__DividerText}>Don't have an accont? Sign Up</div>
       </form>
     );
   }

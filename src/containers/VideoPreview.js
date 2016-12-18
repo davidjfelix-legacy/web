@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Link } from 'react-router';
 
-import '../css/VideoPreview.css';
+import styles from '../css/VideoPreview.css';
 
 
 const VideoPreview = ({
@@ -14,10 +14,10 @@ const VideoPreview = ({
   videoUser,
   videoUserLinkURL,
 }) => (
-  <div onClick={() => dispatch(push(videoLinkURL))}  className="VideoPreview">
-    <img src={videoThumbnailURL} alt={`${videoTitle} preview thumbnail`} className="VideoPreview__Image"/>
-    <h3 className="VideoPreview__Title">{videoTitle}</h3>
-    <Link to={videoUserLinkURL} className="VideoPreview__User">{videoUser}</Link>
+  <div onClick={() => dispatch(push(videoLinkURL))}  className={styles.VideoPreview}>
+    <img src={videoThumbnailURL} alt={`${videoTitle} preview thumbnail`} className={styles.VideoPreview__Image}/>
+    <h3 className={styles.VideoPreview__Title}>{videoTitle}</h3>
+    <Link to={videoUserLinkURL} className={styles.VideoPreview__User}>{videoUser}</Link>
   </div>
 );
 

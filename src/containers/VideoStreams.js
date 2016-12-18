@@ -2,14 +2,14 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { updateTime } from '../reducers/videoStreams'
 
-import '../css/VideoStreams.css';
+import styles from '../css/VideoStreams.css';
 
 const mapStateToProps = (state) => ({
   width: state.browser.width,
 })
 
 const VideoStreamsContainer = ({ dispatch, width }) => (
-  <div className="VideoStreamsContainer">
+  <div className={styles.VideoStreamsContainer}>
     <video width={width} controls onTimeUpdate={(event) => dispatch(updateTime(event.target.currentTime))}>
       <source src="https://s3.amazonaws.com/buukkittt/bbb_sunflower_1080p_60fps_normal.mp4" />
     </video>

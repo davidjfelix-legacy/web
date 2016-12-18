@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 
 import VideoPreview from './VideoPreview';
 
-import '../css/VideoPreviewsList.css';
+import styles from '../css/VideoPreviewsList.css';
 
 const VideoPreviewsList = ({videoPreviews}) => (
-  <ul className="VideoPreviewsList">
+  <ul className={styles.VideoPreviewsList}>
     {videoPreviews.map((videoPreview, index) => (
-      <li className="VideoPreviewsList__Item" key={index}>
+      <li className={styles.VideoPreviewsList__Item} key={index}>
         <VideoPreview {...videoPreview} />
       </li>
     ))}
