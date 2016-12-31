@@ -22,6 +22,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
+        <IndexRoute component={HomeView} />
         <Route path="a/login" component={LoginView} />
         <Route path="auth/login" component={LoginView} />
         <Route path="g/:groupName" component={GroupView} />
@@ -30,7 +31,7 @@ ReactDOM.render(
         <Route path="users/:userName" component={UserView} />
         <Route path="v/:videoId" component={VideoView} />
         <Route path="videos/:videoId"  component={VideoView} />
-        <IndexRoute component={HomeView} />
+        <Route path="*" component={HomeView} />
       </Route>
     </Router>
   </Provider>,

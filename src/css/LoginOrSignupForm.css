@@ -1,4 +1,4 @@
-.LoginOrSignupForm__InputField {
+.InputField {
   border-radius: 4px;
   display: block;
   font-size: 14px;
@@ -9,12 +9,12 @@
   width: 300px;
 }
 
-.LoginOrSignupForm__DividerText {
+.DividerText {
   text-align: center;
   width: 300px;
 }
 
-.LoginOrSignupForm__FacebookLoginButton {
+.FacebookLoginButton {
   color: #fff;
   cursor: pointer;
   display: block;
@@ -29,7 +29,7 @@
   width: 300px;
 }
 
-.LoginOrSignupForm__GoogleLoginButton {
+.GoogleLoginButton {
   color: #fff;
   cursor: pointer;
   background-color: #dd4b39;
@@ -39,7 +39,7 @@
   width: 300px;
 }
 
-.LoginOrSignupForm__SubmitButton {
+.SubmitButton {
   color: #fff;
   cursor: pointer;
   background-color: #dd800b;
@@ -53,7 +53,7 @@
   width: 300px;
 }
 
-.LoginOrSignupForm__RegisterButton {
+.RegisterButton {
   color: #fff;
   cursor: pointer;
   background-color: #dd800b;
