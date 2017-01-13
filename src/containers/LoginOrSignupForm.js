@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { loginUser } from '../actions/authentication';
 
 import styles from '../css/LoginOrSignupForm.css';
+import { FACEBOOK_CLIENT_ID, MG4_WEB_BASE_URL } from '../config';
 
 
 class LoginOrSignupForm extends React.Component {
@@ -11,8 +12,9 @@ class LoginOrSignupForm extends React.Component {
     return (
       <div>
       <form action="https://www.facebook.com/v2.8/dialog/oauth">
-        <input type="hidden" name="client_id" value="1932441930316848" />
-        <input type="hidden" name="redirect_uri" value="http://localhost:3000/a/facebook" />
+        <input type="hidden" name="client_id" value={FACEBOOK_CLIENT_ID} />
+        <input type="hidden" name="redirect_uri" value={MG4_WEB_BASE_URL + "/a/facebook"} />
+        <input type="hidden" name="scope" value="email" />
         <button
           className={styles.FacebookLoginButton}
           type="submit"
