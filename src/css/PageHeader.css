@@ -1,5 +1,5 @@
 .PageHeader {
-  background-color: #dd800b;
+  background-color: #212121;
   display: block;
   line-height: 1;
   padding-bottom: 0.25rem;
@@ -9,7 +9,7 @@
   position: relative;
 }
 
-.PageHeader__Brand {
+.Brand {
   color: white;
   font-family: Exo;
   font-size: 1.5em;
