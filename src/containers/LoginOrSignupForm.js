@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { loginUser } from '../actions/authentication';
+import LoginWithFacebookButton from '../components/LoginWithFacebookButton';
 
 import styles from '../css/LoginOrSignupForm.css';
 import { FACEBOOK_CLIENT_ID, MG4_WEB_BASE_URL } from '../config';
