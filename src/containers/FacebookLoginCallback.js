@@ -4,7 +4,7 @@ import { push } from 'react-router-redux';
 
 
 import { convertFacebookCode } from '../actions/authentication';
-import { FACEBOOK_CLIENT_ID, MG4_WEB_BASE_URL } from '../config';
+import { FACEBOOK_CLIENT_ID, MG4_WEB_BASE_URL } from '../configuration';
 
 
 const mapStateToProps = ({authentication}) => ({

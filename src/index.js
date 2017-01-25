@@ -15,6 +15,7 @@ import VideoView from './views/VideoView';
 import configureStore from './store';
 
 import './index.css';
+import '../node_modules/grommet/scss/grommet-core/index.scss';
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);

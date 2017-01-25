@@ -1,6 +1,6 @@
 import keyMirror from 'keymirror';
 
-import { MG4_API_BASE_URL } from '../config';
+import { MG4_API_BASE_URL } from '../configuration';
 
 
 export const actionTypes = keyMirror({

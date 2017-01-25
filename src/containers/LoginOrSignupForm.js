@@ -5,7 +5,7 @@ import { loginUser } from '../actions/authentication';
 import LoginWithFacebookButton from '../components/LoginWithFacebookButton';
 
 import styles from '../css/LoginOrSignupForm.css';
-import { FACEBOOK_CLIENT_ID, MG4_WEB_BASE_URL } from '../config';
+import { FACEBOOK_CLIENT_ID, MG4_WEB_BASE_URL } from '../configuration';
 
 
 class LoginOrSignupForm extends React.Component {
