@@ -148,15 +148,12 @@ module.exports = {
       // in the main CSS file.
       {
         test: /\.(css|scss)$/,
-        include: ['node_modules/grommet'],
-        loader: ExtractTextPlugin.extract(
-          'style',
-          'css!resolve-url!postcss!sass')
-        // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+        include: [/node_modules\/grommet/],
+        loader: 'style!css?sourceMap!postcss!sass?sourceMap',
       },
       {
         test: /\.(css|scss)$/,
-        exclude: ['node_modules'],
+        exclude: [/node_modules/],
         loader: ExtractTextPlugin.extract(
             'style',
             'css?modules&importLoaders=2&localIdentName=[path]___[name]__[local]___[hash:base64:5]!postcss!resolve-url!sass'
