@@ -8,7 +8,7 @@ import App from './components/App';
 import FacebookLoginCallback from './containers/FacebookLoginCallback';
 import GroupView from './views/GroupView';
 import HomeView from './views/HomeView';
-import LoginView from './views/LoginView';
+import LoginView from './components/LoginView';
 import UserView from './views/UserView';
 import VideoView from './views/VideoView';
 

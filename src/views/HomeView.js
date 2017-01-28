@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import MenuLayout from '../components/MenuLayout';
 import VideoPreviewsList from '../containers/VideoPreviewsList';
 
 
@@ -28,9 +29,11 @@ class HomeView extends Component {
 
   render() {
     return (
-      <div>
-        <VideoPreviewsList videoPreviews={this.state.videos} />
-      </div>
+      <MenuLayout>
+        <div>
+          <VideoPreviewsList videoPreviews={this.state.videos} />
+        </div>
+      </MenuLayout>
     );
   }
 }

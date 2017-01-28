@@ -8,7 +8,7 @@ import styles from '../css/PageHeader.css';
 
 
 const PageHeader = () => (
-  <Header colorIndex="grey-2" size="small" seperator="none">
+  <Header colorIndex="grey-2" size="small">
     <Menu inline={true} pad={{horizontal: "small", vertical: "none"}}>
       <Anchor path="/" className={styles.Brand} label="MG4.tv" tag={Link}/>
     </Menu>
