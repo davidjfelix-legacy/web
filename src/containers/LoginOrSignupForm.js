@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
+import Anchor from 'grommet/components/Anchor';
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 import Label from 'grommet/components/Label';
+import { Link } from 'react-router';
 import PlatformGoogleIcon from 'grommet/components/icons/base/PlatformGoogle';
 import SocialFacebookIcon from 'grommet/components/icons/base/SocialFacebook';
 import { connect } from 'react-redux';
@@ -23,12 +25,12 @@ class LoginOrSignupForm extends React.Component {
           <input type="hidden" name="redirect_uri" value={MG4_WEB_BASE_URL + "/a/facebook"} />
           <input type="hidden" name="scope" value="email" />
           <Footer align="stretch">
-            <Button icon={<SocialFacebookIcon />} primary={true} fill={true} label="Log in with Facebook" />
+            <Button path="/" type="button" icon={<SocialFacebookIcon />} primary={true} fill={true} label="Log in with Facebook" />
           </Footer>
         </Form>
         <Form pad={{horizontal: "medium", vertical: "none"}}>
           <Footer align="stretch">
-            <Button icon={<PlatformGoogleIcon />} primary={true} fill={true} label="Log in with Google"/>
+            <Button path="/" icon={<PlatformGoogleIcon />} type="button" primary={true} fill={true} label="Log in with Google"/>
           </Footer>
         </Form>
         <Box align="stretch" pad="medium">
@@ -45,7 +47,9 @@ class LoginOrSignupForm extends React.Component {
             <Button primary={true} fill={true} type="submit" label="Log In"/>
           </Footer>
         </Form>
-        <Label margin="none">Don't have an accont? Sign Up</Label>
+        <Box align="stretch" pad="medium">
+          <Label margin="none">Don't have an accont? <Anchor path="/a/register" label="Sign Up" tag={Link}/></Label>
+        </Box>
       </Box>
     );
   }
