@@ -140,19 +140,12 @@ module.exports = {
       // In production, we use a plugin to extract that CSS to a file, but
       // in development "style" loader enables hot editing of CSS.
       {
-        test: /\.(css|scss)$/,
-        include: [/node_modules\/grommet/],
-        loader: 'style!css?sourceMap!postcss!sass?sourceMap',
-      },
-      {
-        test: /\.(css|scss)$/,
-        exclude: [/node_modules/],
+        test: /\.css$/,
         loaders: [
             'style?sourceMap',
             'css?modules&importLoaders=2&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
             'resolve-url',
             'postcss',
-            'sass?sourceMap'
         ]
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
