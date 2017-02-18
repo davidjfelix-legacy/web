@@ -19,9 +19,9 @@ export const styles = {
 }
 
 const VideoPreviewsList = ({videoPreviews}) => (
-  <ul className={styles.List}>
+  <ul style={styles.List}>
     {videoPreviews.map((videoPreview, index) => (
-      <li className={styles.Item} key={index}>
+      <li style={styles.Item} key={index}>
         <VideoPreview {...videoPreview} />
       </li>
     ))}
