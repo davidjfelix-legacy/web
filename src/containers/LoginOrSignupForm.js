@@ -1,14 +1,5 @@
 import React, { PropTypes } from 'react';
-import Anchor from 'grommet/components/Anchor';
-import Box from 'grommet/components/Box';
-import Button from 'grommet/components/Button';
-import Footer from 'grommet/components/Footer';
-import Form from 'grommet/components/Form';
-import FormField from 'grommet/components/FormField';
-import Label from 'grommet/components/Label';
 import { Link } from 'react-router';
-import PlatformGoogleIcon from 'grommet/components/icons/base/PlatformGoogle';
-import SocialFacebookIcon from 'grommet/components/icons/base/SocialFacebook';
 import { connect } from 'react-redux';
 
 import { loginUser } from '../actions/authentication';
@@ -19,7 +10,22 @@ import { FACEBOOK_CLIENT_ID, MG4_WEB_BASE_URL } from '../configuration';
 class LoginOrSignupForm extends React.Component {
   render() {
     return (
-      <Box flex={true} justify="center" alignContent="center" align="center">
+      <div></div>
+    );
+  }
+};
+
+LoginOrSignupForm.PropTypes = {
+  dispatch: PropTypes.func.isRequired,
+}
+
+
+LoginOrSignupForm = connect()(LoginOrSignupForm)
+
+export default LoginOrSignupForm;
+
+
+      /*<Box flex={true} justify="center" alignContent="center" align="center">
         <Form pad={{horizontal: "medium", vertical: "small"}} action="https://www.facebook.com/v2.8/dialog/oauth">
           <input type="hidden" name="client_id" value={FACEBOOK_CLIENT_ID} />
           <input type="hidden" name="redirect_uri" value={MG4_WEB_BASE_URL + "/a/facebook"} />
@@ -50,16 +56,4 @@ class LoginOrSignupForm extends React.Component {
         <Box align="stretch" pad="medium">
           <Label margin="none">Don't have an accont? <Anchor path="/a/register" label="Sign Up" tag={Link}/></Label>
         </Box>
-      </Box>
-    );
-  }
-};
-
-LoginOrSignupForm.PropTypes = {
-  dispatch: PropTypes.func.isRequired,
-}
-
-
-LoginOrSignupForm = connect()(LoginOrSignupForm)
-
-export default LoginOrSignupForm;
+      </Box>*/

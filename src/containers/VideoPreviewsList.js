@@ -1,14 +1,27 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import VideoPreview from './VideoPreview';
 
-import styles from '../css/VideoPreviewsList.css';
+
+export const styles = {
+  List: {
+    listStyle: "none",
+    padding: "0px",
+    margin: "0px",
+  },
+  Item: {
+    display: "inline-block",
+    marginBottom: "0px",
+    marginLeft: "10px",
+    marginRight: "0px",
+    marginTop: "10px",
+  },
+}
 
 const VideoPreviewsList = ({videoPreviews}) => (
-  <ul className={styles.VideoPreviewsList}>
+  <ul className={styles.List}>
     {videoPreviews.map((videoPreview, index) => (
-      <li className={styles.VideoPreviewsList__Item} key={index}>
+      <li className={styles.Item} key={index}>
         <VideoPreview {...videoPreview} />
       </li>
     ))}
@@ -27,4 +40,4 @@ VideoPreviewsList.propTypes = {
   ).isRequired
 }
 
-export default connect()(VideoPreviewsList);
+export default VideoPreviewsList;

@@ -1,18 +1,26 @@
 import React from 'react';
-import Anchor from 'grommet/components/Anchor';
-import Header from 'grommet/components/Header';
-import Menu from 'grommet/components/Menu';
 import { Link } from 'react-router';
+import { Navbar, NavbarBrand } from 'reactstrap';
 
-import styles from '../css/PageHeader.css';
+
+export const styles = {
+  Brand: {
+    color: "white",
+    fontFamily: "Exo",
+    fontSize: "1.5em",
+    fontWeight: 900,
+    textDecoration: "none",
+    textWeight: "1px black"
+  }
+};
 
 
 const PageHeader = () => (
-  <Header colorIndex="grey-2" size="small">
-    <Menu inline={true} pad={{horizontal: "small", vertical: "none"}}>
-      <Anchor path="/" className={styles.Brand} label="MG4.tv" tag={Link}/>
-    </Menu>
-  </Header>
+  <Navbar color="inverse" inverse toggleable>
+    <NavbarBrand style={styles.Brand}>
+      <Link to="/">MG4.tv</Link>
+    </NavbarBrand>
+  </Navbar>
 );
 
 export default PageHeader;

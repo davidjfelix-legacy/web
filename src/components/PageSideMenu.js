@@ -1,13 +1,13 @@
 import React from 'react';
-import Anchor from 'grommet/components/Anchor';
-import Header from 'grommet/components/Header';
-import Heading from 'grommet/components/Heading';
-import Menu from 'grommet/components/Menu';
-import Sidebar from 'grommet/components/Sidebar';
 
 
 const PageSideMenu = () => (
-  <Sidebar size="small" pad="none">
+  <div></div>
+);
+
+export default PageSideMenu;
+
+  /*<Sidebar size="small" pad="none">
     <Menu colorIndex="neutral-2-a" fill={true} pad="none">
       <Menu align="start" label="Groups menu" inline={true} direction="column" size="small" primary={true} pad="none">
         <Header align="end" pad={{horizontal: "medium", vertical: "none"}} direction="row" responsive={false} size="small">
@@ -18,7 +18,4 @@ const PageSideMenu = () => (
         <Anchor pad="none" label="Group 3"/>
       </Menu>
     </Menu>
-  </Sidebar>
-);
-
-export default PageSideMenu;
+  </Sidebar>*/

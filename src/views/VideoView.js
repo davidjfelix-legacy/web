@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import VideoAddOns from '../containers/VideoAddOns';
 import VideoStreams from '../containers/VideoStreams';
 
-import styles from '../css/VideoView.css';
 
 const VideoView = () => (
-  <div className={styles.VideoView}>
+  <div>
     <VideoStreams />
     <VideoAddOns />
   </div>

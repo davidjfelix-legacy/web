@@ -1,14 +1,14 @@
 import React from 'react';
-import Section from 'grommet/components/Section';
 import { connect } from 'react-redux';
+import { Container } from 'reactstrap';
 
 import LoginOrSignupForm from '../containers/LoginOrSignupForm';
 
 
 const LoginView = () => (
-  <Section full={true} justify="center" textAlign="center">
+  <Container>
     <LoginOrSignupForm />
-  </Section>
+  </Container>
 );
 
 export default connect()(LoginView);

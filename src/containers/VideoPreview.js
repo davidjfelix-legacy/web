@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Link } from 'react-router';
 
@@ -29,5 +28,3 @@ VideoPreview.propTypes = {
   videoUser: PropTypes.string.isRequired,
   videoUserLinkURL: PropTypes.string.isRequired,
 }
-
-export default connect()(VideoPreview);

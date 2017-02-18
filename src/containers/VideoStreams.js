@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import { updateTime } from '../reducers/videoStreams'
 
 import styles from '../css/VideoStreams.css';
