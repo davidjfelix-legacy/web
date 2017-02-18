@@ -17,9 +17,7 @@ export const styles = {
 
 const PageHeader = () => (
   <Navbar color="inverse" inverse toggleable>
-    <NavbarBrand style={styles.Brand}>
-      <Link to="/">MG4.tv</Link>
-    </NavbarBrand>
+    <NavbarBrand style={styles.Brand} to="/" tag={Link}>MG4.tv</NavbarBrand>
   </Navbar>
 );
 

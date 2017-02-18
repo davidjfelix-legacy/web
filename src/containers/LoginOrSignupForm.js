@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+//import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import { loginUser } from '../actions/authentication';
+//import { loginUser } from '../actions/authentication';
 
-import { FACEBOOK_CLIENT_ID, MG4_WEB_BASE_URL } from '../configuration';
+//import { FACEBOOK_CLIENT_ID, MG4_WEB_BASE_URL } from '../configuration';
 
 
 class LoginOrSignupForm extends React.Component {
