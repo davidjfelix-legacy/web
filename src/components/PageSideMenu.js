@@ -1,8 +1,8 @@
 import React from 'react';
 
 
-const PageSideMenu = () => (
-  <div></div>
+const PageSideMenu = ({children}) => (
+  <div>{children}</div>
 );
 
 export default PageSideMenu;
