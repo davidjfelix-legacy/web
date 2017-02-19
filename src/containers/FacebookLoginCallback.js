@@ -28,13 +28,11 @@ class FacebookLoginCallback extends React.Component {
   redirectError() {
     // TODO: build this 
   }
+
   render() {
-   if (this.props.isAuthenticated) {
-     this.props.dispatch(push('/'));
-   }
-   return (
-     <div>signing in...</div>
-   ) 
+    return (
+      <div>signing in...</div>
+    )
   }
 }
 
