@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import keyMirror from 'keymirror';
-
-import styles from '../css/Poll.css'
+import { Col, Progress, Row } from 'reactstrap';
 
 
 export const PollTypes = keyMirror({
@@ -10,11 +9,11 @@ export const PollTypes = keyMirror({
 
 const renderPollItem = (itemName, itemVotes, totalVotes, index) => {
   const votePercent = ((itemVotes / totalVotes) * 100 ).toString();
+  const color = ["primary", "success", "info", "warning", "danger"][index % 5]
   return (
-    <div key={index}>
-      <span className={styles.Poll__ItemLabel}>{itemName}</span>
-      <span style={{width: (votePercent +"%")}} className={styles.Poll__ItemValue}>{itemVotes}</span>
-    </div>
+    <Progress bar key={index} color={color} value={votePercent}>
+      {itemName} {itemVotes}
+    </Progress>
   );
 };
 
@@ -25,13 +24,22 @@ const renderPollItems = (pollValues) => {
         totalVotes += pollValues[item]
       }
     };
-    return Object.keys(pollValues).map((pollValueKey, index) => (
-      renderPollItem(pollValueKey, pollValues[pollValueKey], totalVotes, index)));
+    return (
+      <Row>
+        <Col>
+          <Progress multi>
+            {Object.keys(pollValues).map((pollValueKey, index) => (
+              renderPollItem(pollValueKey, pollValues[pollValueKey], totalVotes, index)
+            ))}
+          </Progress>
+        </Col>
+      </Row>
+    )
 };
 
 
 const Poll = ({ pollValues, pollType }) => (
-  <div className={styles.Poll}>
+  <div>
     {renderPollItems(pollValues)}
   </div>
 );

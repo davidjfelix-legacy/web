@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { Container } from 'reactstrap';
 
 import CommentStream from './CommentStream';
 import StreamingPoll from './StreamingPoll';
@@ -12,7 +13,7 @@ const mapStateToProps = ({videoStreamsContainer}) => {
 }
 
 const VideoAddOns = ({addOns}) => (
-  <div className="VideoAddOns">
+  <Container>
     {addOns.map((addOn, index) => {
       switch (addOn) {
         case "CommentStream":
@@ -22,7 +23,7 @@ const VideoAddOns = ({addOns}) => (
         default:
           return null;
     }})}
-  </div>
+  </Container>
 );
 
 VideoAddOns.propTypes = {
