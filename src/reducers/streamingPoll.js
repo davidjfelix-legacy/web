@@ -4,28 +4,31 @@ export const actionTypes = keyMirror({
   ADD_VOTE: null,
 });
 
-const initialState = [
-  {
-    time: 1,
-    vote: 'RED'
-  },
-  {
-    time: 2,
-    vote: 'BLUE'
-  },
-  {
-    time: 5,
-    vote: 'BLUE'
-  },
-  {
-    time: 6,
-    vote: 'BLUE'
-  },
-  {
-    time: 10,
-    vote: 'GREEN'
-  },
-];
+const initialState = {
+  question: "What is your favorite color?",
+  values: [
+    {
+      time: 1,
+      vote: 'RED'
+    },
+    {
+      time: 2,
+      vote: 'BLUE'
+    },
+    {
+      time: 5,
+      vote: 'BLUE'
+    },
+    {
+      time: 6,
+      vote: 'BLUE'
+    },
+    {
+      time: 10,
+      vote: 'GREEN'
+    },
+]
+};
 
 export function addVote(vote) {
   return {

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import keyMirror from 'keymirror';
-import { Col, Progress, Row } from 'reactstrap';
+import { Col, Container, Progress, Row } from 'reactstrap';
 
 
 export const PollTypes = keyMirror({
@@ -17,7 +17,18 @@ const renderPollItem = (itemName, itemVotes, totalVotes, index) => {
   );
 };
 
-const renderPollItems = (pollValues) => {
+const mapValuesOrDefault = (pollValues, totalVotes) => {
+  if (Object.keys(pollValues).length === 0) {
+    return (
+      <Progress bar />
+    );
+  } else {
+    return Object.keys(pollValues).map((pollValueKey, index) => (
+                renderPollItem(pollValueKey, pollValues[pollValueKey], totalVotes, index)));
+  }
+};
+
+const renderPollItems = (pollQuestion, pollValues) => {
     let totalVotes = 0;
     for (let item in pollValues) {
       if ({}.hasOwnProperty.call(pollValues, item)) {
@@ -25,22 +36,25 @@ const renderPollItems = (pollValues) => {
       }
     };
     return (
-      <Row>
-        <Col>
-          <Progress multi>
-            {Object.keys(pollValues).map((pollValueKey, index) => (
-              renderPollItem(pollValueKey, pollValues[pollValueKey], totalVotes, index)
-            ))}
-          </Progress>
-        </Col>
-      </Row>
+      <Container>
+        <Row>
+          <Col>{pollQuestion}</Col>
+        </Row>
+        <Row>
+          <Col>
+            <Progress multi>
+              {mapValuesOrDefault(pollValues, totalVotes)}
+            </Progress>
+          </Col>
+        </Row>
+      </Container>
     )
 };
 
 
-const Poll = ({ pollValues, pollType }) => (
+const Poll = ({ pollValues, pollType, pollQuestion }) => (
   <div>
-    {renderPollItems(pollValues)}
+    {renderPollItems(pollQuestion, pollValues)}
   </div>
 );
 
@@ -49,6 +63,7 @@ Poll.propTypes = {
     PropTypes.number.isRequired
   ).isRequired,
   pollType: PropTypes.string.isRequired,
+  pollQuestion: PropTypes.string.isRequired,
 }
 
 export default Poll;
