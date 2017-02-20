@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Poll, { PollTypes } from '../components/Poll';
+import Poll, { PollTypes } from './Poll';
 
 const getPollValues = (votes, currentTime) => {
   return votes
@@ -18,8 +18,9 @@ const getPollValues = (votes, currentTime) => {
 
 const mapStateToProps = (state) => {
   return {
-    pollValues: getPollValues(state.streamingPoll, state.videoStreamsContainer.currentTime),
+    pollValues: getPollValues(state.streamingPoll.values, state.videoStreamsContainer.currentTime),
     pollType: PollTypes.RADIO,
+    pollQuestion: state.streamingPoll.question
   }
 }
 

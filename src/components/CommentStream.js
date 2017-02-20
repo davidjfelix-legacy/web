@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import CommentList from '../components/CommentList';
+import CommentList from './CommentList';
 
 const getVisibleComments = (comments, currentTime) => {
   return comments
