@@ -11,7 +11,7 @@ const mapStateToProps = (state) => (
 
 class UserView extends React.Component {
   componentWillMount() {
-    this.props.dispatch(getUser("testuser"));
+    this.props.dispatch(getUser(this.props.params.userName));
   }
 
   render() {
