@@ -13,14 +13,14 @@ export const actionTypes = keyMirror({
 });
 
 
-const requestLogin = (creds) => ({
+const loginRequest = (creds) => ({
   type: actionTypes.LOGIN_USER_REQUEST,
   isFetching: true,
   isAuthenticated: false,
   creds
 });
 
-const recieveLogin = (token) => ({
+const loginRecieve = (token) => ({
   type: actionTypes.LOGIN_USER_SUCCESS,
   isFetching: false,
   isAuthenticated: true,
@@ -78,7 +78,7 @@ export const convertFacebookCode = (req) => dispatch => {
 };
 
 export const loginUser = (creds) => (dispatch) => {
-  dispatch(requestLogin(creds));
+  dispatch(loginRequest(creds));
 
   // TODO: extract URL to config
   // TODO: utilize HTTPS
@@ -90,7 +90,7 @@ export const loginUser = (creds) => (dispatch) => {
   }).then((response) => {
     if (response.ok) {
       response.json().then((json) => {
-        dispatch(recieveLogin(json.token));
+        dispatch(loginRecieve(json.token));
         localStorage.setItem('token', json.token);
       });
     } else {

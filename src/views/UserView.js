@@ -1,8 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { getUser } from '../actions/users';
 
 
-const UserView = () => (
-  <div></div>
+const mapStateToProps = (state) => (
+  {user: state.users.currentUser}
 );
 
-export default UserView;
+
+class UserView extends React.Component {
+  componentWillMount() {
+    this.props.dispatch(getUser("testuser"));
+  }
+
+  render() {
+    return (
+      <div>{JSON.stringify(this.props.user)}</div>
+    );
+  }
+};
+
+export default connect(mapStateToProps)(UserView);
