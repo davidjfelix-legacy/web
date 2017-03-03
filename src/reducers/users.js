@@ -2,7 +2,7 @@ import { actionTypes } from '../actions/users';
 
 const initalState = {
   isFetching: false,
-  isAuthenticated: localStorage.getItem('token') ? true : false
+  currentUser: {}
 }
 
 const reducer = (state=initalState, action) => {
