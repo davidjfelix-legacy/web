@@ -3,22 +3,22 @@ import { Nav, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router';
 
 
-const UserNav = ({active}) => (
+const UserNav = ({active, userName}) => (
   <Nav tabs>
     <NavItem>
-      <NavLink active={active === "overview"} tag={Link} to="/">Overview</NavLink>
+      <NavLink active={active === "overview"} tag={Link} to={`/u/${userName}`}>Overview</NavLink>
     </NavItem>
     <NavItem>
-      <NavLink active={active === "videos"} tag={Link} to="/">Videos</NavLink>
+      <NavLink active={active === "videos"} tag={Link} to={`/u/${userName}/videos`}>Videos</NavLink>
     </NavItem>
     <NavItem>
-      <NavLink active={active === "organizations"} tag={Link} to="/">Organizations</NavLink>
+      <NavLink active={active === "organizations"} tag={Link} to={`/u/${userName}/organizations`}>Organizations</NavLink>
     </NavItem>
     <NavItem>
-      <NavLink active={active === "following"} tag={Link} to="/">Following</NavLink>
+      <NavLink active={active === "following"} tag={Link} to={`/u/${userName}/following`}>Following</NavLink>
     </NavItem>
     <NavItem>
-      <NavLink active={active === "followers"} tag={Link} to="/">Followers</NavLink>
+      <NavLink active={active === "followers"} tag={Link} to={`/u/${userName}/followers`}>Followers</NavLink>
     </NavItem>
   </Nav>
 );
@@ -30,7 +30,8 @@ UserNav.PropTypes = {
     "organizations",
     "following",
     "followers",
-  ]),
+  ]).isRequired,
+  userName: PropTypes.string.isRequired,
 };
 
 

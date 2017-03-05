@@ -2,8 +2,8 @@ import React from 'react';
 import UserNav from './UserNav';
 
 
-const UserVideos = () => (
-  <UserNav active="videos" />
+const UserVideos = ({params}) => (
+  <UserNav active="videos" userName={params.userName}/>
 );
 
 export default UserVideos;
