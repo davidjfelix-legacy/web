@@ -1,3 +1,22 @@
 language: node_js
 node_js:
-  - "node"
+  - node
+deploy:
+  - provider: releases
+    api_key:
+      secure: v39cIoJwq+aGTDYPfNeo2xRneFxdvwaX1b98eEI0Rbdgz1LXFe9ZnH+q1cpz3wIhYQEJ5sjibylJ93QYCegOt4u9fSqJjGR0MvkdgK3zETVEVTxv3QQvC4Yv7p5M/vgELrDhXHBTEWaRLLTgwDI78+bzE2HNKMTzkookIqvCOcEq6h17BGbYq4ZbyT8Kz/YmrBZDOBmYX+D7UjB0P+cFHz1qVFEot1Erm7oxrY1MKabky+8jXJNlSS5hBfzqDhQcyaviwatXs/7s+59Mp3zLr35eoZR+3S+x/1uLAZ/im4T3iutxQcBDsII2gpfP/CGKzbXX8O0VXsQ83c3VaXuuQqlRasmemDoxNTnpjsEkCj6dBMKvMAcH9wAUJg4HWhSt7tQQVJVXV7jDQQENbV2dvbbHUtVlerHiUGcHUcXLTz0limpNK+s9ZT9ZVxORRvOYt7jpbya2kDZmLi7GgBbZvAbrORBHcz0HWDi6gEb0IPneKR+tBpCiutQweymfncPtgbkKdebNIWWhVBGLdcOp2hdQ5ZvGxQ/SvadKISeWWSlbUVb8v2PdRMmmK4l+fUFF2Y7Yy3Fnk0Avz44RjfNZsZK/fMTXoeV0POaUcrIbn5jEdiqWI/v7vSZAzZIywbfepehJzIuJXh6EvrM3kzDBtfLXTZN2DOMbDr6ZsqaSln0=
+    file_glob: true
+    file: build/*
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: mg4tv/mg4tv-web
+  - provider: releases
+    api_key:
+      secure: v39cIoJwq+aGTDYPfNeo2xRneFxdvwaX1b98eEI0Rbdgz1LXFe9ZnH+q1cpz3wIhYQEJ5sjibylJ93QYCegOt4u9fSqJjGR0MvkdgK3zETVEVTxv3QQvC4Yv7p5M/vgELrDhXHBTEWaRLLTgwDI78+bzE2HNKMTzkookIqvCOcEq6h17BGbYq4ZbyT8Kz/YmrBZDOBmYX+D7UjB0P+cFHz1qVFEot1Erm7oxrY1MKabky+8jXJNlSS5hBfzqDhQcyaviwatXs/7s+59Mp3zLr35eoZR+3S+x/1uLAZ/im4T3iutxQcBDsII2gpfP/CGKzbXX8O0VXsQ83c3VaXuuQqlRasmemDoxNTnpjsEkCj6dBMKvMAcH9wAUJg4HWhSt7tQQVJVXV7jDQQENbV2dvbbHUtVlerHiUGcHUcXLTz0limpNK+s9ZT9ZVxORRvOYt7jpbya2kDZmLi7GgBbZvAbrORBHcz0HWDi6gEb0IPneKR+tBpCiutQweymfncPtgbkKdebNIWWhVBGLdcOp2hdQ5ZvGxQ/SvadKISeWWSlbUVb8v2PdRMmmK4l+fUFF2Y7Yy3Fnk0Avz44RjfNZsZK/fMTXoeV0POaUcrIbn5jEdiqWI/v7vSZAzZIywbfepehJzIuJXh6EvrM3kzDBtfLXTZN2DOMbDr6ZsqaSln0=
+    file_glob: true
+    file: build/*
+    skip_cleanup: true
+    overwrite: true
+    on:
+      repo: mg4tv/mg4tv-web
