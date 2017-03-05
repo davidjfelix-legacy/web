@@ -6,25 +6,31 @@ import { Link } from 'react-router';
 const UserNav = ({active}) => (
   <Nav tabs>
     <NavItem>
-      <NavLink disabled tag={Link} to="/">Overview</NavLink>
+      <NavLink active={active === "overview"} tag={Link} to="/">Overview</NavLink>
     </NavItem>
     <NavItem>
-      <NavLink disabled tag={Link} to="/">Videos</NavLink>
+      <NavLink active={active === "videos"} tag={Link} to="/">Videos</NavLink>
     </NavItem>
     <NavItem>
-      <NavLink disabled active tag={Link} to="/">Organizations</NavLink>
+      <NavLink active={active === "organizations"} tag={Link} to="/">Organizations</NavLink>
     </NavItem>
     <NavItem>
-      <NavLink disabled tag={Link} to="/">Following</NavLink>
+      <NavLink active={active === "following"} tag={Link} to="/">Following</NavLink>
     </NavItem>
     <NavItem>
-      <NavLink disabled tag={Link} to="/">Followers</NavLink>
+      <NavLink active={active === "followers"} tag={Link} to="/">Followers</NavLink>
     </NavItem>
   </Nav>
 );
 
 UserNav.PropTypes = {
-  active: PropTypes.active.String.isRequired,
+  active: PropTypes.oneOf([
+    "overview",
+    "videos",
+    "organizations",
+    "following",
+    "followers",
+  ]),
 };
 
 
