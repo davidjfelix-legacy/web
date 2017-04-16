@@ -16,6 +16,7 @@ env:
 script:
 - yarn test
 - yarn build
+- XZ_OPT=-9e tar cJf tarfile.tar.xz build
 before_deploy:
 - zip -r mg4.zip build
 deploy:
@@ -24,4 +25,5 @@ deploy:
     secure: XgND8MPNtyvFNgQMBS1nyjbfi34PlCiIdV/ONcK8pc8SqwtheTzbBlJuUy4uKcwWFWLB8gouEXTZkn1XDeJaQYOiWlrYcCPWuksSjaKc/DM15yH63Vu2SPoYOgDU5iNjCqMIOsGG3oI7K4Py8+khLYven8XiU4XlYilD7NV2kSbQZJw2LKf5Kb1KUoZ+KHzzf+TIx9nAgNOupkWVu7kQFVDQlb4l7g3eo5YrYW4X+y89+ATbw7bwqhJamzALB1srPBe2sFx8sQiTQ9Ui5K4MvuKkZCGFGRvX/sztpnLBEkcBCQkrGrHGhMxMKtDsLDaorqtZR1NI0d6Su78NxmfWL8YK1NL/4FlRaNrkj62T6/gRt0EPEyk5A/jhGIDxWJYYD7UhvrbTvnbd8YMca6Wt9VRol9W9NfHLIS2lZWjgJ2klcK0sUY3drnEeUR9S1aw9IAN6FqvValikTuWLuDCriLwuzh2z6f5RtEpQvIyK8J4M/DMKiD7e+M6DDEG9WiFqOspi8z66e07R9wp5jdaLZWeNKXz7SVG9x8SuIb7lZzI1B7opfaOtAnReVa7OHCqGm7IqCI4LKs0MyYEByKlSldYr1L76xPCgbto+CgQ7zU6wBsbOcQ/zbadXM6RzaQreMgBIVWcC6WqcSd3mp6qaYCmGVBpDYhMWz9VDDjuxYbw=
   file: build.tar.xz
   on:
+    tags: true
     repo: iotv/web
