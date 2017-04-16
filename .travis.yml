@@ -16,7 +16,7 @@ env:
 script:
 - yarn test
 - yarn build
-- XZ_OPT=-9e tar cJf tarfile.tar.xz build
+- XZ_OPT=-9e tar cJf build.tar.xz build
 before_deploy:
 - zip -r mg4.zip build
 deploy:
@@ -27,7 +27,7 @@ deploy:
   on:
     tags: true
     repo: iotv/web
-- provider: shell
+- provider: script
   script: firebase deploy --token "$FIREBASE_TOKEN"
   skip_cleanup: true
   on:
