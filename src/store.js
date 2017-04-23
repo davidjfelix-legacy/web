@@ -1,24 +1,26 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import createLogger from 'redux-logger';
 import { responsiveStoreEnhancer } from 'redux-responsive';
+import { createEpicMiddleware } from 'redux-observable';
 import thunkMiddleware from 'redux-thunk';
-import { routerMiddleware } from 'react-router-redux'
-import { browserHistory } from 'react-router'
+import { routerMiddleware } from 'react-router-redux';
+import { browserHistory } from 'react-router';
 
-import mg4App from './reducers';
+import { rootReducer, rootEpic } from './reducers';
 
 // Configure The default Redux store
 const configureStore = (initialState) => {
 
   // Create a store using the root reducer, initial state and middleware
   const store = createStore(
-    mg4App,
+    rootReducer,
     initialState,
     compose(
       responsiveStoreEnhancer,
       applyMiddleware(
         routerMiddleware(browserHistory),
         thunkMiddleware,
+        createEpicMiddleware(rootEpic),
         createLogger({ collapsed: true }),
       )
     ));
