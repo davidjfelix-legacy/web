@@ -6,9 +6,10 @@ import { Navbar, NavbarBrand } from 'reactstrap';
 export const styles = {
   Brand: {
     color: "white",
-    fontFamily: "Exo",
+    fontFamily: "Arvo",
     fontSize: "1.5em",
-    fontWeight: 900,
+    fontWeight: 700,
+    fontStyle: "italic",
     textDecoration: "none",
     textWeight: "1px black"
   }
@@ -17,7 +18,7 @@ export const styles = {
 
 const PageHeader = () => (
   <Navbar color="inverse" inverse toggleable>
-    <NavbarBrand style={styles.Brand} to="/" tag={Link}>MG4.tv</NavbarBrand>
+    <NavbarBrand style={styles.Brand} to="/" tag={Link}>iotv</NavbarBrand>
   </Navbar>
 );
 
