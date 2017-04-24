@@ -29,7 +29,7 @@ const configureStore = (initialState) => {
   if (module.hot) {
     module.hot.accept(
       './reducers',
-      () => store.replaceReducer(mg4App)
+      () => store.replaceReducer(rootReducer)
     );
   }
 
