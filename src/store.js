@@ -1,5 +1,5 @@
 import { applyMiddleware, compose, createStore } from 'redux';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import { responsiveStoreEnhancer } from 'redux-responsive';
 import { createEpicMiddleware } from 'redux-observable';
 import thunkMiddleware from 'redux-thunk';
