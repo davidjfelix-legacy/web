@@ -1,12 +1,14 @@
-import { applyMiddleware, compose, createStore } from 'redux';
-import { createLogger } from 'redux-logger';
-import { responsiveStoreEnhancer } from 'redux-responsive';
-import { createEpicMiddleware } from 'redux-observable';
-import thunkMiddleware from 'redux-thunk';
-import { routerMiddleware } from 'react-router-redux';
-import { browserHistory } from 'react-router';
+import { applyMiddleware, compose, createStore } from 'redux'
+import { createLogger } from 'redux-logger'
+import { responsiveStoreEnhancer } from 'redux-responsive'
+import { createEpicMiddleware } from 'redux-observable'
+import thunkMiddleware from 'redux-thunk'
+import { routerMiddleware } from 'react-router-redux'
+import { browserHistory } from 'react-router'
+import { reactReduxFirebase } from 'react-redux-firebase'
 
-import { rootReducer, rootEpic } from './reducers';
+import { FIREBASE_CONFIG, REACT_REDUX_FIREBASE_CONFIG } from './configuration'
+import { rootReducer, rootEpic } from './reducers'
 
 // Configure The default Redux store
 const configureStore = (initialState) => {
@@ -17,23 +19,24 @@ const configureStore = (initialState) => {
     initialState,
     compose(
       responsiveStoreEnhancer,
+      reactReduxFirebase(FIREBASE_CONFIG, REACT_REDUX_FIREBASE_CONFIG),
       applyMiddleware(
         routerMiddleware(browserHistory),
         thunkMiddleware,
         createEpicMiddleware(rootEpic),
         createLogger({ collapsed: true }),
       )
-    ));
+    ))
 
   // Enable hot module reloading for webpack
   if (module.hot) {
     module.hot.accept(
       './reducers',
       () => store.replaceReducer(rootReducer)
-    );
+    )
   }
 
-  return store;
+  return store
 }
 
-export default configureStore;
+export default configureStore
