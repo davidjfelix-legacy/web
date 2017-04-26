@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { Container, Col, Row } from 'reactstrap';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Container, Col, Row } from 'reactstrap'
 
 import { updateTime } from '../reducers/videoStreams'
 

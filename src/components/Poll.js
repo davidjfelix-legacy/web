@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
-import keyMirror from 'keymirror';
-import { Col, Container, Progress, Row } from 'reactstrap';
+import React from 'react'
+import PropTypes from 'prop-types'
+import keyMirror from 'keymirror'
+import { Col, Container, Progress, Row } from 'reactstrap'
 
 
 export const PollTypes = keyMirror({

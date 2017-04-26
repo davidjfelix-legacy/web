@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { Container } from 'reactstrap';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Container } from 'reactstrap'
 
-import CommentStream from './CommentStream';
-import StreamingPoll from './StreamingPoll';
+import CommentStream from './CommentStream'
+import StreamingPoll from './StreamingPoll'
 
 
 const mapStateToProps = ({videoStreamsContainer}) => {

@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import { Link } from 'react-router';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
+import { Link } from 'react-router'
 
-import '../css/VideoPreview.css';
+import '../css/VideoPreview.css'
 
 
 const VideoPreview = ({

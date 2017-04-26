@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 
-import { convertFacebookCode } from '../actions/authentication';
-import { FACEBOOK_CLIENT_ID, MG4_WEB_BASE_URL } from '../configuration';
+import { convertFacebookCode } from '../actions/authentication'
+import { FACEBOOK_CLIENT_ID, MG4_WEB_BASE_URL } from '../configuration'
 
 
 const mapStateToProps = ({authentication}) => ({

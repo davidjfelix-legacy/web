@@ -1,11 +1,12 @@
-import React, { PropTypes } from 'react';
-import { Button, Col, Container, Form, Input, Row } from  'reactstrap';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Button, Col, Container, Form, Input, Row } from  'reactstrap'
 //import { Link } from 'react-router';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
 //import { loginUser } from '../actions/authentication';
 
-import { FACEBOOK_CLIENT_ID, MG4_WEB_BASE_URL } from '../configuration';
+import { FACEBOOK_CLIENT_ID, MG4_WEB_BASE_URL } from '../configuration'
 
 
 const formFieldProps = {

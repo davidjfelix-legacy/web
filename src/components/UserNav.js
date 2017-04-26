@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
-import { Nav, NavItem, NavLink } from 'reactstrap';
-import { Link } from 'react-router';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Nav, NavItem, NavLink } from 'reactstrap'
+import { Link } from 'react-router'
 
 
 const UserNav = ({active, userName}) => (
