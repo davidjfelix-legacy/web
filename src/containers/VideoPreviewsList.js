@@ -1,6 +1,7 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import VideoPreview from './VideoPreview';
+import VideoPreview from './VideoPreview'
 
 
 export const styles = {
@@ -29,13 +30,13 @@ const VideoPreviewsList = ({videoPreviews}) => (
 );
 
 VideoPreviewsList.propTypes = {
-  videoPreviews: React.PropTypes.arrayOf(
-    React.PropTypes.shape({
-      videoLinkURL: React.PropTypes.string.isRequired,
-      videoThumbnailURL: React.PropTypes.string.isRequired,
-      videoTitle: React.PropTypes.string.isRequired,
-      videoUser: React.PropTypes.string.isRequired,
-      videoUserLinkURL: React.PropTypes.string.isRequired,
+  videoPreviews: PropTypes.arrayOf(
+    PropTypes.shape({
+      videoLinkURL: PropTypes.string.isRequired,
+      videoThumbnailURL: PropTypes.string.isRequired,
+      videoTitle: PropTypes.string.isRequired,
+      videoUser: PropTypes.string.isRequired,
+      videoUserLinkURL: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired
 }

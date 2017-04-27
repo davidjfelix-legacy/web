@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
-import VideoAddOns from '../components/VideoAddOns';
-import VideoStreams from '../components/VideoStreams';
+import VideoAddOns from '../components/VideoAddOns'
+import VideoStreams from '../components/VideoStreams'
 
 
 const VideoView = () => (
@@ -12,4 +12,4 @@ const VideoView = () => (
   </div>
 );
 
-export default connect()(VideoView);
+export default connect()(VideoView)
