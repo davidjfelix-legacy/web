@@ -1,30 +1,13 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { firebaseConnect, isLoaded, isEmpty, dataToJS } from 'react-redux-firebase'
-
+import React from 'react'
 
 import MenuLayout from '../components/MenuLayout'
-import VideoPreviewsList from '../containers/VideoPreviewsList'
 
+const HomeView = () => (
+  <MenuLayout>
+    <div>
 
-const mapStateToProps = ({ firebase }) => ({
-  videos: dataToJS(firebase, 'videos')
-})
+    </div>
+  </MenuLayout>
+)
 
-class HomeView extends Component {
-  constructor() {
-    super()
-  }
-
-  render() {
-    return (
-      <MenuLayout>
-        <div>
-          {JSON.stringify(this.props.videos)}
-        </div>
-      </MenuLayout>
-    )
-  }
-}
-
-export default firebaseConnect(['videos'])(connect(mapStateToProps)(HomeView))
+export default HomeView
