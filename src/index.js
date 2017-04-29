@@ -1,29 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Route, Router, IndexRoute, browserHistory } from 'react-router';
-import { Provider } from 'react-redux';
-import { syncHistoryWithStore } from 'react-router-redux';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Route, Router, IndexRoute, browserHistory } from 'react-router'
+import { Provider } from 'react-redux'
+import { syncHistoryWithStore } from 'react-router-redux'
 
-import App from './components/App';
-import FacebookLoginCallback from './containers/FacebookLoginCallback';
-import GroupView from './views/GroupView';
-import HomeView from './views/HomeView';
-import LoginView from './components/LoginView';
-import UserView from './components/UserView';
-import UserFollowers from './components/UserFollowers';
-import UserFollowing from './components/UserFollowing';
-import UserOrganizations from './components/UserOrganizations';
-import UserOverview from './components/UserOverview';
-import UserVideos from './components/UserVideos';
-import VideoView from './views/VideoView';
+import App from './components/App'
+import FacebookLoginCallback from './containers/FacebookLoginCallback'
+import GroupView from './views/GroupView'
+import HomeView from './components/HomeView'
+import LoginView from './components/LoginView'
+import UserView from './components/UserView'
+import UserFollowers from './components/UserFollowers'
+import UserFollowing from './components/UserFollowing'
+import UserOrganizations from './components/UserOrganizations'
+import UserOverview from './components/UserOverview'
+import UserVideos from './components/UserVideos'
+import VideoView from './views/VideoView'
 
-import configureStore from './store';
+import configureStore from './store'
 
-import './index.css';
-import 'bootstrap/dist/css/bootstrap.css';
+import './index.css'
+import 'bootstrap/dist/css/bootstrap.css'
 
-const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
+const store = configureStore()
+const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDOM.render(
   <Provider store={store}>
@@ -50,4 +50,4 @@ ReactDOM.render(
     </Router>
   </Provider>,
   document.getElementById('root')
-);
+)

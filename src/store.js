@@ -6,7 +6,6 @@ import thunkMiddleware from 'redux-thunk'
 import { routerMiddleware } from 'react-router-redux'
 import { browserHistory } from 'react-router'
 
-import { FIREBASE_CONFIG, REACT_REDUX_FIREBASE_CONFIG } from './configuration'
 import { rootReducer, rootEpic } from './reducers'
 
 // Configure The default Redux store
