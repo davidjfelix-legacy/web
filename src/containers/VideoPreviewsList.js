@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import VideoPreview from './VideoPreview'
 
@@ -21,24 +20,18 @@ export const styles = {
 
 const VideoPreviewsList = ({videoPreviews}) => (
   <ul style={styles.List}>
-    {videoPreviews.map((videoPreview, index) => (
-      <li style={styles.Item} key={index}>
-        <VideoPreview {...videoPreview} />
+    {Object.keys(videoPreviews).map((key, index) => (
+      <li style={styles.Item} key={key}>
+        <VideoPreview 
+          videoLinkURL={`/v/${key}`}
+          videoThumbnailURL={videoPreviews[key]['thumbnail_url']}
+          videoTitle="Untitled" //FIXME: work titles in
+          videoUser={videoPreviews[key]['owner_id']} //FIME: translate id to username
+          videoUserLinkURL={`/u/${videoPreviews[key]['owner_id']}`}
+        />
       </li>
     ))}
   </ul>
-);
-
-VideoPreviewsList.propTypes = {
-  videoPreviews: PropTypes.arrayOf(
-    PropTypes.shape({
-      videoLinkURL: PropTypes.string.isRequired,
-      videoThumbnailURL: PropTypes.string.isRequired,
-      videoTitle: PropTypes.string.isRequired,
-      videoUser: PropTypes.string.isRequired,
-      videoUserLinkURL: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired
-}
+)
 
 export default VideoPreviewsList;

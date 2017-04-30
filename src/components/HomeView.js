@@ -5,6 +5,7 @@ import database from '../database'
 import { updateVideos } from '../actions/videos' 
 
 import MenuLayout from '../components/MenuLayout'
+import VideoPreviewsList from '../containers/VideoPreviewsList'
 
 
 const mapStateToProps = ({ videos }) => ({
@@ -23,9 +24,10 @@ class HomeView extends Component {
     return (
       <MenuLayout>
         <div>
-          {this.props.videos === {} ? <div>No videos found</div> : Object.keys(this.props.videos).map(
-            (key, index) => (<div key={key}>{JSON.stringify(this.props.videos[key])}</div>)
-          )}
+          {this.props.videos === {} ? //FIXME: make this check work and provide a sensible default
+            <div>No videos found</div> :
+            <VideoPreviewsList videoPreviews={this.props.videos}/>
+          }
         </div>
       </MenuLayout>
     )

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { Link } from 'react-router'
@@ -21,14 +20,5 @@ const VideoPreview = ({
     <Link to={videoUserLinkURL} className="VideoPreview__User">{videoUser}</Link>
   </div>
 );
-
-VideoPreview.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  videoLinkURL: PropTypes.string.isRequired,
-  videoThumbnailURL: PropTypes.string.isRequired,
-  videoTitle: PropTypes.string.isRequired,
-  videoUser: PropTypes.string.isRequired,
-  videoUserLinkURL: PropTypes.string.isRequired,
-}
 
 export default connect()(VideoPreview);
