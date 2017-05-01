@@ -15,7 +15,7 @@ import UserFollowing from './components/UserFollowing'
 import UserOrganizations from './components/UserOrganizations'
 import UserOverview from './components/UserOverview'
 import UserVideos from './components/UserVideos'
-import VideoView from './views/VideoView'
+import VideoView from './components/VideoView'
 
 import configureStore from './store'
 
