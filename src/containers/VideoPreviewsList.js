@@ -20,11 +20,7 @@ export const styles = {
 
 const VideoPreviewsList = ({videoPreviews}) => (
   <ul style={styles.List}>
-    {Object.keys(videoPreviews).map((key, index) => {
-      console.log(JSON.stringify(videoPreviews))
-      console.log(JSON.stringify(key))
-      console.log(JSON.stringify(videoPreviews[key]))
-      return (
+    {Object.keys(videoPreviews).map((key, index) => (
       <li style={styles.Item} key={key}>
         <VideoPreview 
           videoLinkURL={`/v/${key}`}
@@ -34,7 +30,7 @@ const VideoPreviewsList = ({videoPreviews}) => (
           videoUserLinkURL={`/u/${videoPreviews[key]['owner_id']}`}
         />
       </li>
-    )})}
+    ))}
   </ul>
 )
 
