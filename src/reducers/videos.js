@@ -7,7 +7,7 @@ const reducer = (state=initalState, action) => {
     case actionTypes.UPDATE_VIDEO:
       return {
         ...state,
-        [action.videoId]: action.videosSnapshot,
+        [action.videoId]: action.videoSnapshot,
       }
     case actionTypes.UPDATE_VIDEOS:
       return {

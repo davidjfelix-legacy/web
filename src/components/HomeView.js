@@ -12,12 +12,21 @@ const mapStateToProps = ({ videos }) => ({
   videos
 })
 
+let onFirebaseValue = null
 
 class HomeView extends Component {
   componentDidMount() {
-    this.firebaseListener = database.ref("videos").on("value", (snapshot) => (
-      this.props.dispatch(updateVideos(snapshot.val()))
-    ))
+    this.databaseRef = database.ref("videos")
+    onFirebaseValue = this.databaseRef.on(
+      'value',
+      (snapshot) => (
+        this.props.dispatch(updateVideos(snapshot.val()))
+      )
+    )
+  }
+
+  componentWillUnmount() {
+    this.databaseRef.off('value', onFirebaseValue)
   }
 
   render() {
