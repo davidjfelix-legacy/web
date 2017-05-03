@@ -1,10 +1,8 @@
 import React from 'react';
 
-import PageSideMenu from './PageSideMenu';
-
 
 const MenuLayout = ({children}) => (
-  <PageSideMenu>{children}</PageSideMenu>
+  <div>{children}</div>
 );
 
 export default MenuLayout;

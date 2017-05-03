@@ -3,7 +3,7 @@ import UserNav from './UserNav';
 
 
 const UserOrganizations = ({params}) => (
-  <UserNav active="organizations" userName={params.userName}/>
+  <UserNav active="organizations" userId={params.userId}/>
 );
 
 export default UserOrganizations;

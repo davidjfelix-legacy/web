@@ -4,22 +4,22 @@ import { Nav, NavItem, NavLink } from 'reactstrap'
 import { Link } from 'react-router'
 
 
-const UserNav = ({active, userName}) => (
+const UserNav = ({active, userId}) => (
   <Nav tabs>
     <NavItem>
-      <NavLink active={active === "overview"} tag={Link} to={`/u/${userName}`}>Overview</NavLink>
+      <NavLink active={active === "overview"} tag={Link} to={`/u/${userId}`}>Overview</NavLink>
     </NavItem>
     <NavItem>
-      <NavLink active={active === "videos"} tag={Link} to={`/u/${userName}/videos`}>Videos</NavLink>
+      <NavLink active={active === "videos"} tag={Link} to={`/u/${userId}/videos`}>Videos</NavLink>
     </NavItem>
     <NavItem>
-      <NavLink active={active === "organizations"} tag={Link} to={`/u/${userName}/organizations`}>Organizations</NavLink>
+      <NavLink active={active === "organizations"} tag={Link} to={`/u/${userId}/organizations`}>Organizations</NavLink>
     </NavItem>
     <NavItem>
-      <NavLink active={active === "following"} tag={Link} to={`/u/${userName}/following`}>Following</NavLink>
+      <NavLink active={active === "following"} tag={Link} to={`/u/${userId}/following`}>Following</NavLink>
     </NavItem>
     <NavItem>
-      <NavLink active={active === "followers"} tag={Link} to={`/u/${userName}/followers`}>Followers</NavLink>
+      <NavLink active={active === "followers"} tag={Link} to={`/u/${userId}/followers`}>Followers</NavLink>
     </NavItem>
   </Nav>
 );
@@ -32,7 +32,7 @@ UserNav.PropTypes = {
     "following",
     "followers",
   ]).isRequired,
-  userName: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 

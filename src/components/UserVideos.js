@@ -3,7 +3,7 @@ import UserNav from './UserNav';
 
 
 const UserVideos = ({params}) => (
-  <UserNav active="videos" userName={params.userName}/>
+  <UserNav active="videos" userId={params.userId}/>
 );
 
 export default UserVideos;

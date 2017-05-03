@@ -1,8 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Card, CardImg, Col, Container, Row } from 'reactstrap';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Card, CardImg, Col, Container, Row } from 'reactstrap'
 
-import { getUser } from '../actions/users';
+import { updateUser } from '../actions/users'
+import database from '../database'
 
 
 export const styles = {
@@ -60,14 +61,25 @@ const sizes = {
 }
 
 
-const mapStateToProps = (state) => (
-  {user: state.users.currentUser}
-);
+const mapStateToProps = ({users}) => ({
+  users
+})
 
+let onFirebaseValue = null
 
-class UserView extends React.Component {
+class UserView extends Component {
   componentWillMount() {
-    this.props.dispatch(getUser(this.props.params.userName));
+    this.databaseRef = database.ref(`users/${this.props.params.userId}`)
+    onFirebaseValue = this.databaseRef.on('value', (snapshot) => (
+      this.props.dispatch(updateUser({
+        userId: this.props.params.userId,
+        userSnapshot: snapshot.val()
+      }))
+    ))
+  }
+
+  componentWillUnmount() {
+    this.databaseRef.off('value', onFirebaseValue)
   }
 
   render() {
@@ -77,11 +89,14 @@ class UserView extends React.Component {
           <Col {...sizes.avatar}>
             <Row>
               <Card>
-                <CardImg top width="100%" src="http://placekitten.com/g/230/230" alt={`${this.props.user.username}'s avatar`}/>
+                <CardImg top width="100%" src="http://placekitten.com/g/230/230" alt={`$'s avatar`}/>
               </Card>
             </Row>
             <Row>
-              <Col>{this.props.user.username}</Col>
+              <Col>{this.props.users[this.props.params.userId] === undefined ?
+                "Unnamed User":
+                this.props.users[this.props.params.userId]['username']
+              }</Col>
             </Row>
           </Col>
           <Col {...sizes.topNav}>

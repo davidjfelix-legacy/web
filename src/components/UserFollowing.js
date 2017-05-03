@@ -3,7 +3,7 @@ import UserNav from './UserNav';
 
 
 const UserFollowing = ({params}) => (
-  <UserNav active="following" userName={params.userName}/>
+  <UserNav active="following" userId={params.userId}/>
 );
 
 export default UserFollowing;

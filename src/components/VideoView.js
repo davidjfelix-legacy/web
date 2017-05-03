@@ -32,7 +32,12 @@ class VideoView extends Component {
   render() {
     return (
       <div>
-        <VideoStreams />
+        {Object.keys(this.props.videos)
+          .filter((key) => (key === this.props.params.videoId))
+          .map((key) => (
+            <VideoStreams key={key} videos={[this.props.videos[key]]}/>
+          ))
+        }
         <VideoAddOns />
       </div>
       )

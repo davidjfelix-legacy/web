@@ -17,12 +17,12 @@ export const styles = {
 }
 
 
-const VideoStreamsContainer = ({ dispatch }) => (
+const VideoStreamsContainer = ({ videos, dispatch }) => (
   <Container style={styles.Container} >
     <Row>
       <Col>
         <video style={styles.Video} controls onTimeUpdate={(event) => dispatch(updateTime(event.target.currentTime))}>
-          <source src="https://s3.amazonaws.com/buukkittt/bbb_sunflower_1080p_60fps_normal.mp4" />
+          <source src={videos[0]['url']} />
         </video>
       </Col>
     </Row>
@@ -30,6 +30,11 @@ const VideoStreamsContainer = ({ dispatch }) => (
 );
 
 VideoStreamsContainer.propTypes = {
+  videos: PropTypes.arrayOf(
+    PropTypes.shape({
+      url: PropTypes.string.isRequired
+    }).isRequired
+  ).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 

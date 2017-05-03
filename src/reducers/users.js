@@ -1,30 +1,14 @@
 import { actionTypes } from '../actions/users';
 
-const initalState = {
-  isFetching: false,
-  currentUser: {}
-}
+const initalState = {}
 
 const reducer = (state=initalState, action) => {
   switch (action.type) {
-    case actionTypes.GET_USER_REQUEST:
+    case actionTypes.UPDATE_USER:
       return {
         ...state,
-        isFetching: true,
-        currentUser: {},
-      };
-    case actionTypes.GET_USER_SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-        currentUser: action.user
-      };
-    case actionTypes.GET_USER_FAILURE:
-      return {
-        ...state,
-        isFetching: false,
-        currentUser: {},
-      };
+        [action.userId]: action.userSnapshot,
+      }
     default:
       return state;
   }

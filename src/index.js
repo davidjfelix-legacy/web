@@ -35,14 +35,14 @@ ReactDOM.render(
         <Route path="a/facebook" component={FacebookLoginCallback} />
         <Route path="g/:groupName" component={GroupView} />
         <Route path="groups/:groupName" component={GroupView} />
-        <Route path="u/:userName" component={UserView} >
+        <Route path="u/:userId" component={UserView} >
           <IndexRoute component={UserOverview} />
           <Route path="videos" component={UserVideos} />
           <Route path="organizations" component={UserOrganizations} />
           <Route path="following" component={UserFollowing} />
           <Route path="followers" component={UserFollowers} />
         </Route>
-        <Route path="users/:userName" component={UserView} />
+        <Route path="users/:userId" component={UserView} />
         <Route path="v/:videoId" component={VideoView} />
         <Route path="videos/:videoId"  component={VideoView} />
         <Route path="*" component={HomeView} />

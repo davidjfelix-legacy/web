@@ -1,9 +1,10 @@
-import React from 'react';
-import UserNav from './UserNav';
+import React from 'react'
+
+import UserNav from './UserNav'
 
 
 const UserOverview = ({params}) => (
-  <UserNav active="overview" userName={params.userName}/>
-);
+  <UserNav active="overview" userId={params.userId}/>
+)
 
-export default UserOverview;
+export default UserOverview
