@@ -1,4 +1,5 @@
-import { applyMiddleware, compose, createStore } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger } from 'redux-logger'
 import { responsiveStoreEnhancer } from 'redux-responsive'
 import { createEpicMiddleware } from 'redux-observable'
@@ -15,7 +16,7 @@ const configureStore = (initialState) => {
   const store = createStore(
     rootReducer,
     initialState,
-    compose(
+    composeWithDevTools(
       responsiveStoreEnhancer,
       applyMiddleware(
         routerMiddleware(browserHistory),

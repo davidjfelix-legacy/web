@@ -5,7 +5,7 @@ import { updateVideo } from '../actions/videos'
 import database from '../database'
 
 import VideoAddOns from '../components/VideoAddOns'
-import VideoStreams from '../components/VideoStreams'
+import VideoStream from '../components/VideoStream'
 
 
 const mapStateToProps = ({videos}) => ({
@@ -13,6 +13,13 @@ const mapStateToProps = ({videos}) => ({
 })
 
 let onFirebaseValue = null
+
+const styles = {
+  videoContainer: {
+    height: 'calc(100vh - 56px)',
+    display: 'flex',
+  }
+}
 
 class VideoView extends Component {
   componentWillMount() {
@@ -31,11 +38,11 @@ class VideoView extends Component {
 
   render() {
     return (
-      <div>
+      <div style={styles.videoContainer}>
         {Object.keys(this.props.videos)
           .filter((key) => (key === this.props.params.videoId))
           .map((key) => (
-            <VideoStreams key={key} videos={[this.props.videos[key]]}/>
+            <VideoStream key={key} video={this.props.videos[key]}/>
           ))
         }
         <VideoAddOns />
