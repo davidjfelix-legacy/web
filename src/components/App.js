@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import auth from '../auth'
 import { updateAuth } from '../actions/auth'
@@ -29,4 +30,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default connect()(App)

@@ -1,6 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router';
-import { Navbar, NavbarBrand } from 'reactstrap';
+import React from 'react'
+import { Link } from 'react-router'
+import { connect } from 'react-redux'
+import { Navbar, NavbarBrand } from 'reactstrap'
 
 
 export const styles = {
@@ -12,14 +13,22 @@ export const styles = {
     fontStyle: "italic",
     textDecoration: "none",
     textWeight: "1px black"
+  },
+  email: {
+    color: "white"
   }
-};
+}
+
+const mapStateToProps = ({auth}) => ({
+  auth
+})
 
 
-const PageHeader = () => (
+const PageHeader = ({auth}) => (
   <Navbar color="inverse" inverse toggleable>
     <NavbarBrand style={styles.Brand} to="/" tag={Link}>iotv</NavbarBrand>
+    {auth.user !== null ? <div style={styles.email}>{auth.user.email}</div> : <p></p>}
   </Navbar>
-);
+)
 
-export default PageHeader;
+export default connect(mapStateToProps)(PageHeader)
