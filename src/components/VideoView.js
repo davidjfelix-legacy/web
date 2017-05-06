@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
+import { compose, lifecycle, withState } from 'recompose'
 
 import { updateVideo } from '../actions/videos'
 import database from '../database'
@@ -12,7 +13,26 @@ const mapStateToProps = ({videos}) => ({
   videos
 })
 
-let onFirebaseValue = null
+const enhance = compose(
+  connect(mapStateToProps),
+  withState('databaseRef', 'updateDatabaseRef', null),
+  withState('onFirebaseValue', 'updateOnFirebaseValue', null),
+  lifecycle({
+    componentWillMount() {
+      let databaseRef = database.ref(`videos/${this.props.params.videoId}`)
+      this.props.updateDatabaseRef(databaseRef)
+      this.props.updateOnFirebaseValue(databaseRef.on('value', (snapshot) => (
+        this.props.dispatch(updateVideo({
+          videoId: this.props.params.videoId,
+          videoSnapshot: snapshot.val()
+        }))
+      )))
+    },
+    componentWillUnmount() {
+      this.props.databaseRef.off('value', this.props.onFirebaseValue)
+    }
+  })
+)
 
 const styles = {
   videoContainer: {
@@ -21,34 +41,18 @@ const styles = {
   }
 }
 
-class VideoView extends Component {
-  componentWillMount() {
-    this.databaseRef = database.ref(`videos/${this.props.params.videoId}`)
-    onFirebaseValue = this.databaseRef.on('value', (snapshot) => (
-      this.props.dispatch(updateVideo({
-        videoId: this.props.params.videoId,
-        videoSnapshot: snapshot.val()
-      }))
-    ))
-  }
 
-  componentWillUnmount() {
-    this.databaseRef.off('value', onFirebaseValue)
-  }
-
-  render() {
-    return (
-      <div style={styles.videoContainer}>
-        {Object.keys(this.props.videos)
-          .filter((key) => (key === this.props.params.videoId))
-          .map((key) => (
-            <VideoStream key={key} video={this.props.videos[key]}/>
-          ))
-        }
-        <VideoAddOns />
-      </div>
-      )
+const VideoView = ({videos, params}) => (
+  <div style={styles.videoContainer}>
+    {Object.keys(videos)
+      .filter((key) => (key === params.videoId))
+      .map((key) => (
+        <VideoStream key={key} video={videos[key]}/>
+      ))
     }
-}
+    <VideoAddOns />
+  </div>
+)
 
-export default connect(mapStateToProps)(VideoView)
+
+export default enhance(VideoView)
