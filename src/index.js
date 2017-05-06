@@ -5,7 +5,6 @@ import { Provider } from 'react-redux'
 import { syncHistoryWithStore } from 'react-router-redux'
 
 import App from './components/App'
-import FacebookLoginCallback from './containers/FacebookLoginCallback'
 import GroupView from './views/GroupView'
 import HomeView from './components/HomeView'
 import LoginView from './components/LoginView'
@@ -33,7 +32,6 @@ ReactDOM.render(
         <IndexRoute component={HomeView} />
         <Route path="a/login" component={LoginView} />
         <Route path="auth/login" component={LoginView} />
-        <Route path="a/facebook" component={FacebookLoginCallback} />
         <Route path="g/:groupName" component={GroupView} />
         <Route path="groups/:groupName" component={GroupView} />
         <Route path="u/:userId" component={UserView} >
