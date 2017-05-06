@@ -1,8 +1,5 @@
-import firebase from 'firebase'
+import firebaseApp from './firebase'
 
-import { FIREBASE_CONFIG } from './configuration'
-
-firebase.initializeApp(FIREBASE_CONFIG)
-const database = firebase.database()
+const database = firebaseApp.database()
 
 export default database

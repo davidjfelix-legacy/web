@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux'
 import { combineEpics } from 'redux-observable'
 import { responsiveStateReducer } from 'redux-responsive'
 
+import auth from './auth'
 import authentication from './authentication'
 import commentStream from './commentStream'
 import streamingPoll from './streamingPoll'
@@ -15,6 +16,7 @@ export const rootEpic = combineEpics(
 
 export const rootReducer = combineReducers({
   browser: responsiveStateReducer,
+  auth,
   authentication,
   users,
   commentStream,
