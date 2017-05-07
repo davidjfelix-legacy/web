@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
+import { compose, lifecycle } from 'recompose'
 
 import database from '../database'
 import { updateVideos } from '../actions/videos' 
@@ -12,35 +13,34 @@ const mapStateToProps = ({ videos }) => ({
   videos
 })
 
-let onFirebaseValue = null
-
-class HomeView extends Component {
-  componentDidMount() {
-    this.databaseRef = database.ref("videos")
-    onFirebaseValue = this.databaseRef.on(
-      'value',
-      (snapshot) => (
-        this.props.dispatch(updateVideos(snapshot.val()))
+const enhance = compose(
+  connect(mapStateToProps),
+  lifecycle({
+    componentDidMount() {
+      this.databaseRef = database.ref("videos")
+      this.onFirebaseValue = this.databaseRef.on(
+        'value',
+        (snapshot) => (
+          this.props.dispatch(updateVideos(snapshot.val()))
+        )
       )
-    )
-  }
+    },
 
-  componentWillUnmount() {
-    this.databaseRef.off('value', onFirebaseValue)
-  }
+    componentWillUnmount() {
+      this.databaseRef.off('value', this.onFirebaseValue)
+    },
+  }),
+)
 
-  render() {
-    return (
-      <MenuLayout>
-        <div>
-          {this.props.videos === {} ? //FIXME: make this check work and provide a sensible default
-            <div>No videos found</div> :
-            <VideoPreviewsList videoPreviews={this.props.videos}/>
-          }
-        </div>
-      </MenuLayout>
-    )
-  }
-}
+const HomeView = ({videos}) => (
+  <MenuLayout>
+    <div>
+      {videos === {} ? //FIXME: make this check work and provide a sensible default
+        <div>No videos found</div> :
+        <VideoPreviewsList videoPreviews={videos}/>
+      }
+    </div>
+  </MenuLayout>
+)
 
-export default connect(mapStateToProps)(HomeView)
+export default enhance(HomeView)

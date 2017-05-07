@@ -5,6 +5,7 @@ import { compose, withState, withHandlers } from 'recompose'
 import auth, { facebookProvider, googleProvider } from '../auth'
 
 const enhance = compose(
+  connect(),
   withState('email', 'updateEmail', ''),
   withState('password', 'updatePassword', ''),
   withHandlers({
@@ -68,4 +69,4 @@ const LoginView = ({email, password, onEmailChange, onPasswordChange, onEmailSub
   </div>
 )
 
-export default connect()(enhance(LoginView))
+export default enhance(LoginView)

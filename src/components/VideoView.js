@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { compose, lifecycle, withState } from 'recompose'
+import { compose, lifecycle } from 'recompose'
 
 import { updateVideo } from '../actions/videos'
 import database from '../database'
@@ -15,23 +15,23 @@ const mapStateToProps = ({videos}) => ({
 
 const enhance = compose(
   connect(mapStateToProps),
-  withState('databaseRef', 'updateDatabaseRef', null),
-  withState('onFirebaseValue', 'updateOnFirebaseValue', null),
   lifecycle({
     componentWillMount() {
-      let databaseRef = database.ref(`videos/${this.props.params.videoId}`)
-      this.props.updateDatabaseRef(databaseRef)
-      this.props.updateOnFirebaseValue(databaseRef.on('value', (snapshot) => (
-        this.props.dispatch(updateVideo({
-          videoId: this.props.params.videoId,
-          videoSnapshot: snapshot.val()
-        }))
-      )))
+      this.databaseRef = database.ref(`videos/${this.props.params.videoId}`)
+      this.onFirebaseValue = this.databaseRef.on(
+        'value',
+        (snapshot) => (
+          this.props.dispatch(updateVideo({
+            videoId: this.props.params.videoId,
+            videoSnapshot: snapshot.val()
+          }))
+        )
+      )
     },
     componentWillUnmount() {
-      this.props.databaseRef.off('value', this.props.onFirebaseValue)
-    }
-  })
+      this.databaseRef.off('value', this.props.onFirebaseValue)
+    },
+  }),
 )
 
 const styles = {
