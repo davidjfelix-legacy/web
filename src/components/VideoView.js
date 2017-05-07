@@ -5,8 +5,7 @@ import { compose, lifecycle } from 'recompose'
 import { updateVideo } from '../actions/videos'
 import database from '../database'
 
-import VideoAddOns from '../components/VideoAddOns'
-import VideoStream from '../components/VideoStream'
+import VideoStream from './VideoStream'
 
 
 const mapStateToProps = ({videos}) => ({
@@ -50,7 +49,6 @@ const VideoView = ({videos, params}) => (
         <VideoStream key={key} video={videos[key]}/>
       ))
     }
-    <VideoAddOns />
   </div>
 )
 

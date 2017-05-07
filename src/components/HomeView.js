@@ -5,8 +5,8 @@ import { compose, lifecycle } from 'recompose'
 import database from '../database'
 import { updateVideos } from '../actions/videos' 
 
-import MenuLayout from '../components/MenuLayout'
-import VideoPreviewsList from '../containers/VideoPreviewsList'
+import MenuLayout from './MenuLayout'
+import VideoPreviewsList from './VideoPreviewsList'
 
 
 const mapStateToProps = ({ videos }) => ({

@@ -9,11 +9,6 @@ import GroupView from './views/GroupView'
 import HomeView from './components/HomeView'
 import LoginView from './components/LoginView'
 import UserView from './components/UserView'
-import UserFollowers from './components/UserFollowers'
-import UserFollowing from './components/UserFollowing'
-import UserOrganizations from './components/UserOrganizations'
-import UserOverview from './components/UserOverview'
-import UserVideos from './components/UserVideos'
 import VideoView from './components/VideoView'
 
 import configureStore from './store'
@@ -34,13 +29,7 @@ ReactDOM.render(
         <Route path="auth/login" component={LoginView} />
         <Route path="g/:groupName" component={GroupView} />
         <Route path="groups/:groupName" component={GroupView} />
-        <Route path="u/:userId" component={UserView} >
-          <IndexRoute component={UserOverview} />
-          <Route path="videos" component={UserVideos} />
-          <Route path="organizations" component={UserOrganizations} />
-          <Route path="following" component={UserFollowing} />
-          <Route path="followers" component={UserFollowers} />
-        </Route>
+        <Route path="u/:userId" component={UserView} />
         <Route path="users/:userId" component={UserView} />
         <Route path="v/:videoId" component={VideoView} />
         <Route path="videos/:videoId"  component={VideoView} />
