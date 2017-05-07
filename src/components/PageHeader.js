@@ -1,12 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { Navbar, NavbarBrand } from 'reactstrap'
 
 
 export const styles = {
-  Brand: {
+  pageHeader: {
+    backgroundColor: "#212121",
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  brand: {
     color: "white",
+    backgroundColor: "#212121",
     fontFamily: "Arvo",
     fontSize: "1.5em",
     fontWeight: 700,
@@ -14,7 +20,7 @@ export const styles = {
     textDecoration: "none",
     textWeight: "1px black"
   },
-  email: {
+  profile: {
     color: "white"
   }
 }
@@ -25,10 +31,12 @@ const mapStateToProps = ({auth}) => ({
 
 
 const PageHeader = ({auth}) => (
-  <Navbar color="inverse" inverse toggleable>
-    <NavbarBrand style={styles.Brand} to="/" tag={Link}>iotv</NavbarBrand>
-    {auth.user !== null ? <div style={styles.email}>{auth.user.email}</div> : <p></p>}
-  </Navbar>
+  <nav style={styles.pageHeader}>
+    <Link style={styles.brand} to="/">iotv</Link>
+    {auth.user !== null ?
+      <Link style={styles.profile} to={`/u/${auth.user.uid}`}>{auth.user.email}</Link> :
+      <Link style={styles.profile} to='/a/login'>Sign in</Link>}
+  </nav>
 )
 
 export default connect(mapStateToProps)(PageHeader)

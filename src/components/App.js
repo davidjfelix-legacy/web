@@ -8,6 +8,12 @@ import PageHeader from './PageHeader'
 
 import '../css/App.css'
 
+const styles = {
+  app: {
+    minHeight: '100vh',
+  },
+}
+
 const enhance = compose(
   connect(),
   lifecycle({
@@ -24,7 +30,7 @@ const enhance = compose(
 )
 
 const App = ({children}) => (
-  <div>
+  <div style={styles.app}>
     <PageHeader />
     {children}
   </div>
