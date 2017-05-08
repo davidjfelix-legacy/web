@@ -2,16 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { compose, lifecycle } from 'recompose'
 
-import { updateUser } from '../actions/users'
 import database from '../database'
-
-
-const mapStateToProps = ({users}) => ({
-  users
-})
+import { updateUser } from '../actions/users'
 
 const enhance = compose(
-  connect(mapStateToProps),
+  connect(),
   lifecycle({
     componentWillMount() {
       this.databaseRef = database.ref(`users/${this.props.params.userId}`)
@@ -31,13 +26,8 @@ const enhance = compose(
   }),
 )
 
-const UserView = ({dispatch, params, users}) =>(
-  <div>
-    {users[params.userId] !== null ?
-      JSON.stringify(users[params.userId]) :
-      "404 User Not found."
-    }
-  </div>
+const RegisterView = ({users}) =>(
+  <div></div>
 )
 
-export default enhance(UserView);
+export default enhance(RegisterView);
