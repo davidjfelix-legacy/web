@@ -5,6 +5,7 @@ import { compose, lifecycle } from 'recompose'
 import { updateVideo } from '../actions/videos'
 import database from '../database'
 
+import CommentList from './CommentList'
 import VideoStream from './VideoStream'
 
 
@@ -43,11 +44,13 @@ const styles = {
 
 const VideoView = ({videos, params}) => (
   <div style={styles.videoContainer}>
-    {Object.keys(videos)
-      .filter((key) => (key === params.videoId))
-      .map((key) => (
-        <VideoStream key={key} video={videos[key]}/>
-      ))
+    {(params.videoId in videos && videos[params.videoId] !== null) ?
+      <VideoStream video={videos[params.videoId]}/> :
+      <p>{"404 not found"}</p>
+    }
+    {videos[params.videoId] !== null ? 
+      <CommentList videoId={params.videoId}/> :
+      <p>{"duh"}</p>
     }
   </div>
 )
