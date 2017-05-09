@@ -60,7 +60,7 @@ const LoginView = ({email, password, onEmailChange, onPasswordChange, onEmailSub
       placeholder='Password'
       value={password}
       onChange={onPasswordChange}/>
-    <input type='submit' value='Sign In'/>
+    <input form='emailPassword' type='submit' value='Sign In'/>
     <form id='facebook' onSubmit={onFacebookSubmit}/>
     <input
       form='facebook'

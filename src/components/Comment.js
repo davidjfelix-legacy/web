@@ -32,7 +32,12 @@ const enhance = compose(
 
 const Comment = ({ commentId, comments }) => (
   <div>
-    {JSON.stringify(comments)}
+    {(commentId in comments && comments[commentId] !== null) ?
+      <div>
+        <span>{comments[commentId]['author_id']}</span>{" said: "}<span>{comments[commentId]['message']}</span>
+      </div> :
+      ""
+    }
   </div>
 )
 
