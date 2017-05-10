@@ -31,6 +31,7 @@ const enhance = compose(
         authorId: props.auth.user.uid,
         message: props.newComment,
       }))
+      props.updateNewComment('')
     }
   }),
   lifecycle({
