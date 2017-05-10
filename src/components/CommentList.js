@@ -53,7 +53,7 @@ const enhance = compose(
   }),
 )
 
-const CommentList = ({ onNewCommentSubmit, onNewCommentChange, newComment, videoComments, videoId }) => (
+const CommentList = ({ auth, onNewCommentSubmit, onNewCommentChange, newComment, videoComments, videoId }) => (
   <div style={styles.commentList}>
     {(videoId in videoComments && videoComments[videoId] !== null) ?
       Object.keys(videoComments[videoId]).map((commentId) => (
@@ -61,18 +61,18 @@ const CommentList = ({ onNewCommentSubmit, onNewCommentChange, newComment, video
       )) :
       ""
     }
-    <form id='newComment' onSubmit={onNewCommentSubmit} />
-    <textarea
-      form='newComment'
-      id='message'
-      name='message'
-      placeholder='Type your comment'
-      value={newComment}
-      onChange={onNewCommentChange}/>
-    <input
-      form='newComment'
-      type='submit'
-      value='Submit'/>
+    {auth.user !== null ?
+      <form onSubmit={onNewCommentSubmit}>
+        <textarea
+          placeholder='Type your comment'
+          value={newComment}
+          onChange={onNewCommentChange}/>
+        <input
+          type='submit'
+          value='Submit'/>
+      </form> :
+      ""
+    }
   </div>
 )
 
