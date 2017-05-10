@@ -5,6 +5,8 @@ import { compose, lifecycle } from 'recompose'
 import database from '../database'
 import { updateComment } from '../actions/comments'
 
+import Username from './Username'
+
 const mapStateToProps = ({comments}) => ({
   comments
 })
@@ -34,7 +36,7 @@ const Comment = ({ commentId, comments }) => (
   <div>
     {(commentId in comments && comments[commentId] !== null) ?
       <div>
-        <span>{comments[commentId]['author_id']}</span>{" said: "}<span>{comments[commentId]['message']}</span>
+        <Username userId={comments[commentId]['author_id']} />{" said: "}<span>{comments[commentId]['message']}</span>
       </div> :
       ""
     }
