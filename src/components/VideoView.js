@@ -38,6 +38,7 @@ const styles = {
   videoContainer: {
     height: 'calc(100vh - 56px)',
     display: 'flex',
+    flexWrap: 'wrap',
   }
 }
 

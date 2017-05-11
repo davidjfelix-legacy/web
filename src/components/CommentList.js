@@ -9,6 +9,16 @@ import Comment from './Comment'
 
 const styles = {
   commentList: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+  },
+  newComment: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  textArea: {
+    resize: 'none',
   },
 }
 
@@ -62,8 +72,9 @@ const CommentList = ({ auth, onNewCommentSubmit, onNewCommentChange, newComment,
       ""
     }
     {auth.user !== null ?
-      <form onSubmit={onNewCommentSubmit}>
+      <form style={styles.newComment} onSubmit={onNewCommentSubmit}>
         <textarea
+          style={styles.textArea}
           placeholder='Type your comment'
           value={newComment}
           onChange={onNewCommentChange}/>
