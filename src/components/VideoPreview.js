@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { compose, lifecycle } from 'recompose'
+import { compose } from 'recompose'
 import { push } from 'react-router-redux'
 import { Link } from 'react-router'
 
-import database from '../database'
 import { updateUser } from '../actions/users'
+
+import { withDatabaseSubscribe } from './hocs'
 
 import '../css/VideoPreview.css'
 
@@ -15,23 +16,16 @@ const mapStateToProps = ({users}) => ({
 
 const enhance = compose(
   connect(mapStateToProps),
-  lifecycle({
-    componentWillMount() {
-      this.databaseRef = database.ref(`users/${this.props.videoUser}`)
-      this.onFirebaseValue = this.databaseRef.on(
-        'value',
-        (snapshot) => (
-          this.props.dispatch(updateUser({
-            userId: this.props.videoUser,
-            userSnapshot: snapshot.val()
-          }))
-        )
-      )
-    },
-    componentWillUnMount() {
-      this.databaseRef.off('value', this.props.onFirebaseValue)
-    },
-  }),
+  withDatabaseSubscribe(
+    'value',
+    (props) => (`users/${props.videoUser}`),
+    (props) => (snapshot) => (
+      props.dispatch(updateUser({
+        userId: props.videoUser,
+        userSnapshot: snapshot.val()
+      }))
+    )
+  ),
 )
 
 const VideoPreview = ({

@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { compose, lifecycle } from 'recompose'
+import { compose } from 'recompose'
 
-import database from '../database'
 import { updateComment } from '../actions/comments'
 
+import { withDatabaseSubscribe } from './hocs'
 import Username from './Username'
 
 const styles = {
@@ -29,23 +29,16 @@ const mapStateToProps = ({comments}) => ({
 
 const enhance = compose(
   connect(mapStateToProps),
-  lifecycle({
-    componentWillMount() {
-      this.databaseRef = database.ref(`comments/${this.props.commentId}`)
-      this.onFirebaseValue = this.databaseRef.on(
-        'value',
-        (snapshot) => (
-          this.props.dispatch(updateComment({
-            commentId: this.props.commentId,
-            commentSnapshot: snapshot.val()
-          }))
-        )
-      )
-    },
-    componentWillUnmount() {
-      this.databaseRef.off('value', this.props.onFirebaseValue)
-    },
-  }),
+  withDatabaseSubscribe(
+    'value',
+    (props) => (`comments/${props.commentId}`),
+    (props) => (snapshot) => (
+      props.dispatch(updateComment({
+        commentId: props.commentId,
+        commentSnapshot: snapshot.val()
+      }))
+    )
+  ),
 )
 
 const Comment = ({ commentId, comments }) => (

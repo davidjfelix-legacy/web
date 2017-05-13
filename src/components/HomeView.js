@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { compose, lifecycle } from 'recompose'
+import { compose } from 'recompose'
 
-import database from '../database'
 import { updateVideos } from '../actions/videos' 
 
+import { withDatabaseSubscribe } from './hocs'
 import MenuLayout from './MenuLayout'
 import VideoPreviewsList from './VideoPreviewsList'
 
@@ -15,21 +15,13 @@ const mapStateToProps = ({ videos }) => ({
 
 const enhance = compose(
   connect(mapStateToProps),
-  lifecycle({
-    componentDidMount() {
-      this.databaseRef = database.ref("videos")
-      this.onFirebaseValue = this.databaseRef.on(
-        'value',
-        (snapshot) => (
-          this.props.dispatch(updateVideos(snapshot.val()))
-        )
-      )
-    },
-
-    componentWillUnmount() {
-      this.databaseRef.off('value', this.onFirebaseValue)
-    },
-  }),
+  withDatabaseSubscribe(
+    'value',
+    (props) => ("videos"),
+    (props) => (snapshot) => (
+      props.dispatch(updateVideos(snapshot.val()))
+    )
+  ),
 )
 
 const HomeView = ({videos}) => (

@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { compose, lifecycle, withHandlers, withState } from 'recompose'
+import { compose, withHandlers, withState } from 'recompose'
 
-import database from '../database'
 import { updateVideoComments, createVideoComment } from '../actions/videoComments'
 
+import { withDatabaseSubscribe } from './hocs'
 import Comment from './Comment'
 
 const styles = {
@@ -44,23 +44,16 @@ const enhance = compose(
       props.updateNewComment('')
     }
   }),
-  lifecycle({
-    componentWillMount() {
-      this.databaseRef = database.ref(`video-comments/${this.props.videoId}`)
-      this.onFirebaseValue = this.databaseRef.on(
-        'value',
-        (snapshot) => (
-          this.props.dispatch(updateVideoComments({
-            videoId: this.props.videoId,
-            videoCommentsSnapshot: snapshot.val()
-          }))
-        )
-      )
-    },
-    componentWillUnmount() {
-      this.databaseRef.off('value', this.props.onFirebaseValue)
-    },
-  }),
+  withDatabaseSubscribe(
+    'value',
+    (props) => (`video-comments/${props.videoId}`),
+    (props) => (snapshot) => (
+      props.dispatch(updateVideoComments({
+        videoId: props.videoId,
+        videoCommentsSnapshot: snapshot.val()
+      }))
+    )
+  ),
 )
 
 const CommentList = ({ auth, onNewCommentSubmit, onNewCommentChange, newComment, videoComments, videoId }) => (

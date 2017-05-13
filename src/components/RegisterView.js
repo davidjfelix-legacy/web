@@ -1,29 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { compose, lifecycle } from 'recompose'
+import { compose } from 'recompose'
 
-import database from '../database'
 import { updateUser } from '../actions/users'
+
+import { withDatabaseSubscribe } from './hocs'
 
 const enhance = compose(
   connect(),
-  lifecycle({
-    componentWillMount() {
-      this.databaseRef = database.ref(`users/${this.props.params.userId}`)
-      this.sonFirebaseValue = this.databaseRef.on(
-        'value',
-        (snapshot) => (
-          this.props.dispatch(updateUser({
-            userId: this.props.params.userId,
-            userSnapshot: snapshot.val()
-          }))
-        )
-      )
-    },
-    componentWillUnmount() {
-      this.databaseRef.off('value', this.onFirebaseValue)
-    },
-  }),
+  withDatabaseSubscribe(
+    'value',
+    (props) => (`users/${props.params.userId}`),
+    (props) => (snapshot) => (
+      props.dispatch(updateUser({
+        userId: props.params.userId,
+        userSnapshot: snapshot.val()
+      }))
+    )
+  ),
 )
 
 const RegisterView = ({users}) =>(

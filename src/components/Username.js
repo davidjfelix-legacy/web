@@ -1,36 +1,32 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { compose, lifecycle } from 'recompose'
+import { compose } from 'recompose'
 
-import database from '../database'
 import { updateUser } from '../actions/users'
+
+import { withDatabaseSubscribe } from './hocs'
 
 
 const style = {
   display: 'inline'
 }
 
-const mapStateToProps = ({users}) => ({users})
+const mapStateToProps = ({users}) => ({
+  users
+})
 
 const enhance = compose(
   connect(mapStateToProps),
-  lifecycle({
-    componentWillMount() {
-      this.databaseRef = database.ref(`users/${this.props.userId}`)
-      this.sonFirebaseValue = this.databaseRef.on(
-        'value',
-        (snapshot) => (
-          this.props.dispatch(updateUser({
-            userId: this.props.userId,
-            userSnapshot: snapshot.val()
-          }))
-        )
-      )
-    },
-    componentWillUnmount() {
-      this.databaseRef.off('value', this.onFirebaseValue)
-    },
-  }),
+  withDatabaseSubscribe(
+    'value',
+    (props) => (`users/${props.userId}`),
+    (props) => (snapshot) => (
+      props.dispatch(updateUser({
+        userId: props.userId,
+        userSnapshot: snapshot.val()
+      }))
+    )
+  ),
 )
 
 const Username = ({userId, users}) => (
