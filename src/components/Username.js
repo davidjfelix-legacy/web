@@ -4,16 +4,24 @@ import { compose } from 'recompose'
 
 import { updateUser } from '../actions/users'
 
-import { withDatabaseSubscribe } from './hocs'
+import { withDatabaseSubscribe, withLoading, withNotFound } from './hocs'
 
-
-const style = {
-  display: 'inline'
-}
 
 const mapStateToProps = ({users}) => ({
   users
 })
+
+const UsernameLoading = () => (
+  <span>
+    <span>.</span>
+    <span>.</span>
+    <span>.</span>
+  </span>
+)
+
+const UsernameNotFound = () => (
+  <span>[deleted]</span>
+)
 
 const enhance = compose(
   connect(mapStateToProps),
@@ -27,13 +35,18 @@ const enhance = compose(
       }))
     )
   ),
+  withLoading(
+    (props) => !(props.userId in props.users),
+    UsernameLoading
+  ),
+  withNotFound(
+    (props) => (props.userId in props.users) && props.users[props.userId] === null,
+    UsernameNotFound
+  ),
 )
 
 const Username = ({userId, users}) => (
-  <span style={style}>
-    {(userId in users) && (users[userId] !== null) ?
-      users[userId]['username'] : "" }
-  </span>
+  <span>{users[userId]['username']}</span>
 )
 
 export default enhance(Username)
