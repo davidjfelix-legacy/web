@@ -4,11 +4,19 @@ import { compose } from 'recompose'
 
 import { updateUser } from '../actions/users'
 
-import { withDatabaseSubscribe } from './hocs'
+import { withDatabaseSubscribe, withLoading, withNotFound } from './hocs'
 
 const mapStateToProps = ({users}) => ({
   users
 })
+
+const UserLoading = () => (
+  <div>...</div>
+)
+
+const UserNotFound = () => (
+  <div>User not found</div>
+)
 
 const enhance = compose(
   connect(mapStateToProps),
@@ -22,14 +30,19 @@ const enhance = compose(
       }))
     )
   ),
+  withLoading(
+    (props) => !(props.params.userId in props.users),
+    UserLoading
+  ),
+  withNotFound(
+    (props) => (props.users[props.params.userId] === null),
+    UserNotFound
+  )
 )
 
-const UserView = ({dispatch, params, users}) =>(
+const UserView = ({params, users}) =>(
   <div>
-    {users[params.userId] !== null ?
-      JSON.stringify(users[params.userId]) :
-      "404 User Not found."
-    }
+    {JSON.stringify(users[params.userId])}
   </div>
 )
 
