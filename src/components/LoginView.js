@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose, withState, withHandlers } from 'recompose'
+import { replace } from 'react-router-redux'
 
 import auth, { facebookProvider, googleProvider } from '../auth'
 
@@ -30,12 +31,16 @@ const enhance = compose(
     },
     onFacebookSubmit: props => event => {
       event.preventDefault()
-      auth.signInWithPopup(facebookProvider).then((result) => {}
+      auth.signInWithPopup(facebookProvider).then((result) => {
+        props.dispatch(replace('/'))
+      }
       ).catch((error) => {})
     },
     onGoogleSubmit: props => event => {
       event.preventDefault()
-      auth.signInWithPopup(googleProvider).then((result) => {}
+      auth.signInWithPopup(googleProvider).then((result) => {
+        props.dispatch(replace('/'))
+      }
       ).catch((error) => {})
     },
   })

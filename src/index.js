@@ -5,9 +5,11 @@ import { Provider } from 'react-redux'
 import { syncHistoryWithStore } from 'react-router-redux'
 
 import App from './components/App'
+import AuthenticatedContainer from './components/AuthenticatedContainer'
 import GroupView from './views/GroupView'
 import HomeView from './components/HomeView'
 import LoginView from './components/LoginView'
+import NotAuthenticatedContainer from './components/NotAuthenticatedContainer'
 import RegisterView from './components/RegisterView'
 import UserView from './components/UserView'
 import VideoView from './components/VideoView'
@@ -25,10 +27,14 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={HomeView} />
-        <Route path="a/login" component={LoginView} />
-        <Route path="auth/login" component={LoginView} />
-        <Route path="a/register" component={RegisterView} />
-        <Route path="auth/register" component={RegisterView} />
+        <Route component={NotAuthenticatedContainer}> 
+          <Route path="a/login" component={LoginView} />
+          <Route path="auth/login" component={LoginView} />
+          <Route path="a/register" component={RegisterView} />
+          <Route path="auth/register" component={RegisterView} />
+        </Route>
+        <Route component={AuthenticatedContainer}>
+        </Route>
         <Route path="g/:groupName" component={GroupView} />
         <Route path="groups/:groupName" component={GroupView} />
         <Route path="u/:userId" component={UserView} />
