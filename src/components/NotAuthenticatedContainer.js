@@ -6,6 +6,13 @@ import { replace } from 'react-router-redux'
 import auth from '../auth'
 import { updateAuth } from '../actions/auth'
 
+const style = {
+  alignContent: 'center',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+}
+
 const mapStateToProps = ({auth}) => ({
   auth
 })
@@ -29,7 +36,7 @@ const enhance = compose(
 )
 
 const NotAuthenticatedContainer = ({children}) => (
-  <div>{children}</div>
+  <div style={style}>{children}</div>
 )
 
 export default enhance(NotAuthenticatedContainer)
