@@ -2,7 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { compose, withState, withHandlers } from 'recompose'
 import { replace } from 'react-router-redux'
+import { Link } from 'react-router'
 
+import { createOrUpdateUserProfile } from '../actions/users'
 import auth, { facebookProvider, googleProvider } from '../auth'
 
 const styles = {
@@ -31,17 +33,44 @@ const enhance = compose(
     },
     onFacebookSubmit: props => event => {
       event.preventDefault()
-      auth.signInWithPopup(facebookProvider).then((result) => {
-        props.dispatch(replace('/'))
-      }
-      ).catch((error) => {})
+      auth.signInWithPopup(facebookProvider)
+        .then(
+          (userCredential) => {
+            props.dispatch(createOrUpdateUserProfile({
+              user: userCredential.user,
+              profile: {
+                display_name: userCredential.user.displayName
+              },
+            }))
+            props.dispatch(replace('/'))
+          }
+        )
+        .catch(
+          (error) => {
+            // Display Error
+          }
+        )
     },
     onGoogleSubmit: props => event => {
       event.preventDefault()
-      auth.signInWithPopup(googleProvider).then((result) => {
-        props.dispatch(replace('/'))
-      }
-      ).catch((error) => {})
+      auth.signInWithPopup(googleProvider)
+        .then(
+          (userCredential) => {
+            auth.signInWithCredential()
+            props.dispatch(createOrUpdateUserProfile({
+              user: userCredential.user,
+              profile: {
+                display_name: userCredential.user.displayName
+              },
+            }))
+            props.dispatch(replace('/'))
+          }
+        )
+        .catch(
+          (error) => {
+            // Display Error
+          }
+        )
     },
   })
 )
@@ -73,7 +102,7 @@ const LoginView = ({email, password, onEmailChange, onPasswordChange, onEmailSub
       value='Sign in with Facebook'/>
     <form id='google' onSubmit={onGoogleSubmit}/>
     <input form='google' type='submit' value='Sign in with Google' />
-    <a>Register</a>
+    <Link to='/a/register'>Register</Link>
   </div>
 )
 

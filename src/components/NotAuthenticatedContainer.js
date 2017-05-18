@@ -6,14 +6,19 @@ import { replace } from 'react-router-redux'
 import auth from '../auth'
 import { updateAuth } from '../actions/auth'
 
+const mapStateToProps = ({auth}) => ({
+  auth
+})
 
 const enhance = compose(
-  connect(),
+  connect(mapStateToProps),
   lifecycle({
     componentWillMount() {
       this.unsubscribeAuth = auth.onAuthStateChanged((user) => {
         this.props.dispatch(updateAuth({user}))
-        this.props.dispatch(replace('/'))
+        if (this.props.auth.user !== null) {
+          this.props.dispatch(replace('/'))
+        }
       })
     },
 

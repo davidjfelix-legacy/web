@@ -1,6 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose, withState, withHandlers } from 'recompose'
+import { Link } from 'react-router'
+
+import auth from '../auth'
 
 const styles= {
   registerView: {
@@ -28,7 +31,25 @@ const enhance = compose(
     },
     onRegisterSubmit: props => event => {
       event.preventDefault()
-      // Create user here?
+      auth.createUserWithEmailAndPassword(props.email, props.password)
+        .then(
+          (user) => {
+            // TODO: add loading
+            props.dispatch({
+              user,
+              profile: {
+                username: props.username,
+                has_username: true
+              }
+            })
+          }
+        )
+        .catch(
+          (error) => {
+            // TODO: add fail message
+            console.log(error)
+          }
+        )
     }
   })
 )
@@ -58,6 +79,7 @@ const RegisterView = ({email, password, username, onEmailChange, onPasswordChang
       value={username}
       onChange={onUsernameChange} />
     <input form='register' type='submit' value='Register'/>
+    Already a user? <Link to='/a/login' >Sign in</Link>
   </div>
 )
 

@@ -7,6 +7,7 @@ export const styles = {
   pageHeader: {
     backgroundColor: "#212121",
     display: 'flex',
+    height: '2.5em',
     justifyContent: 'space-between',
     width: '100%',
   },
