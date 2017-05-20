@@ -7,7 +7,7 @@ import auth from '../auth'
 import { updateAuth } from '../actions/auth'
 
 const style = {
-  alignContent: 'center',
+  alignItems: 'center',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
