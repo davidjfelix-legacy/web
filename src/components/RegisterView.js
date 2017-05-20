@@ -1,21 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose, withState, withHandlers } from 'recompose'
+import injectSheet from 'react-jss'
+import classNames from 'classnames'
 import { Link } from 'react-router'
 
 import auth from '../auth'
 
-const styles= {
-  registerView: {
-    display: 'flex',
-    height: '100%',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  }
-}
+import { style } from '../styles/CentralForm'
 
 const enhance = compose(
   connect(),
+  injectSheet(style),
   withState('email', 'updateEmail', ''),
   withState('password', 'updatePassword', ''),
   withState('username', 'updateUsername', ''),
@@ -54,32 +50,39 @@ const enhance = compose(
   })
 )
 
-const RegisterView = ({email, password, username, onEmailChange, onPasswordChange, onUsernameChange, onRegisterSubmit}) =>(
-  <div style={styles.registerView}>
-    <form id='register' onSubmit={onRegisterSubmit}/>
+const RegisterView = ({classes, email, password, username, onEmailChange, onPasswordChange, onUsernameChange, onRegisterSubmit}) =>(
+  <div className={classes.view}>
+    <form id='register' className={classes.form} onSubmit={onRegisterSubmit}/>
     <input
       form='register'
+      className={classNames(classes.input, classes.inputText)}
       id='email'
       type='email'
       placeholder='Email'
       value={email}
-      onChange={onEmailChange} />
+      onChange={onEmailChange}/>
     <input
       form='register'
+      className={classNames(classes.input, classes.inputText)}
       id='password'
       type='password'
       placeholder='Password'
       value={password}
-      onChange={onPasswordChange} />
+      onChange={onPasswordChange}/>
     <input
       form='register'
       id='username'
+      className={classNames(classes.input, classes.inputText)}
       type='text'
       placeholder='Username'
       value={username}
-      onChange={onUsernameChange} />
-    <input form='register' type='submit' value='Register'/>
-    Already a user? <Link to='/a/login' >Sign in</Link>
+      onChange={onUsernameChange}/>
+    <input
+      form='register'
+      className={classes.input}
+      type='submit'
+      value='Register'/>
+    Already a user? <Link to='/a/login'>Sign in</Link>
   </div>
 )
 

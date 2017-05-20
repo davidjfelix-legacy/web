@@ -9,29 +9,11 @@ import { Link } from 'react-router'
 import { createOrUpdateUserProfile } from '../actions/users'
 import auth, { facebookProvider, googleProvider } from '../auth'
 
-const jssStyle = {
-  input: {
-    height: '2.5em',
-  },
-  inputText: {
-    paddingLeft: '1em',
-    marginBottom: '2px',
-  },
-  form: {
-    margin: '.5em',
-  },
-  view: {
-    display: 'flex',
-    height: '30em',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    width: '30em'
-  },
-}
+import { style } from '../styles/CentralForm'
 
 const enhance = compose(
   connect(),
-  injectSheet(jssStyle),
+  injectSheet(style),
   withState('email', 'updateEmail', ''),
   withState('password', 'updatePassword', ''),
   withHandlers({
