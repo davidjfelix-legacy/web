@@ -27,7 +27,7 @@ export const styles = {
   },
   profile: {
     color: 'white',
-    paddingRight: '.5em'
+    paddingRight: '1em'
   },
   text: {
     paintOrder: 'stroke',
@@ -87,7 +87,7 @@ const PageHeader = ({auth}) => (
       </svg>
     </Link>
     {auth.user !== null ?
-      <Link style={styles.profile} to={`/u/${auth.user.uid}`}>{auth.user.email}</Link> :
+      <Link style={styles.profile} to={`/me`}>{auth.user.email}</Link> :
       <Link style={styles.profile} to='/a/login'>Sign in</Link>}
   </nav>
 )

@@ -22,7 +22,7 @@ const enhance = compose(
   connect(mapStateToProps),
   withDatabaseSubscribe(
     'value',
-    (props) => (`users/${props.params.userId}`),
+    (props) => (`users/${props.userId}`),
     (props) => (snapshot) => (
       props.dispatch(updateUser({
         userId: props.params.userId,
@@ -31,18 +31,19 @@ const enhance = compose(
     )
   ),
   withLoading(
-    (props) => !(props.params.userId in props.users),
+    (props) => !(props.userId in props.users),
     UserLoading
   ),
   withNotFound(
-    (props) => (props.users[props.params.userId] === null),
+    (props) => (props.users[props.userId] === null),
     UserNotFound
   )
 )
 
-const UserView = ({params, users}) =>(
+const UserView = ({children, userId, users}) => (
   <div>
-    {JSON.stringify(users[params.userId])}
+    {JSON.stringify(users[userId])}
+    {children}
   </div>
 )
 
