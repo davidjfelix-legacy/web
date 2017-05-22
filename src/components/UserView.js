@@ -25,7 +25,7 @@ const enhance = compose(
     (props) => (`users/${props.userId}`),
     (props) => (snapshot) => (
       props.dispatch(updateUser({
-        userId: props.params.userId,
+        userId: props.userId,
         userSnapshot: snapshot.val()
       }))
     )

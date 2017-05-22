@@ -86,7 +86,7 @@ const PageHeader = ({auth}) => (
         <text x='5' y='40' fontFamily='Arvo' fontWeight='bold' fontStyle='italic' fontSize='40' fill='url(#grad1)' style={styles.text}>iotv</text>
       </svg>
     </Link>
-    {auth.user !== null ?
+    {(Object.keys(auth).length !== 0) && (auth.user !== undefined) ?
       <Link style={styles.profile} to={`/me`}>{auth.user.email}</Link> :
       <Link style={styles.profile} to='/a/login'>Sign in</Link>}
   </nav>
