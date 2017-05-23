@@ -73,6 +73,62 @@ export const UserOverview = enhanceSubs(
   )
 )
 
+export const UserVideos = enhanceSubs(
+  ({baseUrl}) => (
+    <div>
+      <UserNav baseUrl={baseUrl} active="Videos" />
+    </div>
+  )
+)
+
+export const UserOrganizations = enhanceSubs(
+  ({baseUrl}) => (
+    <div>
+      <UserNav baseUrl={baseUrl} active="Organizations" />
+    </div>
+  )
+)
+
+export const UserFollowing = enhanceSubs(
+  ({baseUrl}) => (
+    <div>
+      <UserNav baseUrl={baseUrl} active="Following" />
+    </div>
+  )
+)
+
+export const UserFollowers = enhanceSubs(
+  ({baseUrl}) => (
+    <div>
+      <UserNav baseUrl={baseUrl} active="Followers" />
+    </div>
+  )
+)
+
+export const UserShows = enhanceSubs(
+  ({baseUrl}) => (
+    <div>
+      <UserNav baseUrl={baseUrl} active="Shows" />
+    </div>
+  )
+)
+
+export const UserSeries = enhanceSubs(
+  ({baseUrl}) => (
+    <div>
+      <UserNav baseUrl={baseUrl} active="Series" />
+    </div>
+  )
+)
+
+export const UserPlaylists = enhanceSubs(
+  ({baseUrl}) => (
+    <div>
+      <UserNav baseUrl={baseUrl} active="Playlists" />
+    </div>
+  )
+)
+
 const UserView = ({baseUrl, isEditable=false, children, userId, users}) => (
   <div>
     <img src='http://placekitten.com/g/200/200' alt={`${users[userId].username}`} />

@@ -13,7 +13,16 @@ import MeContainer from './components/MeContainer'
 import NotAuthenticatedContainer from './components/NotAuthenticatedContainer'
 import RegisterView from './components/RegisterView'
 import UserContainer from './components/UserContainer'
-import { UserOverview } from './components/UserView'
+import {
+  UserFollowers,
+  UserFollowing,
+  UserOrganizations,
+  UserOverview,
+  UserPlaylists,
+  UserSeries,
+  UserShows,
+  UserVideos,
+} from './components/UserView'
 import VideoView from './components/VideoView'
 
 import configureStore from './store'
@@ -38,36 +47,37 @@ ReactDOM.render(
         <Route component={AuthenticatedContainer}>
           <Route path='me' component={MeContainer} >
             <IndexRoute component={UserOverview} />
-            <Route path='videos' />
-            <Route path='organizations' />
-            <Route path='following' />
-            <Route path='followers' />
-            <Route path='shows'/>
-            <Route path='series' />
-            <Route path='playlists' />
+            <Route path='videos' component={UserVideos} />
+            <Route path='organizations' component={UserOrganizations} />
+            <Route path='following'  component={UserFollowing} />
+            <Route path='followers' component={UserFollowers} />
+            <Route path='shows' component={UserShows} />
+            <Route path='series' component={UserSeries} />
+            <Route path='playlists' component={UserPlaylists} />
           </Route>
         </Route>
         <Route path='g/:groupName' component={GroupView} />
         <Route path='groups/:groupName' component={GroupView} />
         <Route path='u/:userId' component={UserContainer} >
-          <IndexRoute component={UserOverview} />
-          <Route path='videos' />
-          <Route path='organizations' />
-          <Route path='following' />
-          <Route path='followers' />
-          <Route path='shows'/>
-          <Route path='series' />
-          <Route path='playlists' />
+            <IndexRoute component={UserOverview} /> 
+            <Route path='videos' component={UserVideos} />
+            <Route path='organizations' component={UserOrganizations} />
+            <Route path='following'  component={UserFollowing} />
+            <Route path='followers' component={UserFollowers} />
+            <Route path='shows' component={UserShows} />
+            <Route path='series' component={UserSeries} />
+            <Route path='playlists' component={UserPlaylists} />
         </Route>
         <Route path='users/:userId' component={UserContainer}>
           <IndexRoute component={UserOverview} />
-          <Route path='videos' />
-          <Route path='organizations' />
-          <Route path='following' />
-          <Route path='followers' />
-          <Route path='shows'/>
-          <Route path='series' />
-          <Route path='playlists' />
+            <IndexRoute component={UserOverview} />
+            <Route path='videos' component={UserVideos} />
+            <Route path='organizations' component={UserOrganizations} />
+            <Route path='following'  component={UserFollowing} />
+            <Route path='followers' component={UserFollowers} />
+            <Route path='shows' component={UserShows} />
+            <Route path='series' component={UserSeries} />
+            <Route path='playlists' component={UserPlaylists} />
         </Route>
         <Route path='v/:videoId' component={VideoView} />
         <Route path='videos/:videoId'  component={VideoView} />
