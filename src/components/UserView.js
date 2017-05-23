@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { compose } from 'recompose'
+import { compose, getContext, withContext } from 'recompose'
 import { Link } from 'react-router'
 
 import { updateUser } from '../actions/users'
@@ -38,21 +39,43 @@ const enhance = compose(
   withNotFound(
     (props) => (props.users[props.userId] === null),
     UserNotFound
+  ),
+  withContext(
+    {baseUrl: PropTypes.string.isRequired},
+    (props) => ({baseUrl: props.baseUrl})
   )
 )
 
-const UserView = ({children, userId, users, baseUrl}) => (
+const enhanceSubs = compose(
+  getContext({
+    baseUrl: PropTypes.string.isRequired
+  }),
+)
+
+const UserNav = ({baseUrl, active}) => (
+  <nav>
+    <Link to={baseUrl}>Overview</Link>
+    <Link to={`${baseUrl}/videos`}>Videos</Link>
+    <Link to={`${baseUrl}/organizations`}>Organizations</Link>
+    <Link to={`${baseUrl}/following`}>Following</Link>
+    <Link to={`${baseUrl}/followers`}>Followers</Link>
+    <Link to={`${baseUrl}/shows`}>Shows</Link>
+    <Link to={`${baseUrl}/series`}>Series</Link>
+    <Link to={`${baseUrl}/playlists`}>Playlists</Link>
+  </nav>
+)
+
+export const UserOverview = enhanceSubs(
+  ({baseUrl}) => (
+    <div>
+      <UserNav baseUrl={baseUrl} active="Overview" />
+    </div>
+  )
+)
+
+const UserView = ({baseUrl, isEditable=false, children, userId, users}) => (
   <div>
     <img src='http://placekitten.com/g/200/200' alt={`${users[userId].username}`} />
-    <nav>
-      <Link to={`${baseUrl}/videos`}>Videos</Link>
-      <Link to={`${baseUrl}/organizations`} />
-      <Link to={`${baseUrl}/following`} />
-      <Link to={`${baseUrl}/followers`} />
-      <Link to={`${baseUrl}/shows`} />
-      <Link to={`${baseUrl}/series`} />
-      <Link to={`${baseUrl}/playlists`} />
-    </nav>
     {children}
   </div>
 )

@@ -13,6 +13,7 @@ import MeContainer from './components/MeContainer'
 import NotAuthenticatedContainer from './components/NotAuthenticatedContainer'
 import RegisterView from './components/RegisterView'
 import UserContainer from './components/UserContainer'
+import { UserOverview } from './components/UserView'
 import VideoView from './components/VideoView'
 
 import configureStore from './store'
@@ -36,6 +37,7 @@ ReactDOM.render(
         </Route>
         <Route component={AuthenticatedContainer}>
           <Route path='me' component={MeContainer} >
+            <IndexRoute component={UserOverview} />
             <Route path='videos' />
             <Route path='organizations' />
             <Route path='following' />
@@ -48,6 +50,7 @@ ReactDOM.render(
         <Route path='g/:groupName' component={GroupView} />
         <Route path='groups/:groupName' component={GroupView} />
         <Route path='u/:userId' component={UserContainer} >
+          <IndexRoute component={UserOverview} />
           <Route path='videos' />
           <Route path='organizations' />
           <Route path='following' />
@@ -57,6 +60,7 @@ ReactDOM.render(
           <Route path='playlists' />
         </Route>
         <Route path='users/:userId' component={UserContainer}>
+          <IndexRoute component={UserOverview} />
           <Route path='videos' />
           <Route path='organizations' />
           <Route path='following' />

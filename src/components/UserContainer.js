@@ -1,8 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { compose } from 'recompose'
 
 import UserView from './UserView'
 
+
+const enhance = compose(
+  connect(),
+)
 
 const UserContainer = ({children, params, location}) => (
   <div>
@@ -12,4 +17,4 @@ const UserContainer = ({children, params, location}) => (
   </div>
 )
 
-export default connect()(UserContainer)
+export default enhance(UserContainer)

@@ -33,7 +33,7 @@ const enhance = compose(
 
 const MeContainer = ({auth, children}) => (
   <div>
-    <UserView userId={auth.user.uid} baseUrl='me'>
+    <UserView userId={auth.user.uid} baseUrl='/me' isEditable>
       {children}
     </UserView>
   </div>
