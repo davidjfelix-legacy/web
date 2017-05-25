@@ -1,48 +1,64 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
-import { push } from 'react-router-redux'
 import { Link } from 'react-router'
 
-import { updateUser } from '../actions/users'
+import { updateVideo } from '../actions/videos'
+import Username from './Username'
 
-import { withDatabaseSubscribe } from './hocs'
+import { withDatabaseSubscribe, withLoading, withNotFound } from './hocs'
 
 import '../css/VideoPreview.css'
 
-const mapStateToProps = ({users}) => ({
-  users
+const mapStateToProps = ({videos}) => ({
+  videos
 })
+
+// FIXME
+const VideoLoading = () => (
+  <span>
+    <span>.</span>
+    <span>.</span>
+    <span>.</span>
+  </span>
+)
+
+// FIXME
+const VideoNotFound = () => (
+  <span>[deleted]</span>
+)
 
 const enhance = compose(
   connect(mapStateToProps),
   withDatabaseSubscribe(
     'value',
-    (props) => (`users/${props.videoUser}`),
+    (props) => (`videos/${props.videoId}`),
     (props) => (snapshot) => (
-      props.dispatch(updateUser({
-        userId: props.videoUser,
-        userSnapshot: snapshot.val()
+      props.dispatch(updateVideo({
+        videoId: props.videoId,
+        videoSnapshot: snapshot.val()
       }))
     )
   ),
+  withLoading(
+    (props) => !(props.videoId in props.videos),
+    VideoLoading
+  ),
+  withNotFound(
+    (props) => (props.videoId in props.videos) && props.videos[props.videoId] === null,
+    VideoNotFound
+  ),
 )
 
-const VideoPreview = ({
-  dispatch,
-  users,
-  videoLinkURL,
-  videoThumbnailURL,
-  videoTitle,
-  videoUser,
-  videoUserLinkURL,
-}) => (
-  <div onClick={() => dispatch(push(videoLinkURL))}  className="VideoPreview">
-    <img src={videoThumbnailURL} alt={`${videoTitle} preview thumbnail`} className="VideoPreview__Image"/>
-    <h3 className="VideoPreview__Title">{videoTitle}</h3>
-    {videoUser in users ?
-      <Link to={videoUserLinkURL} className="VideoPreview__User">{users[videoUser].username}</Link> :
-      <Link to={videoUserLinkURL} className="VideoPreview__User">{videoUser}</Link>}
+const VideoPreview = ({videoId, videos}) => (
+  <div className="VideoPreview">
+    <Link to={`/v/${videoId}`}>
+      <img src={videos[videoId]['thumbnail_url']} alt={'Untitled Preview'} className="VideoPreview__Image"/>
+    </Link>
+    <h3 className="VideoPreview__Title">Untitled</h3>
+    <Link to={`/u/${videos[videoId]['owner_id']}`} className="VideoPreview__User">
+      <Username userId={videos[videoId]['owner_id']} />
+    </Link>
   </div>
 )
 

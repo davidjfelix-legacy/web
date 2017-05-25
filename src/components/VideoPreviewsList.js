@@ -18,17 +18,11 @@ export const styles = {
   },
 }
 
-const VideoPreviewsList = ({videoPreviews}) => (
+const VideoPreviewsList = ({videoIds}) => (
   <ul style={styles.List}>
-    {Object.keys(videoPreviews).map((key, index) => (
-      <li style={styles.Item} key={key}>
-        <VideoPreview 
-          videoLinkURL={`/v/${key}`}
-          videoThumbnailURL={videoPreviews[key]['thumbnail_url']}
-          videoTitle="Untitled" //FIXME: work titles in
-          videoUser={videoPreviews[key]['owner_id']} //FIME: translate id to username
-          videoUserLinkURL={`/u/${videoPreviews[key]['owner_id']}`}
-        />
+    {videoIds.map((id) => (
+      <li style={styles.Item} key={id}>
+        <VideoPreview videoId={id} />
       </li>
     ))}
   </ul>

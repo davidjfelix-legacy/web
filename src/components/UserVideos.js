@@ -9,9 +9,8 @@ import VideoPreviewsList from './VideoPreviewsList'
 
 import { withDatabaseSubscribe } from './hocs'
 
-const mapStateToProps = ({userVideos, videos}) => ({
+const mapStateToProps = ({userVideos}) => ({
   userVideos,
-  videos
 })
 
 const enhanceSubs = compose(
@@ -32,18 +31,10 @@ const enhanceSubs = compose(
   ),
 )
 
-const UserVideos = ({baseUrl, userId, userVideos, videos}) => (
+const UserVideos = ({baseUrl, userId, userVideos}) => (
   <div>
     <UserNav baseUrl={baseUrl} active="Videos" />
-    <VideoPreviewsList
-      videoPreviews={
-        Object.keys(videos)
-          .filter(key => Object.keys(userVideos[userId]).includes(key))
-          .reduce((obj, key) => {
-            obj[key] = videos[key]
-            return obj
-          }, {})
-      }/>
+    <VideoPreviewsList videoIds={userVideos[userId] ? Object.keys(userVideos[userId]) : [] } />
   </div>
 )
 

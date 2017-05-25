@@ -29,7 +29,7 @@ const HomeView = ({videos}) => (
     <div>
       {videos === {} ? //FIXME: make this check work and provide a sensible default
         <div>No videos found</div> :
-        <VideoPreviewsList videoPreviews={videos}/>
+        <VideoPreviewsList videoIds={Object.keys(videos)}/>
       }
     </div>
   </MenuLayout>
