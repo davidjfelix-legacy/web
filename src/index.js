@@ -13,16 +13,14 @@ import MeContainer from './components/MeContainer'
 import NotAuthenticatedContainer from './components/NotAuthenticatedContainer'
 import RegisterView from './components/RegisterView'
 import UserContainer from './components/UserContainer'
-import {
-  UserFollowers,
-  UserFollowing,
-  UserOrganizations,
-  UserOverview,
-  UserPlaylists,
-  UserSeries,
-  UserShows,
-  UserVideos,
-} from './components/UserView'
+import UserFollowers from './components/UserFollowers'
+import UserFollowing from './components/UserFollowing'
+import UserOrganizations from './components/UserOrganizations'
+import UserOverview from './components/UserOverview'
+import UserPlaylists from './components/UserPlaylists'
+import UserSeries from './components/UserSeries'
+import UserShows from './components/UserShows'
+import UserVideos from './components/UserVideos'
 import VideoView from './components/VideoView'
 
 import configureStore from './store'
