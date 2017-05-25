@@ -40,14 +40,23 @@ const enhance = compose(
     UserNotFound
   ),
   withContext(
-    {baseUrl: PropTypes.string.isRequired},
-    (props) => ({baseUrl: props.baseUrl})
+    {
+      baseUrl: PropTypes.string.isRequired,
+      userId: PropTypes.string.isRequired,
+    },
+    (props) => ({
+      baseUrl: props.baseUrl,
+      userId: props.userId,
+    })
   )
 )
 
 const UserView = ({baseUrl, isEditable=false, children, userId, users}) => (
   <div style={{display: 'flex', flexDirection: 'row'}}>
-    <img src='http://placekitten.com/g/200/200' alt={`${users[userId].username}`} />
+    <img
+      style={{alignSelf: 'flex-start'}}
+      src='http://placekitten.com/g/200/200'
+      alt={`${users[userId].username}`} />
     {children}
   </div>
 )
