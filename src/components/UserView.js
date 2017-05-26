@@ -43,10 +43,12 @@ const enhance = compose(
     {
       baseUrl: PropTypes.string.isRequired,
       userId: PropTypes.string.isRequired,
+      isEditable: PropTypes.bool,
     },
     (props) => ({
       baseUrl: props.baseUrl,
       userId: props.userId,
+      isEditable: props.isEditable,
     })
   )
 )

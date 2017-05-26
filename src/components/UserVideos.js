@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { compose, getContext } from 'recompose'
+import { Link } from 'react-router'
 
 import { updateUserVideos } from '../actions/userVideos'
 import UserNav from './UserNav'
@@ -18,6 +19,7 @@ const enhanceSubs = compose(
   getContext({
     baseUrl: PropTypes.string.isRequired,
     userId: PropTypes.string.isRequired,
+    isEditable: PropTypes.bool,
   }),
   withDatabaseSubscribe(
     'value',
@@ -31,9 +33,12 @@ const enhanceSubs = compose(
   ),
 )
 
-const UserVideos = ({baseUrl, userId, userVideos}) => (
+const UserVideos = ({baseUrl, isEditable, userId, userVideos}) => (
   <div>
-    <UserNav baseUrl={baseUrl} active="Videos" />
+    <UserNav baseUrl={baseUrl} active='Videos' />
+    {isEditable?
+      <Link to='/videos/new'>New</Link> : ''
+    }
     <VideoPreviewsList videoIds={userVideos[userId] ? Object.keys(userVideos[userId]) : [] } />
   </div>
 )

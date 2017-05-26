@@ -52,11 +52,11 @@ const enhance = compose(
 
 const VideoPreview = ({videoId, videos}) => (
   <div className="VideoPreview">
-    <Link to={`/v/${videoId}`}>
+    <Link to={`/videos/${videoId}`}>
       <img src={videos[videoId]['thumbnail_url']} alt={'Untitled Preview'} className="VideoPreview__Image"/>
     </Link>
     <h3 className="VideoPreview__Title">Untitled</h3>
-    <Link to={`/u/${videos[videoId]['owner_id']}`} className="VideoPreview__User">
+    <Link to={`/users/${videos[videoId]['owner_id']}`} className="VideoPreview__User">
       <Username userId={videos[videoId]['owner_id']} />
     </Link>
   </div>

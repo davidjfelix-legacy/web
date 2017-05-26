@@ -82,7 +82,7 @@ const RegisterView = ({classes, email, password, username, onEmailChange, onPass
       className={classes.input}
       type='submit'
       value='Register'/>
-    Already a user? <Link to='/a/login'>Sign in</Link>
+    Already a user? <Link to='/auth/login'>Sign in</Link>
   </div>
 )
 

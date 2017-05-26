@@ -88,7 +88,7 @@ const PageHeader = ({auth}) => (
     </Link>
     {(Object.keys(auth).length !== 0) && (auth.user !== undefined) ?
       <Link style={styles.profile} to={`/me`}>{auth.user.email}</Link> :
-      <Link style={styles.profile} to='/a/login'>Sign in</Link>}
+      <Link style={styles.profile} to='/auth/login'>Sign in</Link>}
   </nav>
 )
 

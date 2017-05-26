@@ -12,7 +12,7 @@ const enhance = compose(
   lifecycle({
     componentWillMount() {
       if (this.props.auth.user === null) {
-        replace('/a/login')
+        replace('/auth/login')
       }
     },
   })

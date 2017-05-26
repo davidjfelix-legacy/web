@@ -109,7 +109,7 @@ const LoginView = ({email, password, onEmailChange, classes, onPasswordChange, o
       className={classes.input}
       type='submit'
       value='Sign in with Google'/>
-    <Link to='/a/register'>Register</Link>
+    <Link to='/auth/register'>Register</Link>
   </div>
 )
 
