@@ -52,6 +52,7 @@ ReactDOM.render(
             <Route path='series' component={UserSeries} />
             <Route path='playlists' component={UserPlaylists} />
           </Route>
+          <Route path='videos/new' component={NewVideoView} />
         </Route>
         <Route path='groups/:groupName' component={GroupView} />
         <Route path='users/:userId' component={UserContainer}>
@@ -65,7 +66,6 @@ ReactDOM.render(
             <Route path='series' component={UserSeries} />
             <Route path='playlists' component={UserPlaylists} />
         </Route>
-        <Route path='videos/new' component={NewVideoView} />
         <Route path='videos/:videoId' component={VideoView} />
         <Route path='*' component={HomeView} />
       </Route>
