@@ -10,6 +10,7 @@ import GroupView from './views/GroupView'
 import HomeView from './components/HomeView'
 import LoginView from './components/LoginView'
 import MeContainer from './components/MeContainer'
+import NewVideoView from './components/NewVideoView'
 import NotAuthenticatedContainer from './components/NotAuthenticatedContainer'
 import RegisterView from './components/RegisterView'
 import UserContainer from './components/UserContainer'
@@ -64,7 +65,8 @@ ReactDOM.render(
             <Route path='series' component={UserSeries} />
             <Route path='playlists' component={UserPlaylists} />
         </Route>
-        <Route path='videos/:videoId'  component={VideoView} />
+        <Route path='videos/new' component={NewVideoView} />
+        <Route path='videos/:videoId' component={VideoView} />
         <Route path='*' component={HomeView} />
       </Route>
     </Router>

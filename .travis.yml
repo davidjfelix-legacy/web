@@ -29,7 +29,7 @@ deploy:
     tags: true
     repo: iotv/web
 - provider: script
-  script: firebase deploy --token "$FIREBASE_TOKEN"
+  script: firebase deploy --token "$FIREBASE_TOKEN" --only hosting
   skip_cleanup: true
   on:
     branch: alpha
