@@ -19,7 +19,9 @@ const enhance = compose(
       const rawVideosRef = database.ref(`raw-videos/${props.auth.user.uid}`)
       const rawVideoRef = rawVideosRef.push()
       rawVideoRef.set({'is_processed': false})
-      storage.ref().child(`raw-vides/${props.auth.user.uid}/${rawVideoRef.key}`).put(event.target.elements.file.files[0])
+      storage.ref()
+        .child(`raw-videos/${props.auth.user.uid}/${rawVideoRef.key}`)
+        .put(event.target.elements.file.files[0])
     },
   })
 )
