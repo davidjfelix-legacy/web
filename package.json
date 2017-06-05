@@ -4,7 +4,8 @@
   "private": true,
   "devDependencies": {
     "enzyme": "^2.8.2",
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "@storybook/react": "^3.0.1"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -33,6 +34,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   }
 }
