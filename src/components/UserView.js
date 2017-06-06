@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { compose, withContext } from 'recompose'
+import { compose, defaultProps, withContext } from 'recompose'
 
 import { updateUser } from '../actions/users'
 
@@ -21,6 +21,7 @@ const UserNotFound = () => (
 
 const enhance = compose(
   connect(mapStateToProps),
+  defaultProps({isEditable: false}),
   withDatabaseSubscribe(
     'value',
     (props) => (`users/${props.userId}`),
@@ -53,7 +54,7 @@ const enhance = compose(
   )
 )
 
-const UserView = ({baseUrl, isEditable=false, children, userId, users}) => (
+const UserView = ({baseUrl, isEditable, children, userId, users}) => (
   <div style={{display: 'flex', flexDirection: 'row'}}>
     <img
       style={{alignSelf: 'flex-start'}}

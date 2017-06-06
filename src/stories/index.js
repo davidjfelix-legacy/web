@@ -10,7 +10,13 @@ import VideoStream from '../components/VideoStream'
 const store = configureStore()
 
 storiesOf('VideoStream', module)
-  .add("VideoStream", () => (
+  .add("Default VideoStream", () => (
     <Provider store={store} >
       <VideoStream video={{url:""}} dispatch={()=>{}}/>
-    </Provider>))
+    </Provider>
+  ))
+  .add("4:3 Small VideoStream", () => (
+    <Provider store={store} >
+      <VideoStream video={{url:""}} aspectRatio={4/3} scaleWidth={720} />
+    </Provider>
+  ))
