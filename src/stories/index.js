@@ -5,9 +5,15 @@ import { linkTo } from '@storybook/addon-links'
 import { Provider } from 'react-redux';
 
 import configureStore from '../store'
+import PerformanceFrame from '../components/PerformanceFrame'
 import VideoStream from '../components/VideoStream'
 
 const store = configureStore()
+
+storiesOf('PerformanceFrame', module)
+  .add("Default PerformanceFrame", () => (
+    <PerformanceFrame />
+  ))
 
 storiesOf('VideoStream', module)
   .add("Default VideoStream", () => (
