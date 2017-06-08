@@ -12,7 +12,13 @@ const store = configureStore()
 
 storiesOf('PerformanceFrame', module)
   .add("Default PerformanceFrame", () => (
-    <PerformanceFrame />
+    <Provider store={store} >
+      <PerformanceFrame layout={{
+        videoStreams: [
+          {url: "", z_index: 0},
+        ],
+      }}/>
+    </Provider>
   ))
 
 storiesOf('VideoStream', module)
