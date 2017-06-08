@@ -23,8 +23,8 @@ const enhance = compose(
   })
 )
 
-const VideoStream = ({ video, dispatch, aspectRatio, scale, scaleWidth }) => (
-  <div style={{}}>
+const VideoStream = ({ video, dispatch, aspectRatio, scale, scaleWidth, style }) => (
+  <div style={style}>
     <video
       style={styles.video}
       controls
