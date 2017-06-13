@@ -9,7 +9,6 @@ import { updateTime } from '../reducers/videoStreams'
 export const styles = {
   video: {
     backgroundColor:'#222222',
-    padding: '1em',
     maxWidth: '100%',
     maxHeight: '100%',
   }
@@ -55,7 +54,7 @@ class VideoStream extends React.Component {
 VideoStream.defaultProps = {
     aspectRatio: 16/9,
     scale: 1.0,
-    scaleWidth: 1080
+    scaleWidth: 1920
   }
 
 VideoStream.propTypes = {

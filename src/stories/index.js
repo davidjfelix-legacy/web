@@ -24,8 +24,8 @@ storiesOf('PerformanceFrame', module)
     <Provider store={store} >
       <PerformanceFrame layout={{
         videoStreams: [
-          {url: "", z_index: 0, scale: 1.0, position: "top-left"},
-          {url: "", z_index: 1, scale: 0.25, position: "top-right"},
+          {url: "", z_index: 0, aspectRatio:16/9, scale: 0.5, position: "top-left"},
+          {url: "", z_index: 1, aspectRatio:16/9, scale: 0.25, position: "top-right"},
         ],
       }}/>
     </Provider>
