@@ -3382,6 +3382,10 @@ history@^3.0.0:
     query-string "^4.2.2"
     warning "^3.0.0"
 
+hls.js:
+  version "0.7.9"
+  resolved "https://registry.yarnpkg.com/hls.js/-/hls.js-0.7.9.tgz#6ff84f1e1cad34d22b9f147b8f5a04ab406c5605"
+
 hmac-drbg@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/hmac-drbg/-/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"

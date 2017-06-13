@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "@storybook/react": "^3.0.1",
     "enzyme": "^2.8.2",
-    "react-scripts": "0.9.5",
-    "@storybook/react": "^3.0.1"
+    "react-scripts": "0.9.5"
   },
   "dependencies": {
     "classnames": "^2.2.5",
     "firebase": "^3.9.0",
+    "hls.js": "^0.7.9",
     "keymirror": "^0.1.1",
     "normalize.css": "^7.0.0",
     "prop-types": "^15.5.8",

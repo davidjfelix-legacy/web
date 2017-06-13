@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { compose, defaultProps } from 'recompose'
+import { compose, defaultProps, lifecycle, toClass } from 'recompose'
+import Hls from 'hls.js'
 
 import { updateTime } from '../reducers/videoStreams'
 
@@ -16,25 +17,46 @@ export const styles = {
 
 const enhance = compose(
   connect(),
-  defaultProps({
+)
+
+class VideoStream extends React.Component {
+  render() {
+    return (
+      <div style={this.props.style}>
+        <video
+          ref={(video) => {this.video=video}}
+          style={styles.video}
+          controls
+          height={`${Math.round(this.props.scaleWidth * this.props.scale / this.props.aspectRatio)}px`}
+          width={`${Math.round(this.props.scaleWidth * this.props.scale)}px`}
+          onTimeUpdate={(event) => this.props.dispatch(updateTime(event.target.currentTime))}
+          >
+        </video>
+      </div>
+    )
+  }
+  componentDidMount() {
+    if(Hls.isSupported()) {
+      this.hls = new Hls()
+      this.hls.attachMedia(this.video)
+      this.hls.on(Hls.Events.MEDIA_ATTACHED, () => {
+        console.log("video and hls.js are now bound together !")
+      })
+      this.hls.loadSource('https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8')
+      this.hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
+          console.log("manifest loaded, found " + data.levels.length + " quality level")
+      })
+      console.log(this.hls)
+    }
+    console.log(`Hls is supported: ${Hls.isSupported()}`)
+  }
+}
+
+VideoStream.defaultProps = {
     aspectRatio: 16/9,
     scale: 1.0,
     scaleWidth: 1080
-  })
-)
-
-const VideoStream = ({ video, dispatch, aspectRatio, scale, scaleWidth, style }) => (
-  <div style={style}>
-    <video
-      style={styles.video}
-      controls
-      height={`${Math.round(scaleWidth * scale / aspectRatio)}px`}
-      width={`${Math.round(scaleWidth * scale)}px`}
-      onTimeUpdate={(event) => dispatch(updateTime(event.target.currentTime))}
-      ><source src={video['url']} />
-    </video>
-  </div>
-)
+  }
 
 VideoStream.propTypes = {
   video: PropTypes.shape({
