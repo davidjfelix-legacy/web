@@ -5,7 +5,7 @@
   "devDependencies": {
     "@storybook/react": "^3.0.1",
     "enzyme": "^2.8.2",
-    "react-scripts": "0.9.5"
+    "react-scripts": "^1.0.7"
   },
   "dependencies": {
     "classnames": "^2.2.5",

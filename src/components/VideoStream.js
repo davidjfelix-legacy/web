@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { compose, defaultProps, lifecycle, toClass } from 'recompose'
+import { compose } from 'recompose'
 import Hls from 'hls.js'
 
 import { updateTime } from '../reducers/videoStreams'
