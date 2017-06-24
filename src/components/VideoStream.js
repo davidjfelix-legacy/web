@@ -25,7 +25,6 @@ class VideoStream extends React.Component {
         <video
           ref={(video) => {this.video=video}}
           style={styles.video}
-          controls
           height={`${Math.round(this.props.scaleWidth * this.props.scale / this.props.aspectRatio)}px`}
           width={`${Math.round(this.props.scaleWidth * this.props.scale)}px`}
           onTimeUpdate={(event) => this.props.dispatch(updateTime(event.target.currentTime))}
@@ -41,7 +40,7 @@ class VideoStream extends React.Component {
       this.hls.on(Hls.Events.MEDIA_ATTACHED, () => {
         console.log("video and hls.js are now bound together !")
       })
-      this.hls.loadSource('https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8')
+      this.hls.loadSource('https://us-central1-iotv-1e541.cloudfunctions.net/videos/-KlU31hQDsaXUvL4PUM4/index.m3u8')
       this.hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
           console.log("manifest loaded, found " + data.levels.length + " quality level")
       })

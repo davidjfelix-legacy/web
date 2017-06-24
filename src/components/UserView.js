@@ -19,6 +19,13 @@ const UserNotFound = () => (
   <div>User not found</div>
 )
 
+
+const context = {
+  baseUrl: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
+  isEditable: PropTypes.bool,
+}
+
 const enhance = compose(
   connect(mapStateToProps),
   defaultProps({isEditable: false}),
@@ -41,11 +48,7 @@ const enhance = compose(
     UserNotFound
   ),
   withContext(
-    {
-      baseUrl: PropTypes.string.isRequired,
-      userId: PropTypes.string.isRequired,
-      isEditable: PropTypes.bool,
-    },
+    context,
     (props) => ({
       baseUrl: props.baseUrl,
       userId: props.userId,

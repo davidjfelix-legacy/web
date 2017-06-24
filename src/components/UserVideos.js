@@ -5,6 +5,7 @@ import { compose, getContext } from 'recompose'
 import { Link } from 'react-router'
 
 import { updateUserVideos } from '../actions/userVideos'
+import { context } from './UserView'
 import UserNav from './UserNav'
 import VideoPreviewsList from './VideoPreviewsList'
 
@@ -16,11 +17,7 @@ const mapStateToProps = ({userVideos}) => ({
 
 const enhanceSubs = compose(
   connect(mapStateToProps),
-  getContext({
-    baseUrl: PropTypes.string.isRequired,
-    userId: PropTypes.string.isRequired,
-    isEditable: PropTypes.bool,
-  }),
+  getContext(context),
   withDatabaseSubscribe(
     'value',
     (props) => (`user-videos/${props.userId}`),

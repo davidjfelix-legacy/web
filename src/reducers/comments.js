@@ -1,4 +1,4 @@
-import { actionTypes } from '../actions/comments';
+import { actionTypes } from '../actions/comments'
 
 const initalState = {}
 
@@ -10,8 +10,8 @@ const reducer = (state=initalState, action) => {
         [action.commentId]: action.commentSnapshot,
       }
     default:
-      return state;
+      return state
   }
 }
 
-export default reducer;
+export default reducer
