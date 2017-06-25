@@ -1,14 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { compose, getContext } from 'recompose'
 
 import UserNav from './UserNav'
+import { context } from './UserView'
 
 
 const enhanceSubs = compose(
-  getContext({
-    baseUrl: PropTypes.string.isRequired
-  }),
+  getContext(context),
 )
 
 export const UserOverview = ({baseUrl}) => (

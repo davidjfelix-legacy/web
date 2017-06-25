@@ -20,7 +20,7 @@ const UserNotFound = () => (
 )
 
 
-const context = {
+export const context = {
   baseUrl: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
   isEditable: PropTypes.bool,
