@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { compose } from 'recompose'
+import { compose, getContext } from 'recompose'
 import Hls from 'hls.js'
 
 import { updateTime } from '../reducers/videoStreams'
+import { context } from '../VideoView'
 
 export const styles = {
   video: {
@@ -16,6 +17,7 @@ export const styles = {
 
 const enhance = compose(
   connect(),
+  getContext(context),
 )
 
 class VideoStream extends React.Component {
