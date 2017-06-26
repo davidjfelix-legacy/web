@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { compose, getContext } from 'recompose'
+import { compose } from 'recompose'
 import Hls from 'hls.js'
 
 import { updateTime } from '../reducers/videoStreams'
-import { context } from '../VideoView'
+import { videoStates } from './PerformanceFrame'
 
 export const styles = {
   video: {
@@ -17,7 +17,6 @@ export const styles = {
 
 const enhance = compose(
   connect(),
-  getContext(context),
 )
 
 class VideoStream extends React.Component {
@@ -44,11 +43,25 @@ class VideoStream extends React.Component {
       })
       this.hls.loadSource('https://us-central1-iotv-1e541.cloudfunctions.net/videos/-KlU31hQDsaXUvL4PUM4/index.m3u8')
       this.hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
-          console.log("manifest loaded, found " + data.levels.length + " quality level")
+        console.log("manifest loaded, found " + data.levels.length + " quality level")
+      })
+      this.hls.on(Hls.Events.FRAG_BUFFERED, (event, data) => {
+        console.log("level loaded")
+        this.props.onLoaded()
       })
       console.log(this.hls)
     }
     console.log(`Hls is supported: ${Hls.isSupported()}`)
+    if (this.props.performanceState.videosState === videoStates.PLAYING) {
+      this.video.play()
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.performanceState.videosState === videoStates.PLAYING) {
+      console.log('Attempting to play')
+      this.video.play()
+    }
   }
 }
 
@@ -65,4 +78,4 @@ VideoStream.propTypes = {
   dispatch: PropTypes.func.isRequired,
 }
 
-export default enhance(VideoStream);
+export default enhance(VideoStream)
