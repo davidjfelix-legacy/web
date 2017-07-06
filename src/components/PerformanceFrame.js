@@ -1,14 +1,9 @@
 import React from 'react'
 import { compose, withHandlers, withReducer, withState } from 'recompose'
-import keyMirror from 'keymirror'
 
-import VideoStream from './VideoStream'
+import VideoStream, { videoStates } from './VideoStream'
+import VideoControls from './VideoControls'
 
-export const videoStates = keyMirror({
-  PLAYING: null,
-  PAUSED: null,
-  WAITING: null,
-})
 
 const enhance = compose(
   withState('loadedVideos', 'updateLoadedVideos', new Set([])),
@@ -64,7 +59,7 @@ const PerformanceFrame = ({layout, size, performanceState, onLoadForVideo}) => (
           onLoaded={onLoadForVideo(index)} />
       ))}
     </div>
-    <div>play</div>
+    <VideoControls />
   </div>
 )
 

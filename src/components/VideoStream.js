@@ -1,11 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { compose } from 'recompose'
 import Hls from 'hls.js'
+import keyMirror from 'keymirror'
 
-import { updateTime } from '../reducers/videoStreams'
-import { videoStates } from './PerformanceFrame'
+
+export const videoStates = keyMirror({
+  PLAYING: null,
+  PAUSED: null,
+  WAITING: null,
+})
 
 export const styles = {
   video: {
@@ -15,9 +18,6 @@ export const styles = {
   }
 }
 
-const enhance = compose(
-  connect(),
-)
 
 class VideoStream extends React.Component {
   render() {
@@ -28,7 +28,7 @@ class VideoStream extends React.Component {
           style={styles.video}
           height={`${Math.round(this.props.scaleWidth * this.props.scale / this.props.aspectRatio)}px`}
           width={`${Math.round(this.props.scaleWidth * this.props.scale)}px`}
-          onTimeUpdate={(event) => this.props.dispatch(updateTime(event.target.currentTime))}
+          onTimeUpdate={this.props.onTimeUpdate}
           >
         </video>
       </div>
@@ -75,7 +75,7 @@ VideoStream.propTypes = {
   video: PropTypes.shape({
     url: PropTypes.string.isRequired
   }).isRequired,
-  dispatch: PropTypes.func.isRequired,
+  onTimeUpdate: PropTypes.func.isRequired,
 }
 
-export default enhance(VideoStream)
+export default VideoStream
