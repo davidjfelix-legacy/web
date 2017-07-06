@@ -52,12 +52,13 @@ const enhance = compose(
 
 const PerformanceFrame = ({layout, size, performanceState, onLoadForVideo}) => (
   <div>
-    <div style={{...size}}>
+    <div style={{width: `${size.width}px`, height: `${size.height}px`}}>
       {layout['videoStreams'].map((videoStream, index) => (
         <VideoStream
           video={{url: videoStream.url}}
           style={{position: "absolute", zIndex: videoStream.z_index}}
           scale={videoStream.scale}
+          scaleWidth={size.width}
           key={index}
           performanceState={performanceState}
           onLoaded={onLoadForVideo(index)} />

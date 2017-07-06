@@ -15,8 +15,11 @@ storiesOf('PerformanceFrame', module)
     <Provider store={store} >
       <PerformanceFrame layout={{
         videoStreams: [
-          {url: "", z_index: 0},
+          {url: "", z_index: 0, aspectRatio:16/9},
         ],
+      }} size={{
+        height: 480,
+        width: 854,
       }}/>
     </Provider>
   ))
@@ -28,8 +31,8 @@ storiesOf('PerformanceFrame', module)
           {url: "", z_index: 1, aspectRatio:16/9, scale: 0.25, position: "top-right"},
         ],
       }} size={{
-        height: '540px',
-        width: '960px',
+        height: 540,
+        width: 960,
       }}/>
     </Provider>
   ))
