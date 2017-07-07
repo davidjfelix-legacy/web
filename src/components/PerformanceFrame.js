@@ -56,10 +56,11 @@ const PerformanceFrame = ({layout, size, performanceState, onLoadForVideo}) => (
           scaleWidth={size.width}
           key={index}
           performanceState={performanceState}
-          onLoaded={onLoadForVideo(index)} />
+          onLoaded={onLoadForVideo(index)} 
+          onTimeUpdate={() => {}}/>
       ))}
     </div>
-    <VideoControls />
+    <VideoControls progressBarValue={50} progressBarMax={100} onPlay={() => (console.log("yeah"))}/>
   </div>
 )
 
