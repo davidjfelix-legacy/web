@@ -45,7 +45,7 @@ const enhance = compose(
   }),
 )
 
-const PerformanceFrame = ({layout, size, performanceState, onLoadForVideo}) => (
+const PerformanceFrame = ({layout, size, performanceState, pauseVideos, playVideos, onLoadForVideo}) => (
   <div>
     <div style={{width: `${size.width}px`, height: `${size.height}px`}}>
       {layout['videoStreams'].map((videoStream, index) => (
@@ -60,7 +60,12 @@ const PerformanceFrame = ({layout, size, performanceState, onLoadForVideo}) => (
           onTimeUpdate={() => {}}/>
       ))}
     </div>
-    <VideoControls progressBarValue={50} progressBarMax={100} onPlay={() => (console.log("yeah"))}/>
+    <VideoControls
+      performanceState={performanceState}
+      progressBarValue={50}
+      progressBarMax={100}
+      onPlay={playVideos}
+      onPause={pauseVideos}/>
   </div>
 )
 

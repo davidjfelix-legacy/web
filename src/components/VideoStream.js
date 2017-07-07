@@ -58,9 +58,13 @@ class VideoStream extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.performanceState.videosState === videoStates.PLAYING) {
-      console.log('Attempting to play')
-      this.video.play()
+    switch (this.props.performanceState.videosState) {
+      case videoStates.PLAYING: 
+        console.log('Attempting to play')
+        this.video.play()
+        break
+      case videoStates.PAUSED:
+        this.video.pause()
     }
   }
 }
