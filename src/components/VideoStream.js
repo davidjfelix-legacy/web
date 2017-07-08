@@ -29,6 +29,7 @@ class VideoStream extends React.Component {
           height={`${Math.round(this.props.scaleWidth * this.props.scale / this.props.aspectRatio)}px`}
           width={`${Math.round(this.props.scaleWidth * this.props.scale)}px`}
           onTimeUpdate={this.props.onTimeUpdate}
+          onLoadedMetadata={(event) => {this.props.updateMaxTime(event.target.duration)}}
           >
         </video>
       </div>
@@ -59,7 +60,7 @@ class VideoStream extends React.Component {
 
   componentDidUpdate() {
     switch (this.props.performanceState.videosState) {
-      case videoStates.PLAYING: 
+      case videoStates.PLAYING:
         console.log('Attempting to play')
         this.video.play()
         break
@@ -80,6 +81,7 @@ VideoStream.propTypes = {
     url: PropTypes.string.isRequired
   }).isRequired,
   onTimeUpdate: PropTypes.func.isRequired,
+  updateMaxTime: PropTypes.func.isRequired,
 }
 
 export default VideoStream

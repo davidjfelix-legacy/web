@@ -11,6 +11,7 @@ const enhance = compose(
     'performanceState',
     'updatePerformanceState',
     {
+      maxTime: 1, // Arbitrary, nonzero value so the progress bar seems empty before loading
       time: 0,
       videosState: videoStates.WAITING,
     }
@@ -26,6 +27,18 @@ const enhance = compose(
       props.updatePerformanceState({
         ...props.performanceState,
         videosState: videoStates.PAUSED,
+      })
+    },
+    updateTime: props => time => {
+      props.updatePerformanceState({
+        ...props.performanceState,
+        time: time,
+      })
+    },
+    updateMaxTime: props => maxTime => {
+      props.updatePerformanceState({
+        ...props.performanceState,
+        maxTime: maxTime,
       })
     },
   }),
@@ -45,7 +58,7 @@ const enhance = compose(
   }),
 )
 
-const PerformanceFrame = ({layout, size, performanceState, pauseVideos, playVideos, onLoadForVideo}) => (
+const PerformanceFrame = ({layout, size, performanceState, pauseVideos, playVideos, onLoadForVideo, updateTime, updateMaxTime}) => (
   <div>
     <div style={{width: `${size.width}px`, height: `${size.height}px`}}>
       {layout['videoStreams'].map((videoStream, index) => (
@@ -57,13 +70,14 @@ const PerformanceFrame = ({layout, size, performanceState, pauseVideos, playVide
           key={index}
           performanceState={performanceState}
           onLoaded={onLoadForVideo(index)} 
-          onTimeUpdate={() => {}}/>
+          onTimeUpdate={(event) => {updateTime(event.target.currentTime)}}
+          updateMaxTime={updateMaxTime} />
       ))}
     </div>
     <VideoControls
       performanceState={performanceState}
-      progressBarValue={50}
-      progressBarMax={100}
+      progressBarValue={performanceState.time}
+      progressBarMax={performanceState.maxTime}
       onPlay={playVideos}
       onPause={pauseVideos}/>
   </div>
