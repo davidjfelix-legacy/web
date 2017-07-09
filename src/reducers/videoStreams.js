@@ -1,4 +1,4 @@
-import keyMirror from 'keymirror';
+import keyMirror from 'keymirror'
 
 export const actionTypes = keyMirror({
   UPDATE_TIME: null,
@@ -20,13 +20,6 @@ const initialState = {
   ]
 }
 
-export function updateTime(currentTime) {
-  return {
-    currentTime,
-    type: actionTypes.UPDATE_TIME,
-  }
-};
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_TIME:
@@ -37,6 +30,6 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
-};
+}
 
-export default reducer;
+export default reducer

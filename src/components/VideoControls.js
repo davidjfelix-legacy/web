@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Icon, { IconTypes } from './Icon'
 import { videoStates } from './VideoStream'
 
 const style = {
@@ -16,10 +17,10 @@ const VideoControls = ({onPause, onPlay, performanceState, progressBarValue, pro
     {performanceState.videosState === videoStates.PLAYING ?
       <div
         onClick={onPause}
-        style={style.pauseButton}>pause</div> :
+        style={style.pauseButton}><Icon icon={IconTypes.PAUSE}></Icon></div> :
       <div
         onClick={onPlay}
-        style={style.playButton}>play</div>
+        style={style.playButton}><Icon icon={IconTypes.PLAY}></Icon></div>
     }
     <div style={style.volumeControls} >volume</div>
     <progress max={progressBarMax} style={style.progressBar} value={progressBarValue} />
