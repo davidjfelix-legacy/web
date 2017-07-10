@@ -66,6 +66,9 @@ class VideoStream extends React.Component {
         break
       case videoStates.PAUSED:
         this.video.pause()
+        break
+      default:
+        break
     }
   }
 }
