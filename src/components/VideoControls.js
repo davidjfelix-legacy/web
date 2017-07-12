@@ -5,15 +5,17 @@ import { videoStates } from './VideoStream'
 
 const style = {
   playButton: {},
-  progressBar: {},
+  progressBar: {
+    flex: '1 1 auto',
+  },
   videoControls: {
     display: 'flex',
   },
   volumeControls: {},
 }
 
-const VideoControls = ({onPause, onPlay, performanceState, progressBarValue, progressBarMax}) => (
-  <div style={style.videoControls} >
+const VideoControls = ({onPause, onPlay, performanceState, progressBarValue, progressBarMax, width}) => (
+  <div style={{...style.videoControls, width: width}} >
     {performanceState.videosState === videoStates.PLAYING ?
       <div
         onClick={onPause}

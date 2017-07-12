@@ -48,12 +48,7 @@ const enhance = compose(
       props.updateLoadedVideos(props.loadedVideos.add(videoId))
       // FIXME: ghetto, doesn't check that the ids are the same
       console.log(props.loadedVideos)
-      let baller = props.layout['videoStreams'].map((_, index) => index).filter(x => !props.loadedVideos.has(x)).length
-      console.log(baller)
-      if (baller === 0) {
-        console.log('Dispatching locally')
-        props.playVideos()
-      }
+      let unloadedVideoCount = props.layout['videoStreams'].map((_, index) => index).filter(x => !props.loadedVideos.has(x)).length
     },
   }),
 )
@@ -79,7 +74,8 @@ const PerformanceFrame = ({layout, size, performanceState, pauseVideos, playVide
       progressBarValue={performanceState.time}
       progressBarMax={performanceState.maxTime}
       onPlay={playVideos}
-      onPause={pauseVideos}/>
+      onPause={pauseVideos}
+      width={size.width}/>
   </div>
 )
 
