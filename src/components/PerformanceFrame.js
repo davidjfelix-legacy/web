@@ -1,5 +1,5 @@
 import React from 'react'
-import { compose, withHandlers, withReducer, withState } from 'recompose'
+import { compose, withHandlers, withState } from 'recompose'
 
 import VideoStream, { videoStates } from './VideoStream'
 import VideoControls from './VideoControls'
@@ -49,6 +49,7 @@ const enhance = compose(
       // FIXME: ghetto, doesn't check that the ids are the same
       console.log(props.loadedVideos)
       let unloadedVideoCount = props.layout['videoStreams'].map((_, index) => index).filter(x => !props.loadedVideos.has(x)).length
+      console.log(unloadedVideoCount)
     },
   }),
 )
@@ -58,7 +59,7 @@ const PerformanceFrame = ({layout, size, performanceState, pauseVideos, playVide
     <div style={{width: `${size.width}px`, height: `${size.height}px`}}>
       {layout['videoStreams'].map((videoStream, index) => (
         <VideoStream
-          video={{url: videoStream.url}}
+          videoId={videoStream.videoId}
           style={{position: "absolute", zIndex: videoStream.z_index}}
           scale={videoStream.scale}
           scaleWidth={size.width}

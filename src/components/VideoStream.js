@@ -42,7 +42,8 @@ class VideoStream extends React.Component {
       this.hls.on(Hls.Events.MEDIA_ATTACHED, () => {
         console.log("video and hls.js are now bound together !")
       })
-      this.hls.loadSource('https://us-central1-iotv-1e541.cloudfunctions.net/videos/-KlU31hQDsaXUvL4PUM4/index.m3u8')
+      //FIXME: extract this so that it obeys environments
+      this.hls.loadSource(`https://us-central1-iotv-1e541.cloudfunctions.net/videos/${this.props.videoId}/index.m3u8`)
       this.hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
         console.log("manifest loaded, found " + data.levels.length + " quality level")
       })
@@ -80,9 +81,7 @@ VideoStream.defaultProps = {
   }
 
 VideoStream.propTypes = {
-  video: PropTypes.shape({
-    url: PropTypes.string.isRequired
-  }).isRequired,
+  videoId: PropTypes.string.isRequired,
   onTimeUpdate: PropTypes.func.isRequired,
   updateMaxTime: PropTypes.func.isRequired,
 }

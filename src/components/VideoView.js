@@ -6,7 +6,7 @@ import { updateVideo } from '../actions/videos'
 
 import { withDatabaseSubscribe } from './hocs'
 import CommentList from './CommentList'
-import VideoStream from './VideoStream'
+import PerformanceFrame from './PerformanceFrame'
 
 
 const mapStateToProps = ({videos}) => ({
@@ -39,7 +39,7 @@ const styles = {
 const VideoView = ({videos, params}) => (
   <div style={styles.videoContainer}>
     {(params.videoId in videos && videos[params.videoId] !== null) ?
-      <VideoStream video={videos[params.videoId]}/> :
+      <PerformanceFrame size={{width: 854, height: 480}} layout={{ videoStreams: [{videoId: params.videoId, z_index: 0, scale: 1.0}]}} /> :
       <p>{"404 not found"}</p>
     }
     {videos[params.videoId] !== null ? 

@@ -55,7 +55,7 @@ const VideoPreview = ({videoId, videos}) => (
     <Link to={`/videos/${videoId}`}>
       <img src={videos[videoId]['thumbnail_url']} alt={'Untitled Preview'} className="VideoPreview__Image"/>
     </Link>
-    <h3 className="VideoPreview__Title">Untitled</h3>
+    <h3 className="VideoPreview__Title">{videos[videoId]['title']}</h3>
     <Link to={`/users/${videos[videoId]['owner_id']}`} className="VideoPreview__User">
       <Username userId={videos[videoId]['owner_id']} />
     </Link>
