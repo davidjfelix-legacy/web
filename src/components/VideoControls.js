@@ -19,13 +19,14 @@ const VideoControls = ({onPause, onPlay, performanceState, progressBarValue, pro
     {performanceState.videosState === videoStates.PLAYING ?
       <div
         onClick={onPause}
-        style={style.pauseButton}><Icon icon={IconTypes.PAUSE}></Icon></div> :
+        style={style.pauseButton}><Icon icon={IconTypes.PAUSE}/></div> :
       <div
         onClick={onPlay}
-        style={style.playButton}><Icon icon={IconTypes.PLAY}></Icon></div>
+        style={style.playButton}><Icon icon={IconTypes.PLAY}/></div>
     }
-    <div style={style.volumeControls} >volume</div>
+    <div style={style.volumeControls} ><Icon icon={IconTypes.MUTE}/></div>
     <progress max={progressBarMax} style={style.progressBar} value={progressBarValue} />
+    <div><Icon icon={IconTypes.EXPAND}/></div>
   </div>
 )
 
