@@ -6,6 +6,14 @@ import { withLoading, withNotFound } from './hocs'
 
 import UserView from './UserView'
 
+const styles = {
+  view: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    padding: "2em",
+  }
+}
 
 const mapStateToProps = ({auth}) => ({
   auth
@@ -32,7 +40,7 @@ const enhance = compose(
 )
 
 const MeContainer = ({auth, children}) => (
-  <div>
+  <div style={styles.view}>
     <UserView userId={auth.user.uid} baseUrl='/me' isEditable>
       {children}
     </UserView>
