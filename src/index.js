@@ -55,16 +55,15 @@ ReactDOM.render(
           <Route path='videos/new' component={NewVideoView} />
         </Route>
         <Route path='groups/:groupName' component={GroupView} />
-        <Route path='users/:userId' component={UserContainer}>
+        <Route path='users/:userId' component={UserContainer} >
           <IndexRoute component={UserOverview} />
-            <IndexRoute component={UserOverview} />
-            <Route path='videos' component={UserVideos} />
-            <Route path='organizations' component={UserOrganizations} />
-            <Route path='following'  component={UserFollowing} />
-            <Route path='followers' component={UserFollowers} />
-            <Route path='shows' component={UserShows} />
-            <Route path='series' component={UserSeries} />
-            <Route path='playlists' component={UserPlaylists} />
+          <Route path='videos' component={UserVideos} />
+          <Route path='organizations' component={UserOrganizations} />
+          <Route path='following'  component={UserFollowing} />
+          <Route path='followers' component={UserFollowers} />
+          <Route path='shows' component={UserShows} />
+          <Route path='series' component={UserSeries} />
+          <Route path='playlists' component={UserPlaylists} />
         </Route>
         <Route path='videos/:videoId' component={VideoView} />
         <Route path='*' component={HomeView} />
