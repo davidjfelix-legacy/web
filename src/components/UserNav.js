@@ -13,16 +13,27 @@ const styles = {
     textDecoration: "none",
 }}
 
+export const navLinks = {
+  overview: "Overview",
+  videos: "Videos",
+  organizations: "Organizations",
+  following: "Following",
+  followers: "Followers",
+  shows: "Shows",
+  series: "Series",
+  playlists: "Playlists",
+}
+
 const UserNav = ({baseUrl, active}) => (
   <nav style={styles.nav}>
     <Link style={styles.link} to={baseUrl}>Overview</Link>
-    <Link style={styles.link} to={`${baseUrl}/videos`}>Videos</Link>
-    <Link style={styles.link} to={`${baseUrl}/organizations`}>Organizations</Link>
-    <Link style={styles.link} to={`${baseUrl}/following`}>Following</Link>
-    <Link style={styles.link} to={`${baseUrl}/followers`}>Followers</Link>
-    <Link style={styles.link} to={`${baseUrl}/shows`}>Shows</Link>
-    <Link style={styles.link} to={`${baseUrl}/series`}>Series</Link>
-    <Link style={styles.link} to={`${baseUrl}/playlists`}>Playlists</Link>
+    <Link style={styles.link} to={`${baseUrl}/videos`}>{navLinks.overview}</Link>
+    <Link style={styles.link} to={`${baseUrl}/organizations`}>{navLinks.organizations}</Link>
+    <Link style={styles.link} to={`${baseUrl}/following`}>{navLinks.following}</Link>
+    <Link style={styles.link} to={`${baseUrl}/followers`}>{navLinks.followers}</Link>
+    <Link style={styles.link} to={`${baseUrl}/shows`}>{navLinks.shows}</Link>
+    <Link style={styles.link} to={`${baseUrl}/series`}>{navLinks.series}</Link>
+    <Link style={styles.link} to={`${baseUrl}/playlists`}>{navLinks.playlists}</Link>
   </nav>
 )
 

@@ -1,9 +1,8 @@
 import React from 'react'
 import { compose, getContext } from 'recompose'
 
+import UserNav, { navLinks } from './UserNav'
 import { context } from './UserView'
-import UserNav from './UserNav'
-
 
 const enhanceSubs = compose(
   getContext(context),
@@ -11,7 +10,7 @@ const enhanceSubs = compose(
 
 const UserShows = ({baseUrl}) => (
   <div>
-    <UserNav baseUrl={baseUrl} active="Shows" />
+    <UserNav baseUrl={baseUrl} active={navLinks.shows} />
   </div>
 )
 

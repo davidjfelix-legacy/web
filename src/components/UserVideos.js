@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 
 import { updateUserVideos } from '../actions/userVideos'
 import { context } from './UserView'
-import UserNav from './UserNav'
+import UserNav, { navLinks } from './UserNav'
 import VideoPreviewsList from './VideoPreviewsList'
 
 import { withDatabaseSubscribe } from './hocs'
@@ -31,7 +31,7 @@ const enhanceSubs = compose(
 
 const UserVideos = ({baseUrl, isEditable, userId, userVideos}) => (
   <div>
-    <UserNav baseUrl={baseUrl} active='Videos' />
+    <UserNav baseUrl={baseUrl} active={navLinks.videos} />
     {isEditable?
       <Link to='/videos/new'>New</Link> : ''
     }
