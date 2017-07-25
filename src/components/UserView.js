@@ -60,7 +60,7 @@ const enhance = compose(
 const UserView = ({baseUrl, isEditable, children, userId, users}) => (
   <div style={{display: 'flex', flexDirection: 'row'}}>
     <img
-      style={{alignSelf: 'flex-start'}}
+      style={{alignSelf: 'flex-start', borderRadius: '0.5em'}}
       src='http://placekitten.com/g/200/200'
       alt={`${users[userId].username}`} />
     {children}
