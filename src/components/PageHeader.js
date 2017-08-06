@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
+import { compose } from 'recompose'
+import injectSheet from 'react-jss'
 
 
 export const styles = {
@@ -57,13 +59,24 @@ export const styles = {
       stopColor: '#E1BEE7',
       stopOpacity: '1',
     },
-  }
+  },
+  '@font-face': {
+    fontFamily: 'Arvo',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    src: "local('Arvo'), url(https://fonts.gstatic.com/s/arvo/v9/rC7kKhY-eUDY-ucISTIf5PesZW2xOQ-xsNqO47m55DA.woff2) format('woff2')",
+    unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215',
+  },
 }
 
 const mapStateToProps = ({auth}) => ({
   auth
 })
 
+const enhance = compose(
+  connect(mapStateToProps),
+  injectSheet(styles)
+)
 
 const PageHeader = ({auth}) => (
   <nav style={styles.pageHeader}>
@@ -92,4 +105,4 @@ const PageHeader = ({auth}) => (
   </nav>
 )
 
-export default connect(mapStateToProps)(PageHeader)
+export default enhance(PageHeader)
