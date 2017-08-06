@@ -16,10 +16,17 @@ const styles = {
   },
   link: {
     borderBottom: '2px solid #222222',
+    color: '#666',
     padding: '1em',
     textDecoration: 'none',
+    '&:hover': {
+      color: '#222',
+    },
+    '&:visited:hover': {
+      color: '#222',
+    },
     '&:visited': {
-      color: '#222222'
+      color: '#666',
     }
   },
 }
