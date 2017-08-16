@@ -15,6 +15,10 @@ export const styles = {
     justifyContent: 'space-between',
     width: '100%',
   },
+  inner: {
+    alignItems: 'center',
+    display: 'flex',
+  },
   brand: {
     color: 'white',
     backgroundColor: '#212121',
@@ -81,7 +85,7 @@ const enhance = compose(
 
 const PageHeader = ({auth}) => (
   <nav style={styles.pageHeader}>
-    <div>
+    <div style={styles.inner}>
       <Icon icon={IconTypes.MENU} color="#fff"/>
       <Link style={styles.brand} to='/'>
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 45'>
