@@ -4,7 +4,7 @@ import { compose, withState, withHandlers } from 'recompose'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
 import { replace } from 'react-router-redux'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import { createOrUpdateUserProfile } from '../actions/users'
 import auth, { facebookProvider, googleProvider } from '../auth'

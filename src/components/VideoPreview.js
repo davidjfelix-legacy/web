@@ -1,12 +1,12 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'recompose'
-import { Link } from 'react-router'
+import {connect} from 'react-redux'
+import {compose} from 'recompose'
+import {Link} from 'react-router-dom'
 
-import { updateVideo } from '../actions/videos'
+import {updateVideo} from '../actions/videos'
 import Username from './Username'
 
-import { withDatabaseSubscribe, withLoading, withNotFound } from './hocs'
+import {withDatabaseSubscribe, withLoading, withNotFound} from './hocs'
 
 import '../css/VideoPreview.css'
 
@@ -57,7 +57,7 @@ const VideoPreview = ({videoId, videos}) => (
     </Link>
     <h3 className="VideoPreview__Title">{videos[videoId]['title']}</h3>
     <Link to={`/users/${videos[videoId]['owner_id']}`} className="VideoPreview__User">
-      <Username userId={videos[videoId]['owner_id']} />
+      <Username userId={videos[videoId]['owner_id']}/>
     </Link>
   </div>
 )

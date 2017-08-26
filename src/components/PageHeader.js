@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { connect } from 'react-redux'
-import { compose } from 'recompose'
+import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {compose} from 'recompose'
 import injectSheet from 'react-jss'
-import Icon, { IconTypes } from "./Icon";
+import Icon, {IconTypes} from "./Icon";
 
 
 export const styles = {
@@ -91,19 +91,21 @@ const PageHeader = ({auth}) => (
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 45'>
           <defs>
             <linearGradient id='grad1' x1='0%' y1='20%' x2='0%' y2='85%'>
-              <stop offset='0%' style={styles.gradient.blue} />
-              <stop offset='40%' style={styles.gradient.blue} />
-              <stop offset='40.1%' style={styles.gradient.lightBlue} />
-              <stop offset='50%' style={styles.gradient.lightBlue} />
-              <stop offset='50.1%' style={styles.gradient.violet} />
-              <stop offset='63%' style={styles.gradient.violet} />
-              <stop offset='63.1%' style={styles.gradient.magenta} />
-              <stop offset='79%' style={styles.gradient.magenta} />
-              <stop offset='79.1%' style={styles.gradient.pink} />
-              <stop offset='100%' style={styles.gradient.pink} />
+              <stop offset='0%' style={styles.gradient.blue}/>
+              <stop offset='40%' style={styles.gradient.blue}/>
+              <stop offset='40.1%' style={styles.gradient.lightBlue}/>
+              <stop offset='50%' style={styles.gradient.lightBlue}/>
+              <stop offset='50.1%' style={styles.gradient.violet}/>
+              <stop offset='63%' style={styles.gradient.violet}/>
+              <stop offset='63.1%' style={styles.gradient.magenta}/>
+              <stop offset='79%' style={styles.gradient.magenta}/>
+              <stop offset='79.1%' style={styles.gradient.pink}/>
+              <stop offset='100%' style={styles.gradient.pink}/>
             </linearGradient>
           </defs>
-          <text x='5' y='40' fontFamily='Arvo' fontWeight='bold' fontStyle='italic' fontSize='40' fill='url(#grad1)' style={styles.text}>iotv</text>
+          <text x='5' y='40' fontFamily='Arvo' fontWeight='bold' fontStyle='italic' fontSize='40' fill='url(#grad1)'
+                style={styles.text}>iotv
+          </text>
         </svg>
       </Link>
     </div>

@@ -1,13 +1,13 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose, withState, withHandlers } from 'recompose'
+import {connect} from 'react-redux'
+import {compose, withState, withHandlers} from 'recompose'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
-import { Link } from 'react-router'
+import {Link} from 'react-router-dom'
 
 import auth from '../auth'
 
-import { style } from '../styles/CentralForm'
+import {style} from '../styles/CentralForm'
 
 const enhance = compose(
   connect(),
@@ -50,7 +50,7 @@ const enhance = compose(
   })
 )
 
-const RegisterView = ({classes, email, password, username, onEmailChange, onPasswordChange, onUsernameChange, onRegisterSubmit}) =>(
+const RegisterView = ({classes, email, password, username, onEmailChange, onPasswordChange, onUsernameChange, onRegisterSubmit}) => (
   <div className={classes.view}>
     <form id='register' className={classes.form} onSubmit={onRegisterSubmit}/>
     <input

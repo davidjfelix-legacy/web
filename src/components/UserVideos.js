@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose, getContext } from 'recompose'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import { updateUserVideos } from '../actions/userVideos'
 import { context } from './UserView'

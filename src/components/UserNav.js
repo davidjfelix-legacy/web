@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import {Link} from 'react-router-dom'
 import injectSheet from 'react-jss'
 
 
@@ -44,36 +44,36 @@ export const navLinks = {
 
 const UserNav = ({active, baseUrl, classes}) => (
   <nav className={classes.nav}>
-    {active === navLinks.overview?
-      <Link className={classes.activeLink} to={baseUrl}>{navLinks.overview}</Link>:
+    {active === navLinks.overview ?
+      <Link className={classes.activeLink} to={baseUrl}>{navLinks.overview}</Link> :
       <Link className={classes.link} to={baseUrl}>{navLinks.overview}</Link>
     }
-    {active === navLinks.videos?
-      <Link className={classes.activeLink} to={`${baseUrl}/videos`}>{navLinks.videos}</Link>:
+    {active === navLinks.videos ?
+      <Link className={classes.activeLink} to={`${baseUrl}/videos`}>{navLinks.videos}</Link> :
       <Link className={classes.link} to={`${baseUrl}/videos`}>{navLinks.videos}</Link>
     }
-    {active === navLinks.organizations?
-      <Link className={classes.activeLink} to={`${baseUrl}/organizations`}>{navLinks.organizations}</Link>:
+    {active === navLinks.organizations ?
+      <Link className={classes.activeLink} to={`${baseUrl}/organizations`}>{navLinks.organizations}</Link> :
       <Link className={classes.link} to={`${baseUrl}/organizations`}>{navLinks.organizations}</Link>
     }
-    {active === navLinks.following?
-      <Link className={classes.activeLink} to={`${baseUrl}/following`}>{navLinks.following}</Link>:
+    {active === navLinks.following ?
+      <Link className={classes.activeLink} to={`${baseUrl}/following`}>{navLinks.following}</Link> :
       <Link className={classes.link} to={`${baseUrl}/following`}>{navLinks.following}</Link>
     }
-    {active === navLinks.followers?
-      <Link className={classes.activeLink} to={`${baseUrl}/followers`}>{navLinks.followers}</Link>:
+    {active === navLinks.followers ?
+      <Link className={classes.activeLink} to={`${baseUrl}/followers`}>{navLinks.followers}</Link> :
       <Link className={classes.link} to={`${baseUrl}/followers`}>{navLinks.followers}</Link>
     }
-    {active === navLinks.shows?
-      <Link className={classes.activeLink} to={`${baseUrl}/shows`}>{navLinks.shows}</Link>:
+    {active === navLinks.shows ?
+      <Link className={classes.activeLink} to={`${baseUrl}/shows`}>{navLinks.shows}</Link> :
       <Link className={classes.link} to={`${baseUrl}/shows`}>{navLinks.shows}</Link>
     }
-    {active === navLinks.series?
-      <Link className={classes.activeLink} to={`${baseUrl}/series`}>{navLinks.series}</Link>:
+    {active === navLinks.series ?
+      <Link className={classes.activeLink} to={`${baseUrl}/series`}>{navLinks.series}</Link> :
       <Link className={classes.link} to={`${baseUrl}/series`}>{navLinks.series}</Link>
     }
-    {active === navLinks.playlists?
-      <Link className={classes.activeLink} to={`${baseUrl}/playlists`}>{navLinks.playlists}</Link>:
+    {active === navLinks.playlists ?
+      <Link className={classes.activeLink} to={`${baseUrl}/playlists`}>{navLinks.playlists}</Link> :
       <Link className={classes.link} to={`${baseUrl}/playlists`}>{navLinks.playlists}</Link>
     }
   </nav>
