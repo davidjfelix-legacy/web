@@ -1,12 +1,11 @@
 import { applyMiddleware, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger } from 'redux-logger'
-import { createEpicMiddleware } from 'redux-observable'
 import thunkMiddleware from 'redux-thunk'
 import { routerMiddleware } from 'react-router-redux'
 import { browserHistory } from 'react-router'
 
-import { rootReducer, rootEpic } from './reducers'
+import { rootReducer } from './reducers'
 
 // Configure The default Redux store
 const configureStore = (initialState) => {
@@ -19,7 +18,6 @@ const configureStore = (initialState) => {
       applyMiddleware(
         routerMiddleware(browserHistory),
         thunkMiddleware,
-        createEpicMiddleware(rootEpic),
         createLogger({ collapsed: true }),
       )
     ))
