@@ -39,15 +39,17 @@ const enhance = compose(
 
 const App = ({history}) => (
   <div style={styles.auth}>
-    <PageHeader/>
     <ConnectedRouter history={history}>
-      <Switch>
-        <Route path='/' component={HomeView}/>
-        <Route path='groups/:groupName' component={GroupView}/>
-        <Route path='users/:userId' component={UserContainer}/>
-        <Route path='videos/:videoId' component={VideoView}/>
-        <Route component={HomeView}/>
-      </Switch>
+      <div>
+        <PageHeader/>
+        <Switch>
+          <Route path='/' component={HomeView}/>
+          <Route path='groups/:groupName' component={GroupView}/>
+          <Route path='users/:userId' component={UserContainer}/>
+          <Route path='videos/:videoId' component={VideoView}/>
+          <Route component={HomeView}/>
+        </Switch>
+      </div>
     </ConnectedRouter>
   </div>
 )
