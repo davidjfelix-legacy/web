@@ -1,8 +1,8 @@
 import { actionTypes } from '../actions/videoComments'
 
-const initalState = {}
+const initialState = {}
 
-const reducer = (state=initalState, action) => {
+const reducer = (state=initialState, action) => {
   switch (action.type) {
     case actionTypes.CREATE_VIDEO_COMMENT:
       return state

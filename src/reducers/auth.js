@@ -1,9 +1,9 @@
 import { actionTypes } from '../actions/auth'
 
-const initalState = {
+const initialState = {
 }
 
-const reducer = (state=initalState, action) => {
+const reducer = (state=initialState, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_AUTH:
       return {

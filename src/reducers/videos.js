@@ -1,8 +1,8 @@
 import { actionTypes } from '../actions/videos'
 
-const initalState = {}
+const initialState = {}
 
-const reducer = (state=initalState, action) => {
+const reducer = (state=initialState, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_VIDEO:
       return {
