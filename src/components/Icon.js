@@ -28,8 +28,8 @@ export const Icon = ({size, icon, color}) => (
     width={`${size}px`}
     height={`${size}px`}
     viewBox="0 0 1024 1024">
-    {icon.map((path) => (
-      <path style={{fill: color}} d={path}></path>
+    {icon.map((path, index) => (
+      <path style={{fill: color}} d={path} key={index} />
     ))}
   </svg>
 )

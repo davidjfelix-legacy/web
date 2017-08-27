@@ -35,8 +35,8 @@ const enhance = compose(
   }),
 )
 
-const NotAuthenticatedContainer = ({children}) => (
+const AuthContainer = ({children}) => (
   <div style={style}>{children}</div>
 )
 
-export default enhance(NotAuthenticatedContainer)
+export default enhance(AuthContainer)

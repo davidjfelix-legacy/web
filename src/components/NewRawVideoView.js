@@ -26,7 +26,7 @@ const enhance = compose(
   })
 )
 
-const NewVideoView = ({file, onFileChange, onNewVideoSubmit}) => (
+const NewRawVideoView = ({file, onFileChange, onNewVideoSubmit}) => (
   <div>
     <form id='upload-video' onSubmit={onNewVideoSubmit} />
     <input
@@ -42,4 +42,4 @@ const NewVideoView = ({file, onFileChange, onNewVideoSubmit}) => (
   </div>
 )
 
-export default enhance(NewVideoView)
+export default enhance(NewRawVideoView)
