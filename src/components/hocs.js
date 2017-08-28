@@ -4,13 +4,13 @@ import {push, replace} from 'react-router-redux'
 import database from '../database'
 import {updateAuth} from "../actions/auth";
 
-export const ensureAuthenticated = (redirectUrl) => (
+export const ensureAuthenticated = (getRedirectUrl) => (
   lifecycle({
     componentWillMount() {
-      if (this.props.auth.user === null) {
+      if ((Object.keys(this.props.auth).length === 0) || (this.props.auth.user === null)) {
         this.props.dispatch(push({
           pathname: '/auth/login',
-          search: redirectUrl ? `?redirect=${encodeURIComponent(redirectUrl)}` : ''
+          search: getRedirectUrl(this.props) ? `?redirect=${encodeURIComponent(getRedirectUrl(this.props))}` : ''
         }))
       }
     },

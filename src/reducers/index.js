@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux'
 import {routerReducer} from 'react-router-redux'
 
+import asyncCreate from './asyncCreate'
 import auth from './auth'
 import comments from './comments'
 import emojis from './emojis'
@@ -13,6 +14,7 @@ import videoStreamsContainer from './videoStreams'
 
 
 export const rootReducer = combineReducers({
+  asyncCreate,
   auth,
   comments,
   emojis,
@@ -20,7 +22,7 @@ export const rootReducer = combineReducers({
   users,
   userVideos,
   videos,
-  videoComments: performanceComments,
+  performanceComments,
   videoStreamsContainer,
   routing: routerReducer,
 });

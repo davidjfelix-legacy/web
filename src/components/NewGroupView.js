@@ -10,14 +10,13 @@ const mapStateToProps = ({auth}) => ({
   auth
 })
 
-// FIXME: try not to hardcode this redirectURL
 const enhance = compose(
   connect(mapStateToProps),
-  ensureAuthenticated('/groups/new'),
-  withState('groupName', 'updateGroupName', ''),
+  ensureAuthenticated(({location}) => (location.pathname)),
+  withState('groupName', 'setGroupName', ''),
   withHandlers({
     onGroupNameChange: props => event => {
-      props.updateGroupName(event.target.value)
+      props.setGroupName(event.target.value)
     },
     onNewGroupSubmit: props => event => {
       event.preventDefault()
@@ -25,6 +24,7 @@ const enhance = compose(
         ownerId: props.auth.user.uid,
         groupName: props.groupName,
       }))
+      // FIXME: wait for it to be created. Capture issues and redirect to the actual group
       props.dispatch(replace('/'))
     }
   })

@@ -1,10 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {compose, withHandlers, withState} from 'recompose'
+import {compose, withHandlers, withProps, withState} from 'recompose'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
 import {replace} from 'react-router-redux'
 import {Link} from 'react-router-dom'
+import queryString from 'query-string'
 
 import {ensureNotAuthenticated} from './hocs'
 import {createOrUpdateUserProfile} from '../actions/users'
@@ -19,6 +20,12 @@ const mapStateToProps = ({auth}) => ({
 const enhance = compose(
   connect(mapStateToProps),
   injectSheet(style),
+  withProps((props) => {
+    const qs = queryString.parse(props.location.search)
+    return {
+      redirectUrl: qs['redirect']? qs['redirect'] : '/'
+    }
+  }),
   ensureNotAuthenticated(auth),
   withState('email', 'updateEmail', ''),
   withState('password', 'updatePassword', ''),
@@ -32,6 +39,9 @@ const enhance = compose(
     onEmailSubmit: props => event => {
       event.preventDefault()
       auth.signInWithEmailAndPassword(props.email, props.password)
+        .then(
+          props.dispatch(replace(props.redirectUrl))
+        )
     },
     onFacebookSubmit: props => event => {
       event.preventDefault()
@@ -44,7 +54,7 @@ const enhance = compose(
                 display_name: userCredential.user.displayName
               },
             }))
-            props.dispatch(replace('/'))
+            props.dispatch(replace(props.redirectUrl))
           }
         )
         .catch(
@@ -65,7 +75,7 @@ const enhance = compose(
                 display_name: userCredential.user.displayName
               },
             }))
-            props.dispatch(replace('/'))
+            props.dispatch(replace(props.redirectUrl))
           }
         )
         .catch(
