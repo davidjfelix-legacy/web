@@ -1,19 +1,25 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose, withState, withHandlers } from 'recompose'
+import {connect} from 'react-redux'
+import {compose, withHandlers, withState} from 'recompose'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
-import { replace } from 'react-router-redux'
-import { Link } from 'react-router-dom'
+import {replace} from 'react-router-redux'
+import {Link} from 'react-router-dom'
 
-import { createOrUpdateUserProfile } from '../actions/users'
-import auth, { facebookProvider, googleProvider } from '../auth'
+import {ensureNotAuthenticated} from './hocs'
+import {createOrUpdateUserProfile} from '../actions/users'
+import auth, {facebookProvider, googleProvider} from '../auth'
 
-import { style } from '../styles/CentralForm'
+import {style} from '../styles/CentralForm'
+
+const mapStateToProps = ({auth}) => ({
+  auth
+})
 
 const enhance = compose(
-  connect(),
+  connect(mapStateToProps),
   injectSheet(style),
+  ensureNotAuthenticated(auth),
   withState('email', 'updateEmail', ''),
   withState('password', 'updatePassword', ''),
   withHandlers({

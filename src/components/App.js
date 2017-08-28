@@ -7,16 +7,17 @@ import {ConnectedRouter} from 'react-router-redux'
 
 import auth from '../auth'
 import {updateAuth} from '../actions/auth'
-import AuthContainer from './AuthContainer'
 import HomeView from './HomeView'
 import MeContainer from './MeContainer'
 import GroupContainer from './GroupContainer'
+import LoginView from './LoginView'
 import NewGroupView from './NewGroupView'
 import NewPerformanceView from './NewPerformanceView'
 import NewSeriesView from './NewSeriesView'
 import NewShowView from './NewShowView'
 import PageHeader from './PageHeader'
 import PerformanceContainer from './PerformanceContainer'
+import RegisterView from './RegisterView'
 import SeriesContainer from './SeriesContainer'
 import ShowContainer from './ShowContainer'
 import UserContainer from './UserContainer'
@@ -54,7 +55,8 @@ const App = ({history}) => (
         <PageHeader/>
         <Switch>
           <Route exact path='/' component={HomeView}/>
-          <Route path='/auth' component={AuthContainer}/>
+          <Route exact path='/auth/login' component={LoginView}/>
+          <Route exact path='/auth/register' component={RegisterView}/>
           <Route path='/me' component={MeContainer}/>
           <Route exact path='/groups/new' component={NewGroupView}/>
           <Route path='/groups/:groupName' component={GroupContainer}/>

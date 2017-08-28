@@ -1,10 +1,10 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose, withHandlers, withState } from 'recompose'
+import {connect} from 'react-redux'
+import {compose, withHandlers, withState} from 'recompose'
 
-import { updateVideoComments, createVideoComment } from '../actions/videoComments'
+import {createPerformanceComment, updatePerformanceComments} from '../actions/performanceComments'
 
-import { withDatabaseSubscribe } from './hocs'
+import {withDatabaseSubscribe} from './hocs'
 import Comment from './Comment'
 
 const styles = {
@@ -22,9 +22,9 @@ const styles = {
   },
 }
 
-const mapStateToProps = ({auth, videoComments}) => ({
+const mapStateToProps = ({auth, performanceComments}) => ({
   auth,
-  videoComments,
+  performanceComments,
 })
 
 const enhance = compose(
@@ -36,8 +36,8 @@ const enhance = compose(
     },
     onNewCommentSubmit: props => event => {
       event.preventDefault()
-      props.dispatch(createVideoComment({
-        videoId: props.videoId,
+      props.dispatch(createPerformanceComment({
+        performanceId: props.performanceId,
         authorId: props.auth.user.uid,
         message: props.newComment,
       }))
@@ -46,21 +46,21 @@ const enhance = compose(
   }),
   withDatabaseSubscribe(
     'value',
-    (props) => (`video-comments/${props.videoId}`),
+    (props) => (`performance-comments/${props.performanceId}`),
     (props) => (snapshot) => (
-      props.dispatch(updateVideoComments({
-        videoId: props.videoId,
-        videoCommentsSnapshot: snapshot.val()
+      props.dispatch(updatePerformanceComments({
+        performanceId: props.performanceId,
+        performanceCommentsSnapshot: snapshot.val()
       }))
     )
   ),
 )
 
-const CommentList = ({ auth, onNewCommentSubmit, onNewCommentChange, newComment, videoComments, videoId }) => (
+const CommentList = ({auth, onNewCommentSubmit, onNewCommentChange, newComment, performanceComments, performanceId}) => (
   <div style={styles.commentList}>
-    {(videoId in videoComments && videoComments[videoId] !== null) ?
-      Object.keys(videoComments[videoId]).map((commentId) => (
-        <Comment key={commentId} commentId={commentId} />
+    {(performanceId in performanceComments && performanceComments[performanceId] !== null) ?
+      Object.keys(performanceComments[performanceId]).map((commentId) => (
+        <Comment key={commentId} commentId={commentId}/>
       )) :
       ""
     }

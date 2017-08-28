@@ -1,11 +1,13 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose, withState, withHandlers } from 'recompose'
+import {connect} from 'react-redux'
+import {compose, withHandlers, withState} from 'recompose'
 
 import storage from '../storage'
 import database from '../database'
 
-const mapStateToProps = ({auth}) => ({auth})
+const mapStateToProps = ({auth}) => ({
+  auth
+})
 
 const enhance = compose(
   connect(mapStateToProps),
@@ -28,7 +30,7 @@ const enhance = compose(
 
 const NewRawVideoView = ({file, onFileChange, onNewVideoSubmit}) => (
   <div>
-    <form id='upload-video' onSubmit={onNewVideoSubmit} />
+    <form id='upload-video' onSubmit={onNewVideoSubmit}/>
     <input
       form='upload-video'
       id='file'
@@ -38,7 +40,7 @@ const NewRawVideoView = ({file, onFileChange, onNewVideoSubmit}) => (
     <input
       form='upload-video'
       type='submit'
-      value='Upload' />
+      value='Upload'/>
   </div>
 )
 

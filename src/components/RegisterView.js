@@ -8,10 +8,16 @@ import {Link} from 'react-router-dom'
 import auth from '../auth'
 
 import {style} from '../styles/CentralForm'
+import {ensureNotAuthenticated} from './hocs'
+
+const mapStateToProps = ({auth}) => ({
+  auth
+})
 
 const enhance = compose(
-  connect(),
+  connect(mapStateToProps),
   injectSheet(style),
+  ensureNotAuthenticated(auth),
   withState('email', 'updateEmail', ''),
   withState('password', 'updatePassword', ''),
   withState('username', 'updateUsername', ''),
