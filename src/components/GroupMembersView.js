@@ -3,6 +3,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {compose, withProps} from 'recompose'
 
+import GroupMembersList from './GroupMembersList'
+
 const mapStateToProps = ({groups}) => ({
   groups
 })
@@ -15,14 +17,16 @@ const enhance = compose(
 )
 
 const GroupMembersView = ({groups, groupName, match}) => (
-  <div>{
-    Object.keys(
-      _.get(groups, `${groupName}.members`, {}))
-      .map(
-        (member_id) => (<div key={member_id}>{member_id}</div>
+  <div>
+    <GroupMembersList
+      groupId={groupName}
+      memberIds={
+        Object.keys(
+          _.get(groups, `${groupName}.members`, {})
         )
-      )
-  }</div>
+      }
+    />
+  </div>
 )
 
 export default enhance(GroupMembersView)
