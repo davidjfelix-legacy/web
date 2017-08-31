@@ -1,0 +1,10 @@
+{
+  "name": "iotv",
+  "short_name": "iotv",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "",
+  "icons": [],
+  "related_applications": []
+}
