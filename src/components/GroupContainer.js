@@ -5,6 +5,12 @@ import {NavLink} from 'react-router-dom'
 import {compose, withProps} from 'recompose'
 
 import {updateGroup} from '../actions/groups'
+import GroupMembersView from './GroupMembersView'
+import GroupPerformancesView from './GroupPerformancesView'
+import GroupRolesView from './GroupRolesView'
+import GroupSeriesView from './GroupSeriesView'
+import GroupShowsView from './GroupShowsView'
+import GroupVideosView from './GroupVideosView'
 import {withDatabaseSubscribe} from './hocs'
 
 const mapStateToProps = ({auth, groups}) => ({
@@ -14,6 +20,8 @@ const mapStateToProps = ({auth, groups}) => ({
 const enhance = compose(
   connect(mapStateToProps),
   withProps(({match}) => ({
+    basePath: match.path,
+    baseUrl: match.url,
     groupName: match.params.groupName
   })),
   withDatabaseSubscribe(
@@ -27,21 +35,21 @@ const enhance = compose(
   )
 )
 
-const GroupContainer = ({groupName, groups, match}) => (
+const GroupContainer = ({ basePath, baseUrl, groupName, groups}) => (
   <div>
-    <NavLink to={`${match.url}/members`}>members</NavLink>
-    <NavLink to={`${match.url}/roles`}>roles</NavLink>
-    <NavLink to={`${match.url}/series`}>series</NavLink>
-    <NavLink to={`${match.url}/shows`}>members</NavLink>
-    <NavLink to={`${match.url}/performances`}>performances</NavLink>
-    <NavLink to={`${match.url}/videos`}>videos</NavLink>
+    <NavLink to={`${baseUrl}/members`}>members</NavLink>
+    <NavLink to={`${baseUrl}/roles`}>roles</NavLink>
+    <NavLink to={`${baseUrl}/series`}>series</NavLink>
+    <NavLink to={`${baseUrl}/shows`}>members</NavLink>
+    <NavLink to={`${baseUrl}/performances`}>performances</NavLink>
+    <NavLink to={`${baseUrl}/videos`}>videos</NavLink>
     <Switch>
-      <Route path={`${match.url}/members`}/>
-      <Route path={`${match.url}/roles`}/>
-      <Route path={`${match.url}/series`}/>
-      <Route path={`${match.url}/shows`}/>
-      <Route path={`${match.url}/performances`}/>
-      <Route path={`${match.url}/videos`}/>
+      <Route path={`${basePath}/members`} component={GroupMembersView}/>
+      <Route path={`${basePath}/roles`} component={GroupRolesView}/>
+      <Route path={`${basePath}/series`} component={GroupSeriesView}/>
+      <Route path={`${basePath}/shows`} component={GroupShowsView}/>
+      <Route path={`${basePath}/performances`} component={GroupPerformancesView}/>
+      <Route path={`${basePath}/videos`} component={GroupVideosView}/>
     </Switch>
   </div>
 )
