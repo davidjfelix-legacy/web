@@ -1,27 +1,16 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'recompose'
+import {connect} from 'react-redux'
+import {compose} from 'recompose'
 
-import { updateUser } from '../actions/users'
-
-import { withDatabaseSubscribe, withLoading, withNotFound } from './hocs'
+import {updateUser} from '../actions/users'
+import {withDatabaseSubscribe, withLoading, withNotFound} from './hocs'
+import LoadingView from './LoadingView'
+import NotFoundView from './NotFoundView'
 
 
 const mapStateToProps = ({users}) => ({
   users
 })
-
-const UsernameLoading = () => (
-  <span>
-    <span>.</span>
-    <span>.</span>
-    <span>.</span>
-  </span>
-)
-
-const UsernameNotFound = () => (
-  <span>[deleted]</span>
-)
 
 const enhance = compose(
   connect(mapStateToProps),
@@ -37,11 +26,11 @@ const enhance = compose(
   ),
   withLoading(
     (props) => !(props.userId in props.users),
-    UsernameLoading
+    LoadingView
   ),
   withNotFound(
     (props) => (props.userId in props.users) && props.users[props.userId] === null,
-    UsernameNotFound
+    NotFoundView
   ),
 )
 

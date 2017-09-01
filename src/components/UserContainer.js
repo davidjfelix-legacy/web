@@ -15,18 +15,12 @@ import UserPlaylists from './UserPlaylists'
 import UserSeries from './UserSeries'
 import UserShows from './UserShows'
 import UserVideos from './UserVideos'
+import LoadingView from './LoadingView'
+import NotFoundView from './NotFoundView'
 
 const mapStateToProps = ({users}) => ({
   users
 })
-
-const UserLoading = () => (
-  <div>...</div>
-)
-
-const UserNotFound = () => (
-  <div>User not found</div>
-)
 
 const styles = {
   view: {
@@ -79,11 +73,11 @@ const enhance = compose(
   ),
   withLoading(
     (props) => !(props.userId in props.users),
-    UserLoading
+    LoadingView
   ),
   withNotFound(
     (props) => (props.users[props.userId] === null),
-    UserNotFound
+    NotFoundView
   ),
 )
 

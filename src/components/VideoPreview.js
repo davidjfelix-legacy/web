@@ -1,32 +1,19 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {compose} from 'recompose'
 import {Link} from 'react-router-dom'
+import {compose} from 'recompose'
 
 import {updateVideo} from '../actions/videos'
+import '../css/VideoPreview.css'
+import {withDatabaseSubscribe, withLoading, withNotFound} from './hocs'
+import LoadingView from './LoadingView'
+import NotFoundView from './NotFoundView'
 import Username from './Username'
 
-import {withDatabaseSubscribe, withLoading, withNotFound} from './hocs'
-
-import '../css/VideoPreview.css'
 
 const mapStateToProps = ({videos}) => ({
   videos
 })
-
-// FIXME
-const VideoLoading = () => (
-  <span>
-    <span>.</span>
-    <span>.</span>
-    <span>.</span>
-  </span>
-)
-
-// FIXME
-const VideoNotFound = () => (
-  <span>[deleted]</span>
-)
 
 const enhance = compose(
   connect(mapStateToProps),
@@ -42,21 +29,21 @@ const enhance = compose(
   ),
   withLoading(
     (props) => !(props.videoId in props.videos),
-    VideoLoading
+    LoadingView
   ),
   withNotFound(
     (props) => (props.videoId in props.videos) && props.videos[props.videoId] === null,
-    VideoNotFound
+    NotFoundView
   ),
 )
 
 const VideoPreview = ({videoId, videos}) => (
-  <div className="VideoPreview">
+  <div className='VideoPreview'>
     <Link to={`/videos/${videoId}`}>
-      <img src={videos[videoId]['thumbnail_url']} alt={'Untitled Preview'} className="VideoPreview__Image"/>
+      <img src={videos[videoId]['thumbnail_url']} alt={'Untitled Preview'} className='VideoPreview__Image'/>
     </Link>
-    <h3 className="VideoPreview__Title">{videos[videoId]['title']}</h3>
-    <Link to={`/users/${videos[videoId]['owner_id']}`} className="VideoPreview__User">
+    <h3 className='VideoPreview__Title'>{videos[videoId]['title']}</h3>
+    <Link to={`/users/${videos[videoId]['owner_id']}`} className='VideoPreview__User'>
       <Username userId={videos[videoId]['owner_id']}/>
     </Link>
   </div>

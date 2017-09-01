@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {compose} from 'recompose'
 
 import {withLoading, withNotFound} from './hocs'
+import LoadingView from './LoadingView'
+import NotFoundView from './NotFoundView'
 
 const styles = {
   view: {
@@ -17,23 +19,15 @@ const mapStateToProps = ({auth}) => ({
   auth
 })
 
-const UserLoading = () => (
-  <div>...</div>
-)
-
-const UserNotFound = () => (
-  <div>User not found</div>
-)
-
 const enhance = compose(
   connect(mapStateToProps),
   withLoading(
     (props) => (Object.keys(props.auth).length === 0),
-    UserLoading
+    LoadingView
   ),
   withNotFound(
     (props) => (props.auth.user === null),
-    UserNotFound
+    NotFoundView
   )
 )
 
