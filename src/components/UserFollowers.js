@@ -1,8 +1,6 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import { compose, getContext } from 'recompose'
-
-import UserNav from './UserNav'
+import React from 'react'
+import {compose, getContext} from 'recompose'
 
 
 const enhanceSubs = compose(
@@ -13,7 +11,6 @@ const enhanceSubs = compose(
 
 const UserFollowers = ({baseUrl}) => (
   <div>
-    <UserNav baseUrl={baseUrl} active="Followers" />
   </div>
 )
 

@@ -1,17 +1,15 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'recompose'
+import {connect} from 'react-redux'
+import {compose} from 'recompose'
 
-import { withLoading, withNotFound } from './hocs'
-
-import UserView from './UserView'
+import {withLoading, withNotFound} from './hocs'
 
 const styles = {
   view: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    padding: "2em",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: '2em',
   }
 }
 
@@ -41,9 +39,6 @@ const enhance = compose(
 
 const MeContainer = ({auth, children}) => (
   <div style={styles.view}>
-    <UserView userId={auth.user.uid} baseUrl='/me' isEditable>
-      {children}
-    </UserView>
   </div>
 )
 

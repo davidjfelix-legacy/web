@@ -29,7 +29,7 @@ const enhance = compose(
     (props) => (`groups/${props.groupName}`),
     (props) => (snapshot) => (props.dispatch(updateGroup({
         groupId: props.groupName,
-        groupSnapshot: snapshot,
+        groupSnapshot: snapshot.val(),
       }
     )))
   )
