@@ -1,18 +1,12 @@
 import React from 'react'
-import { compose, getContext } from 'recompose'
-
-import UserNav, { navLinks } from './UserNav'
-import { context } from './UserView'
+import {compose} from 'recompose'
 
 
-const enhanceSubs = compose(
-  getContext(context),
+const enhance = compose(
 )
 
-export const UserOverview = ({baseUrl}) => (
-  <div>
-    <UserNav baseUrl={baseUrl} active={navLinks.overview} />
-  </div>
+const UserOverview = () => (
+  <div></div>
 )
 
-export default enhanceSubs(UserOverview)
+export default enhance(UserOverview)
