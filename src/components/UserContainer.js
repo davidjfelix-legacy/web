@@ -4,19 +4,19 @@ import {connect} from 'react-redux'
 import {Route, Switch} from 'react-router'
 import {NavLink} from 'react-router-dom'
 import {compose, withProps} from 'recompose'
+
 import {updateUser} from '../actions/users'
 import {withDatabaseSubscribe, withLoading, withNotFound} from './hocs'
+import LoadingView from './LoadingView'
+import NotFoundView from './NotFoundView'
 import UserFollowers from './UserFollowers'
 import UserFollowing from './UserFollowing'
-import UserOrganizations from './UserOrganizations'
-
+import UserGroups from './UserGroups'
 import UserOverview from './UserOverview'
 import UserPlaylists from './UserPlaylists'
 import UserSeries from './UserSeries'
 import UserShows from './UserShows'
 import UserVideos from './UserVideos'
-import LoadingView from './LoadingView'
-import NotFoundView from './NotFoundView'
 
 const mapStateToProps = ({users}) => ({
   users
@@ -84,7 +84,7 @@ const enhance = compose(
 export const navLinks = {
   overview: 'Overview',
   videos: 'Videos',
-  organizations: 'Organizations',
+  groups: 'Groups',
   following: 'Following',
   followers: 'Followers',
   shows: 'Shows',
@@ -102,7 +102,7 @@ const UserContainer = ({basePath, baseUrl, classes, children, userId, users}) =>
     <div className={classes.nav}>
       <NavLink className={classes.activeLink} to={baseUrl}>{navLinks.overview}</NavLink>
       <NavLink className={classes.activeLink} to={`${baseUrl}/videos`}>{navLinks.videos}</NavLink>
-      <NavLink className={classes.activeLink} to={`${baseUrl}/organizations`}>{navLinks.organizations}</NavLink>
+      <NavLink className={classes.activeLink} to={`${baseUrl}/organizations`}>{navLinks.groups}</NavLink>
       <NavLink className={classes.activeLink} to={`${baseUrl}/following`}>{navLinks.following}</NavLink>
       <NavLink className={classes.activeLink} to={`${baseUrl}/followers`}>{navLinks.followers}</NavLink>
       <NavLink className={classes.activeLink} to={`${baseUrl}/shows`}>{navLinks.shows}</NavLink>
@@ -112,7 +112,7 @@ const UserContainer = ({basePath, baseUrl, classes, children, userId, users}) =>
     <Switch>
       <Route path={`${basePath}/`} component={UserOverview}/>
       <Route path={`${basePath}/videos`} component={UserVideos}/>
-      <Route path={`${basePath}/organizations`} component={UserOrganizations}/>
+      <Route path={`${basePath}/organizations`} component={UserGroups}/>
       <Route path={`${basePath}/following`} component={UserFollowing}/>
       <Route path={`${basePath}/followers`} component={UserFollowers}/>
       <Route path={`${basePath}/shows`} component={UserShows}/>

@@ -10,13 +10,13 @@ const mapStateToProps = ({groups}) => ({
 })
 
 const enhance = compose(
+  connect(mapStateToProps),
   withProps(({match}) => ({
     groupName: match.params.groupName
-  })),
-  connect(mapStateToProps)
+  }))
 )
 
-const GroupMembersView = ({groups, groupName, match}) => (
+const GroupMembersView = ({groups, groupName}) => (
   <div>
     <GroupMembersList
       groupId={groupName}
