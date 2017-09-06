@@ -59,7 +59,7 @@ const enhance = compose(
   withProps(({match}) => ({
     basePath: match.path,
     baseUrl: match.url,
-    userId: match.params.userName
+    userId: match.params.userId
   })),
   withDatabaseSubscribe(
     'value',

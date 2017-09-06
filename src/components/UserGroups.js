@@ -12,7 +12,7 @@ const mapStateToProps = ({users}) => ({
 const enhance = compose(
   connect(mapStateToProps),
   withProps(({match}) => ({
-    userId: match.params.userName
+    userId: match.params.userId
   }))
 )
 

@@ -67,7 +67,7 @@ const App = ({history}) => (
           <Route path='/series/:seriesNameId' component={SeriesContainer}/>
           <Route exact path='/shows/new' component={NewShowView}/>
           <Route path='/shows/:showNameId' component={ShowContainer}/>
-          <Route path='/users/:userName' component={UserContainer}/>
+          <Route path='/users/:userId' component={UserContainer}/>
           <Route path='/videos/:videoId' component={VideoView}/>
           <Route component={HomeView}/>
         </Switch>
