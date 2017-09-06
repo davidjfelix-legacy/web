@@ -1,21 +1,32 @@
+import _ from 'lodash'
 import React from 'react'
-import {compose, withProps} from 'recompose'
 import {connect} from 'react-redux'
+import {compose, withProps} from 'recompose'
+
+import UserGroupsList from './UserGroupsList'
 
 const mapStateToProps = ({users}) => ({
   users
 })
 
-const enhanceSubs = compose(
+const enhance = compose(
   connect(mapStateToProps),
   withProps(({match}) => ({
-    userId: match.params.userId
+    userId: match.params.userName
   }))
 )
 
 const UserGroups = ({userId, users}) => (
   <div>
+    <UserGroupsList
+      userId={userId}
+      groupIds={
+        Object.keys(
+          _.get(users, `${userId}.groups`, {})
+        )
+      }
+    />
   </div>
 )
 
-export default enhanceSubs(UserGroups)
+export default enhance(UserGroups)

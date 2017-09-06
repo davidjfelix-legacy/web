@@ -102,7 +102,7 @@ const UserContainer = ({basePath, baseUrl, classes, children, userId, users}) =>
     <div className={classes.nav}>
       <NavLink className={classes.activeLink} to={baseUrl}>{navLinks.overview}</NavLink>
       <NavLink className={classes.activeLink} to={`${baseUrl}/videos`}>{navLinks.videos}</NavLink>
-      <NavLink className={classes.activeLink} to={`${baseUrl}/organizations`}>{navLinks.groups}</NavLink>
+      <NavLink className={classes.activeLink} to={`${baseUrl}/groups`}>{navLinks.groups}</NavLink>
       <NavLink className={classes.activeLink} to={`${baseUrl}/following`}>{navLinks.following}</NavLink>
       <NavLink className={classes.activeLink} to={`${baseUrl}/followers`}>{navLinks.followers}</NavLink>
       <NavLink className={classes.activeLink} to={`${baseUrl}/shows`}>{navLinks.shows}</NavLink>
@@ -110,14 +110,14 @@ const UserContainer = ({basePath, baseUrl, classes, children, userId, users}) =>
       <NavLink className={classes.activeLink} to={`${baseUrl}/playlists`}>{navLinks.playlists}</NavLink>
     </div>
     <Switch>
-      <Route path={`${basePath}/`} component={UserOverview}/>
       <Route path={`${basePath}/videos`} component={UserVideos}/>
-      <Route path={`${basePath}/organizations`} component={UserGroups}/>
+      <Route path={`${basePath}/groups`} component={UserGroups}/>
       <Route path={`${basePath}/following`} component={UserFollowing}/>
       <Route path={`${basePath}/followers`} component={UserFollowers}/>
       <Route path={`${basePath}/shows`} component={UserShows}/>
       <Route path={`${basePath}/series`} component={UserSeries}/>
       <Route path={`${basePath}/playlists`} component={UserPlaylists}/>
+      <Route path={`${basePath}/`} component={UserOverview}/>
     </Switch>
   </div>
 )

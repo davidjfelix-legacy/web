@@ -13,6 +13,12 @@ import GroupShowsView from './GroupShowsView'
 import GroupVideosView from './GroupVideosView'
 import {withDatabaseSubscribe} from './hocs'
 
+const styles = {
+  navLink: {
+    padding: '5px',
+  },
+}
+
 const mapStateToProps = ({auth, groups}) => ({
   groups
 })
@@ -37,12 +43,12 @@ const enhance = compose(
 
 const GroupContainer = ({ basePath, baseUrl, groupName, groups}) => (
   <div>
-    <NavLink to={`${baseUrl}/members`}>members</NavLink>
-    <NavLink to={`${baseUrl}/roles`}>roles</NavLink>
-    <NavLink to={`${baseUrl}/series`}>series</NavLink>
-    <NavLink to={`${baseUrl}/shows`}>members</NavLink>
-    <NavLink to={`${baseUrl}/performances`}>performances</NavLink>
-    <NavLink to={`${baseUrl}/videos`}>videos</NavLink>
+    <NavLink style={styles.navLink} to={`${baseUrl}/members`}>members</NavLink>
+    <NavLink style={styles.navLink} to={`${baseUrl}/roles`}>roles</NavLink>
+    <NavLink style={styles.navLink} to={`${baseUrl}/series`}>series</NavLink>
+    <NavLink style={styles.navLink} to={`${baseUrl}/shows`}>shows</NavLink>
+    <NavLink style={styles.navLink} to={`${baseUrl}/performances`}>performances</NavLink>
+    <NavLink style={styles.navLink} to={`${baseUrl}/videos`}>videos</NavLink>
     <Switch>
       <Route path={`${basePath}/members`} component={GroupMembersView}/>
       <Route path={`${basePath}/roles`} component={GroupRolesView}/>
