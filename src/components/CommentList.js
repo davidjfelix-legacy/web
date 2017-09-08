@@ -3,9 +3,8 @@ import {connect} from 'react-redux'
 import {compose, withHandlers, withState} from 'recompose'
 
 import {createPerformanceComment, updatePerformanceComments} from '../actions/performanceComments'
-
-import {withDatabaseSubscribe} from './hocs'
 import Comment from './Comment'
+import {withDatabaseSubscribe} from './hocs'
 
 const styles = {
   commentList: {
@@ -62,7 +61,7 @@ const CommentList = ({auth, onNewCommentSubmit, onNewCommentChange, newComment, 
       Object.keys(performanceComments[performanceId]).map((commentId) => (
         <Comment key={commentId} commentId={commentId}/>
       )) :
-      ""
+      ''
     }
     {auth.user !== null ?
       <form style={styles.newComment} onSubmit={onNewCommentSubmit}>
@@ -70,12 +69,14 @@ const CommentList = ({auth, onNewCommentSubmit, onNewCommentChange, newComment, 
           style={styles.textArea}
           placeholder='Type your comment'
           value={newComment}
-          onChange={onNewCommentChange}/>
+          onChange={onNewCommentChange}
+        />
         <input
           type='submit'
-          value='Submit'/>
+          value='Submit'
+        />
       </form> :
-      ""
+      ''
     }
   </div>
 )
