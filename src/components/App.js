@@ -59,7 +59,7 @@ const App = ({history}) => (
           <Route exact path='/auth/register' component={RegisterView}/>
           <Route path='/me' component={MeContainer}/>
           <Route exact path='/groups/new' component={NewGroupView}/>
-          <Route path='/groups/:groupName' component={GroupContainer}/>
+          <Route path='/groups/:groupId' component={GroupContainer}/>
           <Route exact path='/performances/new' component={NewPerformanceView}/>
           <Route path='/performances/:performanceId' component={PerformanceContainer}/>
           <Route exact path='/raw-videos/new' component={NewRawVideoView}/>

@@ -28,20 +28,20 @@ const enhance = compose(
   withProps(({match}) => ({
     basePath: match.path,
     baseUrl: match.url,
-    groupName: match.params.groupName
+    groupId: match.params.groupId
   })),
   withDatabaseSubscribe(
     'value',
-    (props) => (`groups/${props.groupName}`),
+    (props) => (`groups/${props.groupId}`),
     (props) => (snapshot) => (props.dispatch(updateGroup({
-        groupId: props.groupName,
+        groupId: props.groupId,
         groupSnapshot: snapshot.val(),
       }
     )))
   )
 )
 
-const GroupContainer = ({ basePath, baseUrl, groupName, groups}) => (
+const GroupContainer = ({ basePath, baseUrl, groupId, groups}) => (
   <div>
     <NavLink style={styles.navLink} to={`${baseUrl}/members`}>members</NavLink>
     <NavLink style={styles.navLink} to={`${baseUrl}/roles`}>roles</NavLink>
