@@ -2,6 +2,8 @@ import database from '../database'
 
 export const actionTypes = {
   ADD_MEMBER_TO_GROUP: 'ADD_MEMBER_TO_GROUP',
+  ADD_MEMBER_TO_ROLE: 'ADD_MEMBER_TO_ROLE',
+  ADD_ROLE_TO_GROUP: 'ADD_ROLE_TO_GROUP',
   CREATE_GROUP: 'CREATE_GROUP',
   UPDATE_GROUP: 'UPDATE_GROUP',
 }
@@ -19,6 +21,31 @@ export const addMemberToGroup = ({groupId, memberId}) => {
     type: actionTypes.ADD_MEMBER_TO_GROUP,
     groupId,
     memberId,
+  }
+}
+
+export const addMemberToRole = ({groupId, roleId, memberId}) => {
+  const groupRef = database.ref(`groups/${groupId}`)
+  const roleMembersRef = groupRef.child(`roles/${roleId}/members`)
+  roleMembersRef.set({
+    [memberId]: true
+  })
+  // Ensure we add the user to the group also
+  groupRef.child('members').set({
+    [memberId]: true
+  })
+}
+
+export const addRoleToGroup = ({groupId, roleName}) => {
+  const groupRef = database.ref(`groups/${groupId}`)
+  const roleRef = groupRef.child('roles').push()
+  roleRef.set({
+    role_name: roleName
+  })
+  return {
+    type: actionTypes.ADD_ROLE_TO_GROUP,
+    groupId,
+    roleName,
   }
 }
 
