@@ -15,22 +15,28 @@ const enhance = compose(
   withProps(({match}) => ({
     groupId: match.params.groupId
   })),
-  withState('newMember', 'updateNewMember', ''),
+  withState('newGroupMember', 'updateNewGroupMember', ''),
   withHandlers({
-    onNewMemberChange: props => event => {
-      props.updateNewMember(event.target.value)
+    onNewGroupMemberChange: props => event => {
+      props.updateNewGroupMember(event.target.value)
     },
     onNewGroupMemberSubmit: props => event => {
       event.preventDefault()
       props.dispatch(addMemberToGroup({
         groupId: props.groupId,
-        memberId: props.newMember,
+        memberId: props.newGroupMember,
       }))
     }
   }),
 )
 
-const GroupMembersView = ({groups, groupId, onNewGroupMemberSubmit, onNewMemberChange, newMember}) => (
+const GroupMembersView = ({
+                            groups,
+                            groupId,
+                            onNewGroupMemberSubmit,
+                            onNewGroupMemberChange,
+                            newGroupMember,
+                          }) => (
   <div>
     <GroupMembersList
       groupId={groupId}
@@ -43,8 +49,8 @@ const GroupMembersView = ({groups, groupId, onNewGroupMemberSubmit, onNewMemberC
     <form onSubmit={onNewGroupMemberSubmit}>
       <textarea
         placeholder='Add New Member'
-        value={newMember}
-        onChange={onNewMemberChange}
+        value={newGroupMember}
+        onChange={onNewGroupMemberChange}
       />
       <input
         type='submit'
