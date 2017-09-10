@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {compose, withHandlers, withProps, withState} from 'recompose'
-import {addMemberToRole, addRoleToGroup} from '../actions/groups'
+import {addRoleToGroup} from '../actions/groups'
 
 
 const mapStateToProps = ({groups}) => ({
