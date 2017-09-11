@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {compose, withHandlers, withProps, withState} from 'recompose'
 
 import GroupMembersList from './GroupMembersList'
-import {addMemberToGroup} from '../actions/groups'
+import {addMemberToGroup} from '../../actions/groups'
 
 const mapStateToProps = ({groups}) => ({
   groups

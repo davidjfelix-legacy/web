@@ -3,8 +3,8 @@ import {connect} from 'react-redux'
 import {compose, withHandlers, withState} from 'recompose'
 import {replace} from "react-router-redux"
 
-import {ensureAuthenticated} from "./hocs"
-import {createGroup} from '../actions/groups'
+import {ensureAuthenticated} from "../hocs"
+import {createGroup} from '../../actions/groups'
 
 const mapStateToProps = ({auth}) => ({
   auth

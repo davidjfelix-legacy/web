@@ -4,14 +4,14 @@ import {Route, Switch} from 'react-router'
 import {NavLink} from 'react-router-dom'
 import {compose, withProps} from 'recompose'
 
-import {updateGroup} from '../actions/groups'
+import {updateGroup} from '../../actions/groups'
 import GroupMembersView from './GroupMembersView'
 import GroupPerformancesView from './GroupPerformancesView'
 import GroupRolesView from './GroupRolesView'
 import GroupSeriesView from './GroupSeriesView'
 import GroupShowsView from './GroupShowsView'
 import GroupVideosView from './GroupVideosView'
-import {withDatabaseSubscribe} from './hocs'
+import {withDatabaseSubscribe} from '../hocs'
 
 const styles = {
   navLink: {

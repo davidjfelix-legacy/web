@@ -1,5 +1,5 @@
 import React from 'react'
-import Username from './Username'
+import Username from '../Username'
 import {Link} from 'react-router-dom'
 
 const GroupMembersList = ({groupId, memberIds}) => (
