@@ -47,7 +47,8 @@ const GroupMembersView = ({
       }
     />
     <form onSubmit={onNewGroupMemberSubmit}>
-      <textarea
+      <input
+        type='text'
         placeholder='Add New Member'
         value={newGroupMember}
         onChange={onNewGroupMemberChange}

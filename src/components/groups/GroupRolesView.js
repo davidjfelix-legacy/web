@@ -2,7 +2,9 @@ import _ from 'lodash'
 import React from 'react'
 import {connect} from 'react-redux'
 import {compose, withHandlers, withProps, withState} from 'recompose'
+
 import {addRoleToGroup} from '../../actions/groups'
+import GroupRolesList from './GroupRolesList'
 
 
 const mapStateToProps = ({groups}) => ({
@@ -40,13 +42,10 @@ const GroupRolesView = ({
                           newRole,
                         }) => (
   <div>
-    {Object.keys(_.get(groups, `${groupId}.roles`, {}))
-      .map((roleId) => {
-        console.log(roleId)
-        return _.get(groups, `${groupId}.roles.${roleId}.role_name`, 'Unnamed')
-      })}
+    <GroupRolesList groupId={groupId} roles={_.get(groups, `${groupId}.roles`, {})}/>
     <form onSubmit={onNewRoleSubmit}>
-      <textarea
+      <input
+        type='text'
         placeholder='New Role Name'
         value={newRole.roleName}
         onChange={onNewRoleNameChange}
