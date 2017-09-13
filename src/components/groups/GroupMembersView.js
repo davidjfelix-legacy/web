@@ -6,6 +6,7 @@ import {compose, withHandlers, withProps, withState} from 'recompose'
 import GroupMembersList from './GroupMembersList'
 import {addMemberToGroup} from '../../actions/groups'
 
+
 const mapStateToProps = ({groups}) => ({
   groups
 })
@@ -16,27 +17,33 @@ const enhance = compose(
     groupId: match.params.groupId
   })),
   withState('newGroupMember', 'updateNewGroupMember', ''),
-  withHandlers({
-    onNewGroupMemberChange: props => event => {
-      props.updateNewGroupMember(event.target.value)
-    },
-    onNewGroupMemberSubmit: props => event => {
-      event.preventDefault()
-      props.dispatch(addMemberToGroup({
-        groupId: props.groupId,
-        memberId: props.newGroupMember,
-      }))
+  withHandlers(
+    {
+      onNewGroupMemberChange: props => event => {
+        props.updateNewGroupMember(event.target.value)
+      },
+      onNewGroupMemberSubmit: props => event => {
+        event.preventDefault()
+        props.dispatch(addMemberToGroup(
+          {
+            groupId: props.groupId,
+            memberId: props.newGroupMember,
+          }
+        ))
+      }
     }
-  }),
+  ),
 )
 
-const GroupMembersView = ({
-                            groups,
-                            groupId,
-                            onNewGroupMemberSubmit,
-                            onNewGroupMemberChange,
-                            newGroupMember,
-                          }) => (
+const GroupMembersView = (
+  {
+    groups,
+    groupId,
+    newGroupMember,
+    onNewGroupMemberSubmit,
+    onNewGroupMemberChange,
+  }
+) => (
   <div>
     <GroupMembersList
       groupId={groupId}

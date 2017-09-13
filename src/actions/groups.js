@@ -11,12 +11,8 @@ export const actionTypes = {
 export const addMemberToGroup = ({groupId, memberId}) => {
   const groupRef = database.ref(`groups/${groupId}`)
   const memberRef = database.ref(`users/${memberId}`)
-  groupRef.child('members').set({
-    [memberId]: true
-  })
-  memberRef.child('groups').set({
-    [groupId]: true
-  })
+  groupRef.child(`members/${memberId}`).set(true)
+  memberRef.child(`groups/${groupId}`).set(true)
   return {
     type: actionTypes.ADD_MEMBER_TO_GROUP,
     groupId,
@@ -26,8 +22,8 @@ export const addMemberToGroup = ({groupId, memberId}) => {
 
 export const addMemberToRole = ({groupId, roleId, memberId}) => {
   const groupRef = database.ref(`groups/${groupId}`)
-  const roleMembersRef = groupRef.child(`roles/${roleId}/members`)
-  roleMembersRef.set({
+  const roleMemberRef = groupRef.child(`roles/${roleId}/members/${memberId}`)
+  roleMemberRef.set({
     [memberId]: true
   })
   // Ensure we add the user to the group also
