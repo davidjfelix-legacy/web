@@ -10,7 +10,7 @@
     "classnames": "^2.2.5",
     "firebase": "^4.3.0",
     "history": "^4.7.2",
-    "hls.js": "^0.7.9",
+    "hls.js": "^0.8.2",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
