@@ -1,7 +1,6 @@
 language: node_js
 node_js:
 - node
-cache: yarn
 before_install:
 - npm install -g yarn
 - yarn global add firebase-tools
@@ -10,15 +9,8 @@ install:
 - yarn
 env:
   global:
-  - CXX=g++-4.8
   - secure: xz3t9A9+lIdrj8FUnfJ5ZQdFFA9cUXNtUjFDJxYJoqA79Akb+lrKCx3WWM6cOy4l4ffgfXerf9xmCowYKgrdwUr+erwUUcjRseshvtiHYikeuQq4Dg21+CPS9vk1QKKDuMuc8359p/8QWkljYcsVlggXVrBbq2qDpvQJ9BOi5FH55TS2IWfEuoniWgKUeXjjmExDUt1WTQJIxSQvn2cfgZyuKEgaFQXWozP3YMU6oQUMsWT3lAJSSkkX9HSWh2x+Nl41Mli6nWKiwrtQ00c6eukGIt/L96i069GcoZqZZFVdElBppCCBZ/X6kIMS5u3UN/yyf9muba1VXnPvkFPjfSK7ERX7gXhShQ1WEN/IUBPkDckK3EFx0BluM3Q4hEr5zcUMWz8lOXU4ExWPqkQt2DwJJRQY2fsXxpZ22ndSf/heGB3VeGWuTCTM1ei4PhnVcMs0SSTAJVhJOvJvCggmtOiFf5+23F4i0QYXl1fjqbcglUKVKdNz0968z8EklIbhqJCc9q3bUYdkVYLhRPLBuHdtxLHhUFRL6aNiUV9gaqq5w+dMA145OX5oIJMZ99Ev1POPje9Jn4NkvvmbYSBSbCEKxZbxW7ERXG/2Bhg6q2KC0k5bJVZXOcunygSDNgNWb0wnQsF5E3HmL2y7kH2XSll+DiUzJ3n055qhq8/j7nk=
   - secure: wOyvsW+sIPnSijdfzePMld8Z6x8O1XjRcekV/lG0yKV9WKGIUjB5jgAccEtFssemJdUG865SncJAM0+aFMZWyXBulcWOmYcIr5ieZfUTxndQhb5BMshyP61u7R+IVaoqsN3bic/yK4Qqtd+bdbq5mSdETjlVgqkW3jgsLo+CwYAH5kJOsA+UPxVyM4gieqYk1xa8qfg6yLwDLaW4/Za5pUQ3n1FSbFO7kMYevI5pjynesMSi7xjAwgum7ZP7JUEqL3A1sgdED8xCliSnwvFX6xTrPooEEfldjXGi6XlAvBdRQNcRFL8fzRHh2G8csnmrSI6LYQoyh0QeiJ3cThPZeLkdLRWCkq+E0xXk0BnNCEF+TsPzBuL7rnPakHA9AxN24PIonXzEEMxsGm0NHDRMF4Sx8ddmo5IsDDv6zBtfnb7qfH9selUgdEJw8kc23xUYcHRj2dLG5ZoDhOS6aXJJSOhLIWZdo+WlZ24a/GJR1ynUJrMCOF6/qZCpfhjlZ+aETglEpSVkGIKs1QhKM9t1jcO4aE/qI9ylW+V0GFeuJQog5wwYRmCBVTpVYDXbag9R54o+TmBiAotKQIYGpGZo81GSX0hHKdA86bUsuWKik+AdZ7apyVkArr7qSrNabS5yuBzVNSAKO//LCuPpEO23zoSKWWe9mpIeFPUXJXunyNk=
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
 before_script:
 - greenkeeper-lockfile-update
 script:
