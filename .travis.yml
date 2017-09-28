@@ -1,8 +1,12 @@
 language: node_js
 node_js:
 - node
+cache:
+  directories:
+    - $HOME/.npm
+    - $HOME/.cache/yarn
+    - node_modules
 before_install:
-- npm install -g yarn
 - yarn global add firebase-tools
 - yarn global add greenkeeper-lockfile@1
 install:
