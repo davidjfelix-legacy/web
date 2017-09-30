@@ -1,13 +1,20 @@
 import _ from 'lodash'
 import React from 'react'
-import {compose, withHandlers, withProps} from 'recompose'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {compose, withHandlers, withProps} from 'recompose'
 
-import {addMemberToRole} from '../../actions/groups'
+import {addMemberToRole, updateRole} from '../../actions/roles'
+import {withDatabaseSubscribe} from '../hocs'
+import Username from '../Username'
 
+
+const mapStateToProps = ({roles}) => ({
+  roles,
+})
 
 const enhance = compose(
-  connect(),
+  connect(mapStateToProps),
   withProps('newRoleMember', 'updateNewRoleMember', ''),
   withHandlers(
     {
@@ -26,6 +33,16 @@ const enhance = compose(
       }
     }
   ),
+  withDatabaseSubscribe(
+    'value',
+    (props) => (`roles/${props.roleId}`),
+    (props) => (snapshot) => (props.dispatch(updateRole(
+      {
+        roleId: props.roleId,
+        roleSnapshot: snapshot.val(),
+      }
+    )))
+  )
 )
 
 const GroupRolesListItem = (
@@ -35,11 +52,22 @@ const GroupRolesListItem = (
     onNewRoleMemberChange,
     onNewRoleMemberSubmit,
     roleId,
-    role,
+    roles,
   }
 ) => (
   <li>
-    <span>{_.get(role, 'role_name', 'Unnamed')}</span>
+    <span>{_.get(roles, `${roleId}.role_name`, 'Unnamed')}</span>
+    <ul>
+      {Object.keys(_.get(roles, `${roleId}.members`, {})).map(
+        (memberId) => (
+          <li key={memberId}>
+            <Link to={`/users/${memberId}`}>
+              <Username userId={memberId}/>
+            </Link>
+          </li>
+        )
+      )}
+    </ul>
     <form onSubmit={onNewRoleMemberSubmit}>
       <input
         type='text'

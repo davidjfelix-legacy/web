@@ -41,7 +41,7 @@ const enhance = compose(
   )
 )
 
-const GroupContainer = ({ basePath, baseUrl, groupId, groups}) => (
+const GroupContainer = ({ basePath, baseUrl, groupId}) => (
   <div>
     <NavLink style={styles.navLink} to={`${baseUrl}/members`}>members</NavLink>
     <NavLink style={styles.navLink} to={`${baseUrl}/roles`}>roles</NavLink>

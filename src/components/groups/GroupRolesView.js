@@ -17,32 +17,44 @@ const enhance = compose(
     groupId: match.params.groupId
   })),
   withState('newRole', 'updateNewRole', {roleName: ''}),
-  withHandlers({
-    onNewRoleNameChange: props => event => {
-      props.updateNewRole({
-        ...props.newRole,
-        roleName: event.target.value,
-      })
-    },
-    onNewRoleSubmit: props => event => {
-      event.preventDefault()
-      props.dispatch(addRoleToGroup({
-        groupId: props.groupId,
-        roleName: props.newRole.roleName,
-      }))
+  withHandlers(
+    {
+      onNewRoleNameChange: props => event => {
+        props.updateNewRole(
+          {
+            ...props.newRole,
+            roleName: event.target.value,
+          })
+      },
+      onNewRoleSubmit: props => event => {
+        event.preventDefault()
+        props.dispatch(addRoleToGroup(
+          {
+            groupId: props.groupId,
+            roleName: props.newRole.roleName,
+          })
+        )
+      }
     }
-  }),
+  ),
 )
 
-const GroupRolesView = ({
-                          groups,
-                          groupId,
-                          onNewRoleNameChange,
-                          onNewRoleSubmit,
-                          newRole,
-                        }) => (
+const GroupRolesView = (
+  {
+    groups,
+    groupId,
+    onNewRoleNameChange,
+    onNewRoleSubmit,
+    newRole,
+  }
+) => (
   <div>
-    <GroupRolesList groupId={groupId} roles={_.get(groups, `${groupId}.roles`, {})}/>
+    <GroupRolesList
+      groupId={groupId}
+      roles={
+        Object.keys(_.get(groups, `${groupId}.roles`, {}))
+      }
+    />
     <form onSubmit={onNewRoleSubmit}>
       <input
         type='text'
