@@ -2,11 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
 
-import { updateVideo } from '../actions/videos'
+import { updateVideo } from '../../actions/videos'
 
-import { withDatabaseSubscribe } from './hocs'
-import CommentList from './CommentList'
-import PerformanceFrame from './PerformanceFrame'
+import { withDatabaseSubscribe } from '../hocs'
+import CommentList from '../CommentList'
+import PerformanceFrame from '../PerformanceFrame'
 
 
 const mapStateToProps = ({videos}) => ({

@@ -1,17 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {compose, lifecycle} from 'recompose'
 import {Route, Switch} from 'react-router'
 import {ConnectedRouter} from 'react-router-redux'
+import {compose, lifecycle} from 'recompose'
 
-
-import auth from '../auth'
 import {updateAuth} from '../actions/auth'
-import HomeView from './HomeView'
-import MeContainer from './MeContainer'
+import auth from '../auth'
+
+import '../css/App.css'
 import GroupContainer from './groups/GroupContainer'
-import LoginView from './LoginView'
 import NewGroupView from './groups/NewGroupView'
+import HomeView from './HomeView'
+import LoginView from './LoginView'
+import MeContainer from './MeContainer'
 import NewPerformanceView from './NewPerformanceView'
 import NewSeriesView from './NewSeriesView'
 import NewShowView from './NewShowView'
@@ -21,10 +22,8 @@ import RegisterView from './RegisterView'
 import SeriesContainer from './SeriesContainer'
 import ShowContainer from './ShowContainer'
 import UserContainer from './UserContainer'
-import VideoView from './VideoView'
-
-import '../css/App.css'
-import NewRawVideoView from './NewRawVideoView';
+import NewVideoView from './videos/NewVideoView'
+import VideoView from './videos/VideoView'
 
 
 const styles = {
@@ -62,12 +61,12 @@ const App = ({history}) => (
           <Route path='/groups/:groupId' component={GroupContainer}/>
           <Route exact path='/performances/new' component={NewPerformanceView}/>
           <Route path='/performances/:performanceId' component={PerformanceContainer}/>
-          <Route exact path='/raw-videos/new' component={NewRawVideoView}/>
           <Route exact path='/series/new' component={NewSeriesView}/>
           <Route path='/series/:seriesNameId' component={SeriesContainer}/>
           <Route exact path='/shows/new' component={NewShowView}/>
           <Route path='/shows/:showNameId' component={ShowContainer}/>
           <Route path='/users/:userId' component={UserContainer}/>
+          <Route exact path='/videos/new' component={NewVideoView}/>
           <Route path='/videos/:videoId' component={VideoView}/>
           <Route component={HomeView}/>
         </Switch>
