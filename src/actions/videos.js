@@ -7,19 +7,31 @@ export const actionTypes = {
   UPDATE_VIDEOS: 'UPDATE_VIDEOS',
 }
 
-export const createVideo = ({video, videoOwnerType, ownerId}) => {
+export const VideoOwnerTypes = {
+  USER_VIDEO: 'USER_VIDEO',
+  GROUP_VIDEO: 'GROUP_VIDEO'
+}
+
+export const VideoStates = {
+  UNINITIALIZED: 'UNINITIALIZED',
+  INITIALIZED: 'INITIALIZED',
+  PUBLISHED: 'PUBLISHED'
+}
+
+// FIXME: make async. Define video better
+export const createVideo = ({videoOwnerType, ownerId}) => {
   const videoList = database.ref('videos')
   const videoRef = videoList.push()
   videoRef.set(
     {
-      ...video,
       owner_id: ownerId,
+      video_state: VideoStates.UNINITIALIZED,
       video_owner_type: videoOwnerType
     }
   )
   return {
     type: actionTypes.CREATE_GROUP,
-    video,
+    videoState: VideoStates.UNINITIALIZED,
     videoOwnerType,
     ownerId,
   }
