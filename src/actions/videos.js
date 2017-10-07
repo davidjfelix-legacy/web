@@ -30,7 +30,7 @@ export const createVideo = ({videoOwnerType, ownerId}) => {
     }
   )
   return {
-    type: actionTypes.CREATE_GROUP,
+    type: actionTypes.CREATE_VIDEO,
     videoState: VideoStates.UNINITIALIZED,
     videoOwnerType,
     ownerId,
