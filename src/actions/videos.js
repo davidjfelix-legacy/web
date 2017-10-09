@@ -3,6 +3,7 @@ import database from '../database'
 
 export const actionTypes = {
   CREATE_VIDEO: 'CREATE_VIDEO',
+  CREATE_VIDEO_ERROR: 'CREATE_VIDEO_ERROR',
   UPDATE_VIDEO: 'UPDATE_VIDEO',
   UPDATE_VIDEOS: 'UPDATE_VIDEOS',
 }
@@ -22,6 +23,27 @@ export const VideoStates = {
 export const createVideo = ({videoOwnerType, ownerId}) => {
   const videoList = database.ref('videos')
   const videoRef = videoList.push()
+  switch (videoOwnerType) {
+    case VideoOwnerTypes.USER_VIDEO:
+      const userVideoList = database.ref(`users/${ownerId}/videos`)
+      userVideoList.set(
+        {
+          [videoRef.key]: true
+        })
+      break
+    case VideoOwnerTypes.GROUP_VIDEO:
+      const groupVideoList = database.ref(`groups/${ownerId}/videos`)
+      groupVideoList.set(
+        {
+          [videoRef.key]: true
+        })
+      break
+    default:
+      return {
+        type: actionTypes.CREATE_VIDEO_ERROR
+      }
+  }
+
   videoRef.set(
     {
       owner_id: ownerId,
