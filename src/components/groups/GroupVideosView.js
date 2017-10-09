@@ -1,7 +1,10 @@
+import * as _ from 'lodash'
 import React from 'react'
-import {compose, withHandlers, withProps} from 'recompose'
 import {connect} from 'react-redux'
+import {compose, withHandlers, withProps} from 'recompose'
+
 import {createVideo, VideoOwnerTypes} from '../../actions/videos'
+import GroupVideosList from './GroupVideosList'
 
 
 const mapStateToProps = ({groups}) => ({
@@ -30,11 +33,17 @@ const enhance = compose(
 
 const GroupVideosView = (
   {
+    groups,
     groupId,
     onNewVideoSubmit
   }
 ) => (
   <div>
+    <GroupVideosList
+      groupId={groupId} videoIds={
+      Object.keys(_.get(groups, `${groupId}.videos`, {}))
+    }
+    />
     <form onSubmit={onNewVideoSubmit}>
       <input
         type='submit'

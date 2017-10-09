@@ -25,18 +25,12 @@ export const createVideo = ({videoOwnerType, ownerId}) => {
   const videoRef = videoList.push()
   switch (videoOwnerType) {
     case VideoOwnerTypes.USER_VIDEO:
-      const userVideoList = database.ref(`users/${ownerId}/videos`)
-      userVideoList.set(
-        {
-          [videoRef.key]: true
-        })
+      const userVideoRef = database.ref(`users/${ownerId}/videos/${videoRef.key}`)
+      userVideoRef.set(true)
       break
     case VideoOwnerTypes.GROUP_VIDEO:
-      const groupVideoList = database.ref(`groups/${ownerId}/videos`)
-      groupVideoList.set(
-        {
-          [videoRef.key]: true
-        })
+      const groupVideoRef = database.ref(`groups/${ownerId}/videos/${videoRef.key}`)
+      groupVideoRef.set(true)
       break
     default:
       return {
