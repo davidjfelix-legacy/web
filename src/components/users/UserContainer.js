@@ -5,10 +5,10 @@ import {Route, Switch} from 'react-router'
 import {NavLink} from 'react-router-dom'
 import {compose, withProps} from 'recompose'
 
-import {updateUser} from '../actions/users'
-import {withDatabaseSubscribe, withLoading, withNotFound} from './hocs'
-import LoadingView from './LoadingView'
-import NotFoundView from './NotFoundView'
+import {updateUser} from '../../actions/users'
+import {withDatabaseSubscribe, withLoading, withNotFound} from '../hocs'
+import LoadingView from '../LoadingView'
+import NotFoundView from '../NotFoundView'
 import UserFollowers from './UserFollowers'
 import UserFollowing from './UserFollowing'
 import UserGroups from './UserGroups'
@@ -16,7 +16,8 @@ import UserOverview from './UserOverview'
 import UserPlaylists from './UserPlaylists'
 import UserSeries from './UserSeries'
 import UserShows from './UserShows'
-import UserVideos from './UserVideos'
+import UserVideosView from './UserVideosView'
+
 
 const mapStateToProps = ({users}) => ({
   users
@@ -66,9 +67,9 @@ const enhance = compose(
     (props) => (`users/${props.userId}`),
     (props) => (snapshot) => (
       props.dispatch(updateUser({
-        userId: props.userId,
-        userSnapshot: snapshot.val()
-      }))
+                                  userId: props.userId,
+                                  userSnapshot: snapshot.val()
+                                }))
     )
   ),
   withLoading(
@@ -110,7 +111,7 @@ const UserContainer = ({basePath, baseUrl, classes, children, userId, users}) =>
       <NavLink className={classes.activeLink} to={`${baseUrl}/playlists`}>{navLinks.playlists}</NavLink>
     </div>
     <Switch>
-      <Route path={`${basePath}/videos`} component={UserVideos}/>
+      <Route path={`${basePath}/videos`} component={UserVideosView}/>
       <Route path={`${basePath}/groups`} component={UserGroups}/>
       <Route path={`${basePath}/following`} component={UserFollowing}/>
       <Route path={`${basePath}/followers`} component={UserFollowers}/>

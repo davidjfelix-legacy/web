@@ -21,7 +21,7 @@ import PerformanceContainer from './PerformanceContainer'
 import RegisterView from './RegisterView'
 import SeriesContainer from './SeriesContainer'
 import ShowContainer from './ShowContainer'
-import UserContainer from './UserContainer'
+import UserContainer from './users/UserContainer'
 import NewVideoView from './videos/NewVideoView'
 import VideoView from './videos/VideoView'
 

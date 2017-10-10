@@ -6,7 +6,7 @@ import { updateVideos } from '../actions/videos'
 
 import { withDatabaseSubscribe } from './hocs'
 import MenuLayout from './MenuLayout'
-import VideoPreviewsList from './VideoPreviewsList'
+import VideosList from './videos/VideosList'
 
 
 const mapStateToProps = ({ videos }) => ({
@@ -29,7 +29,7 @@ const HomeView = ({videos}) => (
     <div>
       {videos === {} ? //FIXME: make this check work and provide a sensible default
         <div>No videos found</div> :
-        <VideoPreviewsList videoIds={Object.keys(videos)}/>
+        <VideosList videoIds={Object.keys(videos)}/>
       }
     </div>
   </MenuLayout>

@@ -7,14 +7,14 @@ import {createVideo, VideoOwnerTypes} from '../../actions/videos'
 import VideosList from '../videos/VideosList'
 
 
-const mapStateToProps = ({groups}) => ({
-  groups
+const mapStateToProps = ({users}) => ({
+  users,
 })
 
 const enhance = compose(
   connect(mapStateToProps),
   withProps(({match}) => ({
-    groupId: match.params.groupId
+    userId: match.params.userId
   })),
   withHandlers(
     {
@@ -22,8 +22,8 @@ const enhance = compose(
         event.preventDefault()
         props.dispatch(createVideo(
           {
-            videoOwnerType: VideoOwnerTypes.GROUP_VIDEO,
-            ownerId: props.groupId
+            videoOwnerType: VideoOwnerTypes.USER_VIDEO,
+            ownerId: props.userId
           })
         )
       }
@@ -31,26 +31,26 @@ const enhance = compose(
   )
 )
 
-const GroupVideosView = (
+const UserVideosView = (
   {
-    groups,
-    groupId,
-    onNewVideoSubmit
+    onNewVideoSubmit,
+    users,
+    userId,
   }
 ) => (
   <div>
-    <VideosList
-      videoIds={
-        Object.keys(_.get(groups, `${groupId}.videos`, {}))
-      }
-    />
     <form onSubmit={onNewVideoSubmit}>
       <input
         type='submit'
         value='submit'
       />
     </form>
+    <VideosList
+      videoIds={
+        Object.keys(_.get(users, `${userId}.videos`, {}))
+      }
+    />
   </div>
 )
 
-export default enhance(GroupVideosView)
+export default enhance(UserVideosView)
