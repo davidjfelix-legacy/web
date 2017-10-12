@@ -66,10 +66,12 @@ const enhance = compose(
     'value',
     (props) => (`users/${props.userId}`),
     (props) => (snapshot) => (
-      props.dispatch(updateUser({
-                                  userId: props.userId,
-                                  userSnapshot: snapshot.val()
-                                }))
+      props.dispatch(updateUser(
+        {
+          userId: props.userId,
+          userSnapshot: snapshot.val()
+        })
+      )
     )
   ),
   withLoading(

@@ -1,13 +1,11 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 
+import VideoPreviewCard from '../videos/VideoPreviewCard'
 
 const VideosList = ({videoIds}) => (
   <ul>{videoIds.map((videoId) => (
     <li key={videoId}>
-      <Link to={`/videos/${videoId}`}>
-        {videoId}
-      </Link>
+      <VideoPreviewCard videoId={videoId}/>
     </li>
   ))
   }</ul>
