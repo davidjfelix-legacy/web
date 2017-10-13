@@ -1,3 +1,4 @@
+import {push} from 'react-router-redux'
 import database from '../database'
 
 
@@ -20,7 +21,7 @@ export const VideoStates = {
 }
 
 // FIXME: make async. Define video better
-export const createVideo = ({videoOwnerType, ownerId}) => {
+export const createVideo = ({videoOwnerType, ownerId}) => (dispatch) => {
   const videoList = database.ref('videos')
   const videoRef = videoList.push()
   switch (videoOwnerType) {
@@ -45,6 +46,7 @@ export const createVideo = ({videoOwnerType, ownerId}) => {
       video_owner_type: videoOwnerType
     }
   )
+  dispatch(push(`/videos/${videoRef.key}`))
   return {
     type: actionTypes.CREATE_VIDEO,
     videoState: VideoStates.UNINITIALIZED,
