@@ -1,12 +1,12 @@
+import * as _ from 'lodash'
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'recompose'
+import {connect} from 'react-redux'
+import {compose, withProps} from 'recompose'
 
-import { updateVideo } from '../../actions/videos'
-
-import { withDatabaseSubscribe } from '../hocs'
+import {updateVideo} from '../../actions/videos'
 import CommentList from '../CommentList'
-import PerformanceFrame from '../PerformanceFrame'
+
+import {withDatabaseSubscribe} from '../hocs'
 
 
 const mapStateToProps = ({videos}) => ({
@@ -15,14 +15,18 @@ const mapStateToProps = ({videos}) => ({
 
 const enhance = compose(
   connect(mapStateToProps),
+  withProps(({match}) => ({
+    videoId: match.params.videoId,
+  })),
   withDatabaseSubscribe(
     'value',
-    (props) => (`videos/${props.params.videoId}`),
+    (props) => (`videos/${props.videoId}`),
     (props) => (snapshot) => (
-      props.dispatch(updateVideo({
-        videoId: props.params.videoId,
-        videoSnapshot: snapshot.val()
-      }))
+      props.dispatch(updateVideo(
+        {
+          videoId: props.videoId,
+          videoSnapshot: snapshot.val()
+        }))
     )
   ),
 )
@@ -36,16 +40,10 @@ const styles = {
 }
 
 
-const VideoView = ({videos, params}) => (
+const VideoView = ({videos, videoId}) => (
   <div style={styles.videoContainer}>
-    {(params.videoId in videos && videos[params.videoId] !== null) ?
-      <PerformanceFrame size={{width: 854, height: 480}} layout={{ videoStreams: [{videoId: params.videoId, z_index: 0, scale: 1.0}]}} /> :
-      <p>{"404 not found"}</p>
-    }
-    {videos[params.videoId] !== null ? 
-      <CommentList videoId={params.videoId}/> :
-      <p>{"duh"}</p>
-    }
+    {JSON.stringify(_.get(videos, videoId, {}))}
+    <CommentList videoId={videoId}/>
   </div>
 )
 
