@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {compose, withProps} from 'recompose'
 
 import {updateVideo} from '../../actions/videos'
-import CommentList from '../CommentList'
 
 import {withDatabaseSubscribe} from '../hocs'
 
@@ -43,7 +42,6 @@ const styles = {
 const VideoView = ({videos, videoId}) => (
   <div style={styles.videoContainer}>
     {JSON.stringify(_.get(videos, videoId, {}))}
-    <CommentList videoId={videoId}/>
   </div>
 )
 
