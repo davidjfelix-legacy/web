@@ -1,5 +1,4 @@
 import React from 'react'
-import injectSheet from 'react-jss'
 import {connect} from 'react-redux'
 import {Route, Switch} from 'react-router'
 import {NavLink} from 'react-router-dom'
@@ -56,7 +55,6 @@ const styles = {
 
 const enhance = compose(
   connect(mapStateToProps),
-  injectSheet(styles),
   withProps(({match}) => ({
     basePath: match.path,
     baseUrl: match.url,
@@ -95,22 +93,22 @@ export const navLinks = {
   playlists: 'Playlists',
 }
 
-const UserContainer = ({basePath, baseUrl, classes, children, userId, users}) => (
+const UserContainer = ({basePath, baseUrl, children, userId, users}) => (
   <div style={styles.view}>
     <img
       style={{alignSelf: 'flex-start', borderRadius: '0.5em'}}
       src='http://placekitten.com/g/200/200'
       alt={`${users[userId].username}`}
     />
-    <div className={classes.nav}>
-      <NavLink className={classes.activeLink} to={baseUrl}>{navLinks.overview}</NavLink>
-      <NavLink className={classes.activeLink} to={`${baseUrl}/videos`}>{navLinks.videos}</NavLink>
-      <NavLink className={classes.activeLink} to={`${baseUrl}/groups`}>{navLinks.groups}</NavLink>
-      <NavLink className={classes.activeLink} to={`${baseUrl}/following`}>{navLinks.following}</NavLink>
-      <NavLink className={classes.activeLink} to={`${baseUrl}/followers`}>{navLinks.followers}</NavLink>
-      <NavLink className={classes.activeLink} to={`${baseUrl}/shows`}>{navLinks.shows}</NavLink>
-      <NavLink className={classes.activeLink} to={`${baseUrl}/series`}>{navLinks.series}</NavLink>
-      <NavLink className={classes.activeLink} to={`${baseUrl}/playlists`}>{navLinks.playlists}</NavLink>
+    <div>
+      <NavLink to={baseUrl}>{navLinks.overview}</NavLink>
+      <NavLink to={`${baseUrl}/videos`}>{navLinks.videos}</NavLink>
+      <NavLink to={`${baseUrl}/groups`}>{navLinks.groups}</NavLink>
+      <NavLink to={`${baseUrl}/following`}>{navLinks.following}</NavLink>
+      <NavLink to={`${baseUrl}/followers`}>{navLinks.followers}</NavLink>
+      <NavLink to={`${baseUrl}/shows`}>{navLinks.shows}</NavLink>
+      <NavLink to={`${baseUrl}/series`}>{navLinks.series}</NavLink>
+      <NavLink to={`${baseUrl}/playlists`}>{navLinks.playlists}</NavLink>
     </div>
     <Switch>
       <Route path={`${basePath}/videos`} component={UserVideosView}/>

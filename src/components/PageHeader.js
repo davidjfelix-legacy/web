@@ -2,7 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {compose} from 'recompose'
-import injectSheet from 'react-jss'
 import Icon, {IconTypes} from "./Icon";
 
 
@@ -80,7 +79,6 @@ const mapStateToProps = ({auth}) => ({
 
 const enhance = compose(
   connect(mapStateToProps),
-  injectSheet(styles)
 )
 
 const PageHeader = ({auth}) => (

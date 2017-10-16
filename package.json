@@ -3,34 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "enzyme": "^3.0.0",
-    "react-scripts": "^1.0.7"
+    "enzyme": "^3.1.0",
+    "react-scripts": "^1.0.14"
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "firebase": "^4.3.0",
+    "firebase": "^4.5.1",
     "history": "^4.7.2",
     "hls.js": "^0.8.2",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
-    "prop-types": "^15.5.8",
+    "prop-types": "^15.6.0",
     "query-string": "^5.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-icons": "^2.2.7",
-    "react-jss": "^7.1.0",
     "react-redux": "^5.0.2",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "next",
-    "react-transition-group": "^2.2.0",
+    "react-transition-group": "^2.2.1",
     "recompose": "^0.26.0",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^2.13.1",
     "redux-logger": "^3.0.1",
     "redux-thunk": "^2.2.0",
-    "rxjs": "^5.0.0"
+    "rxjs": "^5.0.0",
+    "styled-components": "^2.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
