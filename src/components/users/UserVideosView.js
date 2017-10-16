@@ -42,7 +42,7 @@ const UserVideosView = (
     <form onSubmit={onNewVideoSubmit}>
       <input
         type='submit'
-        value='submit'
+        value='Create New Video'
       />
     </form>
     <VideosList

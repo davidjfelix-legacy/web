@@ -1,10 +1,10 @@
 import * as _ from 'lodash'
 import React from 'react'
 import {connect} from 'react-redux'
-import {compose, withProps} from 'recompose'
+import {compose, withHandlers, withProps, withState} from 'recompose'
 
 import {updateVideo} from '../../actions/videos'
-
+import EditableTextField from '../EditableTextField'
 import {withDatabaseSubscribe} from '../hocs'
 
 
@@ -14,9 +14,20 @@ const mapStateToProps = ({videos}) => ({
 
 const enhance = compose(
   connect(mapStateToProps),
+  withState('edit', 'updateEdit', true),
   withProps(({match}) => ({
     videoId: match.params.videoId,
   })),
+  withHandlers(
+    {
+      onVideoSave: props => event => {
+        event.preventDefault()
+
+      },
+      toggleEdit: props => event => {
+        props.updateEdit(!props.edit)
+      }
+    }),
   withDatabaseSubscribe(
     'value',
     (props) => (`videos/${props.videoId}`),
@@ -30,18 +41,48 @@ const enhance = compose(
   ),
 )
 
-const styles = {
-  videoContainer: {
-    height: 'calc(100vh - 56px)',
-    display: 'flex',
-    flexWrap: 'wrap',
-  }
-}
 
-
-const VideoView = ({videos, videoId}) => (
-  <div style={styles.videoContainer}>
+const VideoView = (
+  {
+    edit,
+    onVideoSave,
+    title,
+    toggleEdit,
+    videos,
+    videoId
+  }) => (
+  <div>
     {JSON.stringify(_.get(videos, videoId, {}))}
+    <input type='button' onClick={toggleEdit} value='Edit'/>
+    <form onSubmit={onVideoSave}>
+      {edit ?
+        <EditableTextField
+          initialText={_.get(videos, `${videoId}.title`, '')}
+          placeholder='Title'
+          onChange={() => {
+          }}
+        /> :
+        <p>_.get(videos, `${videoId}.title`, '')</p>
+      }
+      <fieldset>
+        <label htmlFor='isStream'>Stream</label>
+        <input
+          id='isStream'
+          name='videoType'
+          type='radio'
+        />
+        <label htmlFor='isUpload'>Upload</label>
+        <input
+          id='isUpload'
+          name='videoType'
+          type='radio'
+        />
+      </fieldset>
+      <input
+        type='submit'
+        value='Save'
+      />
+    </form>
   </div>
 )
 
