@@ -4,12 +4,12 @@ const initialState = {}
 
 const reducer = (state=initialState, action) => {
   switch (action.type) {
-    case actionTypes.UPDATE_VIDEO:
+    case actionTypes.REFRESH_VIDEO:
       return {
         ...state,
         [action.videoId]: action.videoSnapshot,
       }
-    case actionTypes.UPDATE_VIDEOS:
+    case actionTypes.REFRESH_VIDEOS:
       return {
         ...action.videosSnapshot
       }

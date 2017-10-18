@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {compose} from 'recompose'
 
 import {withDatabaseSubscribe} from '../hocs'
-import {updateVideo} from '../../actions/videos'
+import {refreshVideo} from '../../actions/videos'
 
 
 const mapStateToProps = ({videos}) => ({
@@ -17,7 +17,7 @@ const enhance = compose(
     'value',
     (props) => (`videos/${props.videoId}`),
     (props) => (snapshot) => (
-      props.dispatch(updateVideo(
+      props.dispatch(refreshVideo(
         {
           videoId: props.videoId,
           videoSnapshot: snapshot.val()

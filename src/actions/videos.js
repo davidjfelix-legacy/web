@@ -5,8 +5,9 @@ import database from '../database'
 export const actionTypes = {
   CREATE_VIDEO: 'CREATE_VIDEO',
   CREATE_VIDEO_ERROR: 'CREATE_VIDEO_ERROR',
+  REFRESH_VIDEO: 'REFRESH_VIDEO',
+  REFRESH_VIDEOS: 'REFRESH_VIDEOS',
   UPDATE_VIDEO: 'UPDATE_VIDEO',
-  UPDATE_VIDEOS: 'UPDATE_VIDEOS',
 }
 
 export const VideoTypes = {
@@ -60,13 +61,24 @@ export const createVideo = ({videoOwnerType, ownerId}) => (dispatch) => {
   }
 }
 
-export const updateVideo = ({videoId, videoSnapshot}) => ({
-  type: actionTypes.UPDATE_VIDEO,
+export const refreshVideo = ({videoId, videoSnapshot}) => ({
+  type: actionTypes.REFRESH_VIDEO,
   videoId,
   videoSnapshot
 })
 
-export const updateVideos = (videosSnapshot) => ({
-  type: actionTypes.UPDATE_VIDEOS,
+export const refreshVideos = (videosSnapshot) => ({
+  type: actionTypes.REFRESH_VIDEOS,
   videosSnapshot
 })
+
+export const updateVideo = ({videoId, videoDelta}) => {
+  const videoRef = database.ref(`videos/${videoId}`)
+  videoRef.update(videoDelta)
+
+  return {
+    type: actionTypes.UPDATE_VIDEO,
+    videoDelta,
+  }
+}
+

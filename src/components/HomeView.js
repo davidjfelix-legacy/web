@@ -1,15 +1,14 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'recompose'
+import {connect} from 'react-redux'
+import {compose} from 'recompose'
 
-import { updateVideos } from '../actions/videos' 
-
-import { withDatabaseSubscribe } from './hocs'
+import {refreshVideos} from '../actions/videos'
+import {withDatabaseSubscribe} from './hocs'
 import MenuLayout from './MenuLayout'
 import VideosList from './videos/VideosList'
 
 
-const mapStateToProps = ({ videos }) => ({
+const mapStateToProps = ({videos}) => ({
   videos
 })
 
@@ -17,9 +16,9 @@ const enhance = compose(
   connect(mapStateToProps),
   withDatabaseSubscribe(
     'value',
-    (props) => ("videos"),
+    (props) => ('videos'),
     (props) => (snapshot) => (
-      props.dispatch(updateVideos(snapshot.val()))
+      props.dispatch(refreshVideos(snapshot.val()))
     )
   ),
 )
