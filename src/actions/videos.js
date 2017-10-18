@@ -9,6 +9,11 @@ export const actionTypes = {
   UPDATE_VIDEOS: 'UPDATE_VIDEOS',
 }
 
+export const VideoTypes = {
+  STREAM: 'STREAM',
+  UPLOAD: 'UPLOAD'
+}
+
 export const VideoOwnerTypes = {
   USER_VIDEO: 'USER_VIDEO',
   GROUP_VIDEO: 'GROUP_VIDEO'

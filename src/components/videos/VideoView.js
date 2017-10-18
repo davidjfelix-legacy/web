@@ -3,7 +3,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {compose, withHandlers, withProps, withState} from 'recompose'
 
-import {updateVideo} from '../../actions/videos'
+import {updateVideo, VideoTypes} from '../../actions/videos'
 import EditableTextField from '../EditableTextField'
 import {withDatabaseSubscribe} from '../hocs'
 
@@ -70,11 +70,13 @@ const VideoView = (
           id='isStream'
           name='videoType'
           type='radio'
+          checked={_.get(videos, `${videoId}.video_type`, '') === VideoTypes.STREAM}
         />
         <label htmlFor='isUpload'>Upload</label>
         <input
           id='isUpload'
           name='videoType'
+          checked={_.get(videos, `${videoId}.video_type`, '') === VideoTypes.UPLOAD}
           type='radio'
         />
       </fieldset>
