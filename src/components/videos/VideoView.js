@@ -62,7 +62,7 @@ const VideoView = (
           onChange={() => {
           }}
         /> :
-        <p>_.get(videos, `${videoId}.title`, '')</p>
+        <p>{_.get(videos, `${videoId}.title`, '')}</p>
       }
       <fieldset>
         <label htmlFor='isStream'>Stream</label>
