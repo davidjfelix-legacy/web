@@ -3,7 +3,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {compose, withHandlers, withProps} from 'recompose'
 
-import {refreshVideo, updateVideo, VideoTypes} from '../../actions/videos'
+import {refreshVideo, updateVideo} from '../../actions/videos'
 import EditableTextField from '../EditableTextField'
 import {withDatabaseSubscribe, withLoading} from '../hocs'
 import LoadingView from '../LoadingView'

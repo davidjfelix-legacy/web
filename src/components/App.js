@@ -24,13 +24,8 @@ import ShowContainer from './ShowContainer'
 import UserContainer from './users/UserContainer'
 import NewVideoView from './videos/NewVideoView'
 import VideoView from './videos/VideoView'
+import {Fabric} from 'office-ui-fabric-react'
 
-
-const styles = {
-  app: {
-    minHeight: '100vh',
-  },
-}
 
 injectGlobal`
   @font-face {
@@ -58,7 +53,7 @@ const enhance = compose(
 )
 
 const App = ({history}) => (
-  <div style={styles.auth}>
+  <Fabric>
     <ConnectedRouter history={history}>
       <div>
         <PageHeader/>
@@ -82,7 +77,7 @@ const App = ({history}) => (
         </Switch>
       </div>
     </ConnectedRouter>
-  </div>
+  </Fabric>
 )
 
 export default enhance(App)
