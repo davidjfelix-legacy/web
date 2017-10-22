@@ -108,7 +108,7 @@ const PageHeader = ({auth}) => (
       </Link>
     </div>
     {(Object.keys(auth).length !== 0) && (auth.user !== null) ?
-      <Link style={styles.profile} to={`/me`}>{auth.user.email}</Link> :
+      <Link style={styles.profile} to={`/users/${auth.user.uid}`}>{auth.user.email}</Link> :
       <Link style={styles.profile} to='/auth/login'>Sign in</Link>}
   </nav>
 )

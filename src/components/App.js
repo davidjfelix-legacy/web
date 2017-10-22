@@ -1,3 +1,4 @@
+import {Fabric} from 'office-ui-fabric-react'
 import React from 'react'
 import {connect} from 'react-redux'
 import {Route, Switch} from 'react-router'
@@ -12,7 +13,6 @@ import GroupContainer from './groups/GroupContainer'
 import NewGroupView from './groups/NewGroupView'
 import HomeView from './HomeView'
 import LoginView from './LoginView'
-import MeContainer from './MeContainer'
 import NewPerformanceView from './NewPerformanceView'
 import NewSeriesView from './NewSeriesView'
 import NewShowView from './NewShowView'
@@ -24,7 +24,6 @@ import ShowContainer from './ShowContainer'
 import UserContainer from './users/UserContainer'
 import NewVideoView from './videos/NewVideoView'
 import VideoView from './videos/VideoView'
-import {Fabric} from 'office-ui-fabric-react'
 
 
 injectGlobal`
@@ -61,7 +60,6 @@ const App = ({history}) => (
           <Route exact path='/' component={HomeView}/>
           <Route exact path='/auth/login' component={LoginView}/>
           <Route exact path='/auth/register' component={RegisterView}/>
-          <Route path='/me' component={MeContainer}/>
           <Route exact path='/groups/new' component={NewGroupView}/>
           <Route path='/groups/:groupId' component={GroupContainer}/>
           <Route exact path='/performances/new' component={NewPerformanceView}/>
