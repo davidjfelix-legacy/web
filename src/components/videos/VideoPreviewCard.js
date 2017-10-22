@@ -1,7 +1,6 @@
-import * as _ from 'lodash'
+import {DocumentCard, DocumentCardPreview, DocumentCardTitle} from 'office-ui-fabric-react'
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import {compose} from 'recompose'
 
 import {refreshVideo} from '../../actions/videos'
@@ -28,12 +27,27 @@ const enhance = compose(
   )
 )
 
-const VideoPreviewCard = ({videoId, videos}) => (
-  <div>
-    <Link to={`/videos/${videoId}`}>
-      {JSON.stringify(_.get(videos, videoId, {}))}
-    </Link>
-  </div>
+const VideoPreviewCard = (
+  {
+    videoId,
+    videos
+  }) => (
+  <DocumentCard onClickHref={`/videos/${videoId}`}>
+    <DocumentCardPreview
+      previewImages={[
+        {
+          previewIconProps: {iconName: 'Video', styles: {root: {fontSize: 42,}}},
+          width: 318,
+          height: 196
+        }
+      ]
+      }
+    />
+    <DocumentCardTitle
+      title='View and share files'
+      shouldTruncate={true}
+    />
+  </DocumentCard>
 )
 
 export default enhance(VideoPreviewCard)

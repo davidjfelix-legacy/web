@@ -2,13 +2,13 @@ import React from 'react'
 
 import VideoPreviewCard from '../videos/VideoPreviewCard'
 
+
 const VideosList = ({videoIds}) => (
-  <ul>{videoIds.map((videoId) => (
-    <li key={videoId}>
+  <div style={{display: 'flex', flexWrap: 'flex'}}>{videoIds.map((videoId) => (
+    <div key={videoId}>
       <VideoPreviewCard videoId={videoId}/>
-    </li>
-  ))
-  }</ul>
+    </div>
+  ))}</div>
 )
 
 export default VideosList
