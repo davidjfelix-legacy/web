@@ -3,41 +3,41 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {compose} from 'recompose'
 
-import {updateUser} from '../actions/users'
+import {updateGroup} from '../actions/groups'
 import {withDatabaseSubscribe, withLoading, withNotFound} from './hocs'
 import LoadingView from './LoadingView'
 import NotFoundView from './NotFoundView'
 
 
-const mapStateToProps = ({users}) => ({
-  users
+const mapStateToProps = ({groups}) => ({
+  groups
 })
 
 const enhance = compose(
   connect(mapStateToProps),
   withDatabaseSubscribe(
     'value',
-    (props) => (`users/${props.userId}`),
+    (props) => (`groups/${props.groupId}`),
     (props) => (snapshot) => (
-      props.dispatch(updateUser(
+      props.dispatch(updateGroup(
         {
-          userId: props.userId,
-          userSnapshot: snapshot.val()
+          groupId: props.groupId,
+          groupSnapshot: snapshot.val()
         }))
     )
   ),
   withLoading(
-    ({users, userId}) => !(_.has(users, userId)),
+    ({groups, groupId}) => !(_.has(groups, groupId)),
     LoadingView
   ),
   withNotFound(
-    ({users, userId}) => (userId in users) && users[userId] === null,
+    (props) => (props.groupId in props.groups) && props.groups[props.groupId] === null,
     NotFoundView
   ),
 )
 
-const Username = ({userId, users}) => (
-  <span>{_.get(users, `${userId}.username`, '[Not Found]')}</span>
+const Groupname = ({groupId, groups}) => (
+  <span>{groups[groupId]['group_name']}</span>
 )
 
-export default enhance(Username)
+export default enhance(Groupname)

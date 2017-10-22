@@ -1,12 +1,14 @@
 import * as _ from 'lodash'
+import {ChoiceGroup, TextField} from 'office-ui-fabric-react'
 import React from 'react'
 import {connect} from 'react-redux'
 import {compose, withHandlers, withProps} from 'recompose'
 
-import {refreshVideo, updateVideo} from '../../actions/videos'
-import EditableTextField from '../EditableTextField'
+import {refreshVideo, updateVideo, VideoOwnerTypes} from '../../actions/videos'
 import {withDatabaseSubscribe, withLoading} from '../hocs'
 import LoadingView from '../LoadingView'
+import Username from '../Username'
+import Groupname from '../Groupname'
 
 
 const mapStateToProps = ({videos}) => ({
@@ -20,21 +22,25 @@ const enhance = compose(
   })),
   withHandlers(
     {
-      onTitleChange: ({dispatch, videoId}) => event => {
+      onTitleChange: ({dispatch, videoId}) => newTitle => {
         dispatch(updateVideo(
           {
             videoId: videoId,
             videoDelta: {
-              title: event.target.value
+              title: newTitle
             }
           }
         ))
       },
-      onVideoSave: props => event => {
-        event.preventDefault()
-      },
-      toggleEdit: props => event => {
-        props.updateEdit(!props.edit)
+      onVideoTypeChange: ({dispatch, videoId}) => (_, newVideoType) => {
+        dispatch(updateVideo(
+          {
+            videoId: videoId,
+            videoDelta: {
+              video_type: newVideoType.key
+            }
+          }
+        ))
       }
     }),
   withDatabaseSubscribe(
@@ -58,38 +64,38 @@ const enhance = compose(
 const VideoView = (
   {
     onTitleChange,
-    onVideoSave,
-    title,
-    toggleEdit,
+    onVideoTypeChange,
     videos,
     videoId
   }) => (
   <div>
-    {JSON.stringify(_.get(videos, videoId, {}))}
-    <input type='button' onClick={toggleEdit} value='Edit'/>
-    <form onSubmit={onVideoSave}>
-      <EditableTextField
-        initialText={_.get(videos, `${videoId}.title`, '')}
-        placeholder='Title'
-        onChange={onTitleChange}
-      />
-      <label htmlFor='isStream'>Stream</label>
-      <input
-        id='isStream'
-        name='videoType'
-        type='radio'
-      />
-      <label htmlFor='isUpload'>Upload</label>
-      <input
-        id='isUpload'
-        name='videoType'
-        type='radio'
-      />
-      <input
-        type='submit'
-        value='Save'
-      />
-    </form>
+    {_.get(videos, `${videoId}.video_owner_type`, '') === VideoOwnerTypes.USER_VIDEO ?
+      <Username userId={_.get(videos, `${videoId}.owner_id`, '')}/> :
+      <Groupname groupId={_.get(videos, `${videoId}.owner_id`, '')}/>
+    }
+    <TextField
+      label='Video Title'
+      value={_.get(videos, `${videoId}.title`, '')}
+      onChanged={onTitleChange}
+    />
+    <ChoiceGroup
+      label='Video Type'
+      selectedKey={_.get(videos, `${videoId}.video_type`, '')}
+      options={[
+        {
+          key: 'STREAM',
+          text: 'Live Stream',
+          iconProps: {iconName: 'video'},
+        },
+        {
+          key: 'UPLOAD',
+          text: 'Upload Video',
+          iconProps: {iconName: 'Upload'},
+        }
+      ]}
+      required={true}
+      onChange={onVideoTypeChange}
+    />
   </div>
 )
 
