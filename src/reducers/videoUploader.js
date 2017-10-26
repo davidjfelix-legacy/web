@@ -12,17 +12,30 @@ const reducer = (state = initialState, {type, uploadId, storageTask, storageTask
     case ActionTypes.ADD_VIDEO_UPLOAD:
       return {
         ...state,
-        [uploadId]: {
-          storageTask,
-          storageTaskSnapshot,
+        isUploadPaneVisible: true,
+        uploads: {
+          ...state.uploads,
+          [uploadId]: {
+            storageTask,
+            storageTaskSnapshot,
+          }
         }
+      }
+    case ActionTypes.HIDE_UPLOAD_PANE:
+      return {
+        ...state,
+        isUploadPaneVisible: false,
+        isShowUploadPaneButtonVisible: true,
       }
     case ActionTypes.UPDATE_UPLOAD_PROGRESS:
       return {
         ...state,
-        [uploadId]: {
-          storageTask,
-          storageTaskSnapshot,
+        uploads: {
+          ...state.uploads,
+          [uploadId]: {
+            storageTask,
+            storageTaskSnapshot,
+          }
         }
       }
     default:

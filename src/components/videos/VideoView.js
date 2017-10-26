@@ -10,6 +10,7 @@ import Groupname from '../Groupname'
 import {withDatabaseSubscribe, withLoading} from '../hocs'
 import LoadingView from '../LoadingView'
 import Username from '../Username'
+import {Link} from 'react-router-dom'
 
 
 const mapStateToProps = ({auth, videos}) => ({
@@ -140,6 +141,7 @@ const VideoView = (
       </div> :
       ''
     }
+    <Link to='/uploads'>Uploads</Link>
   </div>
 )
 

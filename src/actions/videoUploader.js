@@ -6,6 +6,7 @@ import storage from '../storage'
 
 export const ActionTypes = {
   ADD_VIDEO_UPLOAD: 'ADD_VIDEO_UPLOAD',
+  HIDE_UPLOAD_PANE: 'HIDE_UPLOAD_PANE',
   UPDATE_UPLOAD_PROGRESS: 'UPDATE_UPLOAD_PROGRESS'
 }
 
@@ -46,3 +47,9 @@ export const addVideoUpload = ({userId, uploadFile}) => (dispatch) => {
     }
   )
 }
+
+export const hideUploadPane = () => (
+  {
+    type: ActionTypes.HIDE_UPLOAD_PANE,
+  }
+)

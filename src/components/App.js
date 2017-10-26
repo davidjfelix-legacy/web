@@ -1,4 +1,4 @@
-import {Fabric} from 'office-ui-fabric-react'
+import {Fabric, Layer, MessageBar} from 'office-ui-fabric-react'
 import React from 'react'
 import {connect} from 'react-redux'
 import {Route, Switch} from 'react-router'
@@ -7,6 +7,7 @@ import {compose, lifecycle} from 'recompose'
 import {injectGlobal} from 'styled-components'
 
 import {updateAuth} from '../actions/auth'
+import {hideUploadPane} from '../actions/videoUploader'
 import auth from '../auth'
 import '../css/App.css'
 import GroupContainer from './groups/GroupContainer'
@@ -21,10 +22,10 @@ import PerformanceContainer from './PerformanceContainer'
 import RegisterView from './RegisterView'
 import SeriesContainer from './SeriesContainer'
 import ShowContainer from './ShowContainer'
+import UploadsView from './UploadsView'
 import UserContainer from './users/UserContainer'
 import NewVideoView from './videos/NewVideoView'
 import VideoView from './videos/VideoView'
-import UploadsView from './UploadsView'
 
 
 injectGlobal`
@@ -37,22 +38,27 @@ injectGlobal`
   }
 `
 
-const enhance = compose(
-  connect(),
-  lifecycle({
-              componentWillMount() {
-                this.unsubscribeAuth = auth.onAuthStateChanged((user) => (
-                  this.props.dispatch(updateAuth({user}))
-                ))
-              },
+const mapStateToProps = ({videoUploader}) => ({
+  videoUploader,
+})
 
-              componentWillUnmount() {
-                this.unsubscribeAuth()
-              },
-            }),
+const enhance = compose(
+  connect(mapStateToProps),
+  lifecycle(
+    {
+      componentWillMount() {
+        this.unsubscribeAuth = auth.onAuthStateChanged((user) => (
+          this.props.dispatch(updateAuth({user}))
+        ))
+      },
+
+      componentWillUnmount() {
+        this.unsubscribeAuth()
+      },
+    }),
 )
 
-const App = ({history}) => (
+const App = ({dispatch, history, videoUploader}) => (
   <Fabric>
     <ConnectedRouter history={history}>
       <div>
@@ -77,6 +83,16 @@ const App = ({history}) => (
         </Switch>
       </div>
     </ConnectedRouter>
+    {videoUploader.isUploadPaneVisible ?
+      <Layer>
+        <MessageBar
+          onDismiss={() => dispatch(hideUploadPane())}
+        >
+          <UploadsView/>
+        </MessageBar>
+      </Layer> :
+      ''
+    }
   </Fabric>
 )
 
