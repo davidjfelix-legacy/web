@@ -1,15 +1,17 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import Groupname from '../Groupname'
+
 
 const UserGroupsList = ({userId, groupIds}) => (
-  <ul>{groupIds.map((groupId) => (
-    <li key={groupId}>
+  <div>{groupIds.map((groupId) => (
+    <div key={groupId}>
       <Link to={`/groups/${groupId}`}>
-        {groupId}
+        <Groupname groupId={groupId}/>
       </Link>
-    </li>
+    </div>
   ))
-  }</ul>
+  }</div>
 )
 
 export default UserGroupsList

@@ -5,6 +5,7 @@ import {compose} from 'recompose'
 
 import {refreshVideo} from '../../actions/videos'
 import {withDatabaseSubscribe} from '../hocs'
+import * as _ from 'lodash'
 
 
 const mapStateToProps = ({videos}) => ({
@@ -44,7 +45,7 @@ const VideoPreviewCard = (
       }
     />
     <DocumentCardTitle
-      title='View and share files'
+      title={_.get(videos, `${videoId}.title`, 'Untitled Video')}
       shouldTruncate={true}
     />
   </DocumentCard>

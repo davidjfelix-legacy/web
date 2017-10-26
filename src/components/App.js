@@ -24,6 +24,7 @@ import ShowContainer from './ShowContainer'
 import UserContainer from './users/UserContainer'
 import NewVideoView from './videos/NewVideoView'
 import VideoView from './videos/VideoView'
+import UploadsView from './UploadsView'
 
 
 injectGlobal`
@@ -68,6 +69,7 @@ const App = ({history}) => (
           <Route path='/series/:seriesNameId' component={SeriesContainer}/>
           <Route exact path='/shows/new' component={NewShowView}/>
           <Route path='/shows/:showNameId' component={ShowContainer}/>
+          <Route exact path='/uploads' component={UploadsView}/>
           <Route path='/users/:userId' component={UserContainer}/>
           <Route exact path='/videos/new' component={NewVideoView}/>
           <Route path='/videos/:videoId' component={VideoView}/>

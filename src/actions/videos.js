@@ -22,7 +22,9 @@ export const VideoOwnerTypes = {
 
 export const VideoStates = {
   UNINITIALIZED: 'UNINITIALIZED',
-  INITIALIZED: 'INITIALIZED',
+  UPLOADING: 'UPLOADING',
+  PROCESSING: 'PROCESSING',
+  READY: 'READY',
   PUBLISHED: 'PUBLISHED'
 }
 
@@ -40,9 +42,10 @@ export const createVideo = ({videoOwnerType, ownerId}) => (dispatch) => {
       groupVideoRef.set(true)
       break
     default:
-      return {
-        type: actionTypes.CREATE_VIDEO_ERROR
-      }
+      dispatch(
+        {
+          type: actionTypes.CREATE_VIDEO_ERROR
+        })
   }
 
   videoRef.set(
@@ -53,12 +56,13 @@ export const createVideo = ({videoOwnerType, ownerId}) => (dispatch) => {
     }
   )
   dispatch(push(`/videos/${videoRef.key}`))
-  return {
-    type: actionTypes.CREATE_VIDEO,
-    videoState: VideoStates.UNINITIALIZED,
-    videoOwnerType,
-    ownerId,
-  }
+  dispatch(
+    {
+      type: actionTypes.CREATE_VIDEO,
+      videoState: VideoStates.UNINITIALIZED,
+      videoOwnerType,
+      ownerId,
+    })
 }
 
 export const refreshVideo = ({videoId, videoSnapshot}) => ({

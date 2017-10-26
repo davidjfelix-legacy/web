@@ -12,6 +12,7 @@ import users from './users'
 import userVideos from './userVideos'
 import videos from './videos'
 import videoStreamsContainer from './videoStreams'
+import videoUploader from './videoUploader'
 
 
 export const rootReducer = combineReducers(
@@ -28,5 +29,6 @@ export const rootReducer = combineReducers(
     userVideos,
     videos,
     videoStreamsContainer,
+    videoUploader,
   }
 )

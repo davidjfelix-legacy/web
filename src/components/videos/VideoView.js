@@ -1,18 +1,20 @@
 import * as _ from 'lodash'
-import {ChoiceGroup, TextField} from 'office-ui-fabric-react'
+import {ChoiceGroup, DefaultButton, TextField} from 'office-ui-fabric-react'
 import React from 'react'
 import {connect} from 'react-redux'
-import {compose, withHandlers, withProps} from 'recompose'
+import {compose, withHandlers, withProps, withState} from 'recompose'
 
-import {refreshVideo, updateVideo, VideoOwnerTypes} from '../../actions/videos'
+import {refreshVideo, updateVideo, VideoOwnerTypes, VideoStates, VideoTypes} from '../../actions/videos'
+import {addVideoUpload} from '../../actions/videoUploader'
+import Groupname from '../Groupname'
 import {withDatabaseSubscribe, withLoading} from '../hocs'
 import LoadingView from '../LoadingView'
 import Username from '../Username'
-import Groupname from '../Groupname'
 
 
-const mapStateToProps = ({videos}) => ({
-  videos
+const mapStateToProps = ({auth, videos}) => ({
+  auth,
+  videos,
 })
 
 const enhance = compose(
@@ -20,8 +22,12 @@ const enhance = compose(
   withProps(({match}) => ({
     videoId: match.params.videoId,
   })),
+  withState('file', 'updateFile', ''),
   withHandlers(
     {
+      onFileChange: ({updateFile}) => event => {
+        updateFile(event.target.value)
+      },
       onTitleChange: ({dispatch, videoId}) => newTitle => {
         dispatch(updateVideo(
           {
@@ -29,6 +35,15 @@ const enhance = compose(
             videoDelta: {
               title: newTitle
             }
+          }
+        ))
+      },
+      onUpload: ({auth, dispatch, file}) => (event) => {
+        event.preventDefault()
+        dispatch(addVideoUpload(
+          {
+            userId: auth.user.uid,
+            uploadFile: event.target.elements.file.files[0]
           }
         ))
       },
@@ -63,7 +78,10 @@ const enhance = compose(
 
 const VideoView = (
   {
+    file,
+    onFileChange,
     onTitleChange,
+    onUpload,
     onVideoTypeChange,
     videos,
     videoId
@@ -96,6 +114,32 @@ const VideoView = (
       required={true}
       onChange={onVideoTypeChange}
     />
+    {(
+      (_.get(videos, `${videoId}.video_type`, '') === VideoTypes.UPLOAD) &&
+      (_.get(videos, `${videoId}.video_state`, '') === VideoStates.UNINITIALIZED)
+    ) ?
+      <div>
+        <form
+          id='upload-video'
+          onSubmit={onUpload}
+        />
+        <input
+          form='upload-video'
+          id='file'
+          type='file'
+          value={file}
+          onChange={onFileChange}
+        />
+        <DefaultButton
+          primary={true}
+          type='submit'
+          value='submit'
+          form='upload-video'
+          text='Upload'
+        />
+      </div> :
+      ''
+    }
   </div>
 )
 

@@ -1,8 +1,7 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {compose} from 'recompose'
-import Icon, {IconTypes} from "./Icon";
 
 
 export const styles = {
@@ -68,7 +67,7 @@ export const styles = {
     fontFamily: 'Arvo',
     fontStyle: 'normal',
     fontWeight: '400',
-    src: "local('Arvo'), url(https://fonts.gstatic.com/s/arvo/v9/rC7kKhY-eUDY-ucISTIf5PesZW2xOQ-xsNqO47m55DA.woff2) format('woff2')",
+    src: 'local(\'Arvo\'), url(https://fonts.gstatic.com/s/arvo/v9/rC7kKhY-eUDY-ucISTIf5PesZW2xOQ-xsNqO47m55DA.woff2) format(\'woff2\')',
     unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215',
   },
 }
@@ -84,7 +83,6 @@ const enhance = compose(
 const PageHeader = ({auth}) => (
   <nav style={styles.pageHeader}>
     <div style={styles.inner}>
-      <Icon icon={IconTypes.MENU} color="#fff"/>
       <Link style={styles.brand} to='/'>
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 45'>
           <defs>
@@ -101,8 +99,10 @@ const PageHeader = ({auth}) => (
               <stop offset='100%' style={styles.gradient.pink}/>
             </linearGradient>
           </defs>
-          <text x='5' y='40' fontFamily='Arvo' fontWeight='bold' fontStyle='italic' fontSize='40' fill='url(#grad1)'
-                style={styles.text}>iotv
+          <text
+            x='5' y='40' fontFamily='Arvo' fontWeight='bold' fontStyle='italic' fontSize='40' fill='url(#grad1)'
+            style={styles.text}
+          >iotv
           </text>
         </svg>
       </Link>

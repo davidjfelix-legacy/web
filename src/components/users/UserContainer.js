@@ -22,37 +22,6 @@ const mapStateToProps = ({users}) => ({
   users
 })
 
-const styles = {
-  view: {
-    display: 'flex'
-  },
-  nav: {
-    display: 'flex',
-    flexDirection: 'row',
-    padding: '1em',
-  },
-  activeLink: {
-    extend: 'link',
-    borderBottom: '4px solid #BBDEFB',
-    padding: '1em',
-  },
-  link: {
-    borderBottom: '2px solid #222222',
-    color: '#666',
-    padding: '1em',
-    textDecoration: 'none',
-    '&:hover': {
-      color: '#222',
-    },
-    '&:visited:hover': {
-      color: '#222',
-    },
-    '&:visited': {
-      color: '#666',
-    }
-  },
-}
-
 const enhance = compose(
   connect(mapStateToProps),
   withProps(({match}) => ({
@@ -94,9 +63,8 @@ export const navLinks = {
 }
 
 const UserContainer = ({basePath, baseUrl, children, userId, users}) => (
-  <div style={styles.view}>
+  <div>
     <img
-      style={{alignSelf: 'flex-start', borderRadius: '0.5em'}}
       src='http://placekitten.com/g/200/200'
       alt={`${users[userId].username}`}
     />
