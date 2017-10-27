@@ -24,7 +24,6 @@ import SeriesContainer from './SeriesContainer'
 import ShowContainer from './ShowContainer'
 import UploadsView from './UploadsView'
 import UserContainer from './users/UserContainer'
-import NewVideoView from './videos/NewVideoView'
 import VideoView from './videos/VideoView'
 
 
@@ -77,7 +76,6 @@ const App = ({dispatch, history, videoUploader}) => (
           <Route path='/shows/:showNameId' component={ShowContainer}/>
           <Route exact path='/uploads' component={UploadsView}/>
           <Route path='/users/:userId' component={UserContainer}/>
-          <Route exact path='/videos/new' component={NewVideoView}/>
           <Route path='/videos/:videoId' component={VideoView}/>
           <Route component={HomeView}/>
         </Switch>

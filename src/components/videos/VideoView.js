@@ -1,5 +1,5 @@
 import * as _ from 'lodash'
-import {ChoiceGroup, DefaultButton, TextField} from 'office-ui-fabric-react'
+import {ChoiceGroup, DefaultButton, Label, TextField} from 'office-ui-fabric-react'
 import React from 'react'
 import {connect} from 'react-redux'
 import {compose, withHandlers, withProps, withState} from 'recompose'
@@ -10,7 +10,6 @@ import Groupname from '../Groupname'
 import {withDatabaseSubscribe, withLoading} from '../hocs'
 import LoadingView from '../LoadingView'
 import Username from '../Username'
-import {Link} from 'react-router-dom'
 
 
 const mapStateToProps = ({auth, videos}) => ({
@@ -39,12 +38,21 @@ const enhance = compose(
           }
         ))
       },
-      onUpload: ({auth, dispatch, file}) => (event) => {
+      onUpload: ({auth, dispatch, file, videoId}) => (event) => {
         event.preventDefault()
         dispatch(addVideoUpload(
           {
             userId: auth.user.uid,
             uploadFile: event.target.elements.file.files[0]
+          }
+        ))
+        //FIXME: validate that a file is picked at some point
+        dispatch(updateVideo(
+          {
+            videoId: videoId,
+            videoDelta: {
+              video_state: VideoStates.UPLOADING
+            }
           }
         ))
       },
@@ -89,8 +97,14 @@ const VideoView = (
   }) => (
   <div>
     {_.get(videos, `${videoId}.video_owner_type`, '') === VideoOwnerTypes.USER_VIDEO ?
-      <Username userId={_.get(videos, `${videoId}.owner_id`, '')}/> :
-      <Groupname groupId={_.get(videos, `${videoId}.owner_id`, '')}/>
+      <Label>
+        {'Username: '}
+        <Username userId={_.get(videos, `${videoId}.owner_id`, '')}/>
+      </Label> :
+      <Label>
+        {'Groupname: '}
+        <Groupname groupId={_.get(videos, `${videoId}.owner_id`, '')}/>
+      </Label>
     }
     <TextField
       label='Video Title'
@@ -141,7 +155,6 @@ const VideoView = (
       </div> :
       ''
     }
-    <Link to='/uploads'>Uploads</Link>
   </div>
 )
 
