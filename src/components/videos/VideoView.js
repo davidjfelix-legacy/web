@@ -10,6 +10,7 @@ import Groupname from '../Groupname'
 import {withDatabaseSubscribe, withLoading} from '../hocs'
 import LoadingView from '../LoadingView'
 import Username from '../Username'
+import {Link} from 'react-router-dom'
 
 
 const mapStateToProps = ({auth, videos}) => ({
@@ -99,13 +100,20 @@ const VideoView = (
     {_.get(videos, `${videoId}.video_owner_type`, '') === VideoOwnerTypes.USER_VIDEO ?
       <Label>
         {'Username: '}
-        <Username userId={_.get(videos, `${videoId}.owner_id`, '')}/>
+        <Link to={`/users/${_.get(videos, `${videoId}.owner_id`, '')}`}>
+          <Username userId={_.get(videos, `${videoId}.owner_id`, '')}/>
+        </Link>
       </Label> :
       <Label>
         {'Groupname: '}
-        <Groupname groupId={_.get(videos, `${videoId}.owner_id`, '')}/>
+        <Link to={`/users/${_.get(videos, `${videoId}.owner_id`, '')}`}>
+          <Groupname groupId={_.get(videos, `${videoId}.owner_id`, '')}/>
+        </Link>
       </Label>
     }
+    <Label>
+      {}
+    </Label>
     <TextField
       label='Video Title'
       value={_.get(videos, `${videoId}.title`, '')}

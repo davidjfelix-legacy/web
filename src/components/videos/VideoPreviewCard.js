@@ -39,10 +39,9 @@ const VideoPreviewCard = (
         {
           previewIconProps: {iconName: 'Video', styles: {root: {fontSize: 42,}}},
           width: 318,
-          height: 196
+          height: 196,
         }
-      ]
-      }
+      ]}
     />
     <DocumentCardTitle
       title={_.get(videos, `${videoId}.title`, 'Untitled Video')}
