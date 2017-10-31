@@ -1,16 +1,17 @@
 import * as _ from 'lodash'
-import {ChoiceGroup, DefaultButton, Label, TextField} from 'office-ui-fabric-react'
+import {ChoiceGroup, DefaultButton, Label} from 'office-ui-fabric-react'
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {compose, withHandlers, withProps, withState} from 'recompose'
 
 import {refreshVideo, updateVideo, VideoOwnerTypes, VideoStates, VideoTypes} from '../../actions/videos'
 import {addVideoUpload} from '../../actions/videoUploader'
+import {EditableLabel} from '../EditableLabel'
 import Groupname from '../Groupname'
 import {withDatabaseSubscribe, withLoading} from '../hocs'
 import LoadingView from '../LoadingView'
 import Username from '../Username'
-import {Link} from 'react-router-dom'
 
 
 const mapStateToProps = ({auth, videos}) => ({
@@ -111,10 +112,8 @@ const VideoView = (
         </Link>
       </Label>
     }
-    <Label>
-      {}
-    </Label>
-    <TextField
+    <EditableLabel
+      canEdit={false}
       label='Video Title'
       value={_.get(videos, `${videoId}.title`, '')}
       onChanged={onTitleChange}
