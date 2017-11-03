@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {compose} from 'recompose'
+import styled from 'styled-components'
+import * as _ from 'lodash'
 
 
 export const styles = {
@@ -41,35 +43,6 @@ export const styles = {
     strokeLinecap: 'butt',
     strokeLinejoin: 'miter',
   },
-  gradient: {
-    blue: {
-      stopColor: '#1976D2',
-      stopOpacity: '1',
-    },
-    lightBlue: {
-      stopColor: '#BBDEFB',
-      stopOpacity: '1',
-    },
-    violet: {
-      stopColor: '#210041',
-      stopOpacity: '1',
-    },
-    magenta: {
-      stopColor: '#9C27B0',
-      stopOpacity: '1',
-    },
-    pink: {
-      stopColor: '#E1BEE7',
-      stopOpacity: '1',
-    },
-  },
-  '@font-face': {
-    fontFamily: 'Arvo',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    src: 'local(\'Arvo\'), url(https://fonts.gstatic.com/s/arvo/v9/rC7kKhY-eUDY-ucISTIf5PesZW2xOQ-xsNqO47m55DA.woff2) format(\'woff2\')',
-    unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215',
-  },
 }
 
 const mapStateToProps = ({auth}) => ({
@@ -80,6 +53,32 @@ const enhance = compose(
   connect(mapStateToProps),
 )
 
+
+const BlueStop = styled.stop`
+  stop-color: #1976D2;
+  stop-opacity: 1;
+`
+
+const LightBlueStop = styled.stop`
+  stop-color: #BBDEFB;
+  stop-opacity: 1;
+`
+
+const MagentaStop = styled.stop`
+  stop-color: #9C27B0;
+  stop-opacity: 1;
+`
+
+const VioletStop = styled.stop`
+  stop-color: #210041;
+  stop-opacity: 1;
+`
+
+const PinkStop = styled.stop`
+  stop-color: #E1BEE7;
+  stop-opacity: 1;
+`
+
 const PageHeader = ({auth}) => (
   <nav style={styles.pageHeader}>
     <div style={styles.inner}>
@@ -87,16 +86,16 @@ const PageHeader = ({auth}) => (
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 45'>
           <defs>
             <linearGradient id='grad1' x1='0%' y1='20%' x2='0%' y2='85%'>
-              <stop offset='0%' style={styles.gradient.blue}/>
-              <stop offset='40%' style={styles.gradient.blue}/>
-              <stop offset='40.1%' style={styles.gradient.lightBlue}/>
-              <stop offset='50%' style={styles.gradient.lightBlue}/>
-              <stop offset='50.1%' style={styles.gradient.violet}/>
-              <stop offset='63%' style={styles.gradient.violet}/>
-              <stop offset='63.1%' style={styles.gradient.magenta}/>
-              <stop offset='79%' style={styles.gradient.magenta}/>
-              <stop offset='79.1%' style={styles.gradient.pink}/>
-              <stop offset='100%' style={styles.gradient.pink}/>
+              <BlueStop offset='0%'/>
+              <BlueStop offset='40%'/>
+              <LightBlueStop offset='40.1%'/>
+              <LightBlueStop offset='50%'/>
+              <VioletStop offset='50.1%'/>
+              <VioletStop offset='63%'/>
+              <MagentaStop offset='63.1%'/>
+              <MagentaStop offset='79%'/>
+              <PinkStop offset='79.1%'/>
+              <PinkStop offset='100%'/>
             </linearGradient>
           </defs>
           <text
@@ -107,7 +106,7 @@ const PageHeader = ({auth}) => (
         </svg>
       </Link>
     </div>
-    {(Object.keys(auth).length !== 0) && (auth.user !== null) ?
+    {_.has(auth, 'user') ?
       <Link style={styles.profile} to={`/users/${auth.user.uid}`}>{auth.user.email}</Link> :
       <Link style={styles.profile} to='/auth/login'>Sign in</Link>}
   </nav>
