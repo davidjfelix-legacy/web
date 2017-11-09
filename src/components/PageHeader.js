@@ -6,18 +6,8 @@ import {compose} from 'recompose'
 import styled from 'styled-components'
 
 import Logo from './Logo.js'
+import {Persona, PersonaInitialsColor, PersonaSize} from 'office-ui-fabric-react'
 
-
-export const styles = {
-  inner: {
-    alignItems: 'center',
-    display: 'flex',
-  },
-  profile: {
-    color: 'white',
-    paddingRight: '1em'
-  },
-}
 
 const Nav = styled.nav`
     align-items: center;
@@ -28,7 +18,7 @@ const Nav = styled.nav`
     width: 100%;
 `
 
-const Brand = styled(Link)`
+const BrandLink = styled(Link)`
     color: white;
     background-color: #212121;
     display: inline-block;
@@ -41,6 +31,20 @@ const Brand = styled(Link)`
     width: 80px;
 `
 
+const Inner = styled.div`
+  align-items: center;
+  display: flex;
+`
+
+const SignInLink = styled(Link)`
+  color: white;
+  padding-right: 1em;
+`
+
+const PersonaLink = styled(Link)`
+  text-decoration: none;
+`
+
 const mapStateToProps = ({auth}) => ({
   auth
 })
@@ -51,14 +55,21 @@ const enhance = compose(
 
 const PageHeader = ({auth}) => (
   <Nav>
-    <div style={styles.inner}>
-      <Brand to='/'>
+    <Inner>
+      <BrandLink to='/'>
         <Logo/>
-      </Brand>
-    </div>
+      </BrandLink>
+    </Inner>
     {_.has(auth, 'user') ?
-      <Link style={styles.profile} to={`/users/${auth.user.uid}`}>{auth.user.email}</Link> :
-      <Link style={styles.profile} to='/auth/login'>Sign in</Link>}
+      <PersonaLink to={`/users/${auth.user.uid}`}>
+        <Persona
+          imageUrl={'http://placekitten.com/g/50/50'}
+          initialsColor={PersonaInitialsColor.darkBlue}
+          imageInitials={'ME'}
+          size={PersonaSize.extraSmall}/>
+      </PersonaLink> :
+      <SignInLink to='/auth/login'>Sign in</SignInLink>
+    }
   </Nav>
 )
 
