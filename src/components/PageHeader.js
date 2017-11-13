@@ -60,7 +60,7 @@ const PageHeader = ({auth}) => (
         <Logo/>
       </BrandLink>
     </Inner>
-    {_.has(auth, 'user') ?
+    {_.has(auth, 'user') && _.has(auth, 'user.uid') ?
       <PersonaLink to={`/users/${auth.user.uid}`}>
         <Persona
           imageUrl={'http://placekitten.com/g/50/50'}

@@ -30,24 +30,27 @@ const enhance = compose(
 
 const VideoPreviewCard = (
   {
+    className = '',
     videoId,
     videos
   }) => (
-  <DocumentCard onClickHref={`/videos/${videoId}`}>
-    <DocumentCardPreview
-      previewImages={[
-        {
-          previewIconProps: {iconName: 'Video', styles: {root: {fontSize: 42,}}},
-          width: 318,
-          height: 196,
-        }
-      ]}
-    />
-    <DocumentCardTitle
-      title={_.get(videos, `${videoId}.title`, 'Untitled Video')}
-      shouldTruncate={true}
-    />
-  </DocumentCard>
+  <div className={className}>
+    <DocumentCard onClickHref={`/videos/${videoId}`}>
+      <DocumentCardPreview
+        previewImages={[
+          {
+            previewIconProps: {iconName: 'Video', styles: {root: {fontSize: 42,}}},
+            width: 318,
+            height: 196,
+          }
+        ]}
+      />
+      <DocumentCardTitle
+        title={_.get(videos, `${videoId}.title`, 'Untitled Video')}
+        shouldTruncate={true}
+      />
+    </DocumentCard>
+  </div>
 )
 
 export default enhance(VideoPreviewCard)
