@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Route, Switch} from 'react-router'
 import {NavLink} from 'react-router-dom'
 import {compose, withProps} from 'recompose'
+import styled from 'styled-components'
 
 import {updateUser} from '../../actions/users'
 import {withDatabaseSubscribe, withLoading, withNotFound} from '../hocs'
@@ -17,6 +18,12 @@ import UserSeries from './UserSeries'
 import UserShows from './UserShows'
 import UserVideosView from './UserVideosView'
 
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`
 
 const mapStateToProps = ({users}) => ({
   users
@@ -63,7 +70,7 @@ export const navLinks = {
 }
 
 const UserContainer = ({basePath, baseUrl, children, userId, users}) => (
-  <div>
+  <Container>
     <img
       src='http://placekitten.com/g/200/200'
       alt={`${users[userId].username}`}
@@ -88,7 +95,7 @@ const UserContainer = ({basePath, baseUrl, children, userId, users}) => (
       <Route path={`${basePath}/playlists`} component={UserPlaylists}/>
       <Route path={`${basePath}/`} component={UserOverview}/>
     </Switch>
-  </div>
+  </Container>
 )
 
 export default enhance(UserContainer)
