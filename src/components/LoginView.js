@@ -4,11 +4,35 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {replace} from 'react-router-redux'
 import {compose, withHandlers, withProps, withState} from 'recompose'
+import styled from 'styled-components'
 
 import {createOrUpdateUserProfile} from '../actions/users'
 import auth, {facebookProvider, googleProvider} from '../auth'
 import {ensureNotAuthenticated} from './hocs'
+import {DefaultButton, TextField} from 'office-ui-fabric-react'
 
+
+const Container = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  justify-content: center;
+  padding-top: 10em;
+`
+
+const FormButton = styled(DefaultButton)`
+  display: flex;
+  justify-content: center;
+  margin: 0.5em;
+  width: 25em;
+`
+
+const FormTextField = styled(TextField)`
+  display: block;
+  margin: 0.5em;
+  width: 25em;
+`
 
 const mapStateToProps = ({auth}) => ({
   auth
@@ -27,32 +51,26 @@ const enhance = compose(
   withState('password', 'updatePassword', ''),
   withHandlers(
     {
-      onEmailChange: props => event => {
-        props.updateEmail(event.target.value)
-      },
-      onPasswordChange: props => event => {
-        props.updatePassword(event.target.value)
-      },
-      onEmailSubmit: props => event => {
-        event.preventDefault()
-        auth.signInWithEmailAndPassword(props.email, props.password)
+      onEmailChange: ({updateEmail}) => newValue => (updateEmail(newValue)),
+      onPasswordChange: ({updatePassword}) => newValue => (updatePassword(newValue)),
+      onEmailSubmit: ({dispatch, email, password, redirectUrl}) => () => (
+        auth.signInWithEmailAndPassword(email, password)
           .then(
-            props.dispatch(replace(props.redirectUrl))
+            dispatch(replace(redirectUrl))
           )
-      },
-      onFacebookSubmit: props => event => {
-        event.preventDefault()
+      ),
+      onFacebookSubmit: ({dispatch, redirectUrl}) => () => (
         auth.signInWithPopup(facebookProvider)
           .then(
             (userCredential) => {
-              props.dispatch(createOrUpdateUserProfile(
+              dispatch(createOrUpdateUserProfile(
                 {
                   user: userCredential.user,
                   profile: {
                     display_name: userCredential.user.displayName
                   },
                 }))
-              props.dispatch(replace(props.redirectUrl))
+              dispatch(replace(redirectUrl))
             }
           )
           .catch(
@@ -60,21 +78,20 @@ const enhance = compose(
               // Display Error
             }
           )
-      },
-      onGoogleSubmit: props => event => {
-        event.preventDefault()
+      ),
+      onGoogleSubmit: ({dispatch, redirectUrl}) => () => (
         auth.signInWithPopup(googleProvider)
           .then(
             (userCredential) => {
               auth.signInWithCredential()
-              props.dispatch(createOrUpdateUserProfile(
+              dispatch(createOrUpdateUserProfile(
                 {
                   user: userCredential.user,
                   profile: {
                     display_name: userCredential.user.displayName
                   },
                 }))
-              props.dispatch(replace(props.redirectUrl))
+              dispatch(replace(redirectUrl))
             }
           )
           .catch(
@@ -82,50 +99,44 @@ const enhance = compose(
               // Display Error
             }
           )
-      },
+      ),
     })
 )
 
 const LoginView = ({email, password, onEmailChange, onPasswordChange, onEmailSubmit, onFacebookSubmit, onGoogleSubmit}) => (
-  <div>
-    <form id='emailPassword' onSubmit={onEmailSubmit}/>
-    <input
-      form='emailPassword'
-      id='email'
-      name='email'
+  <Container>
+    <FormTextField
+      label='Email'
       type='email'
       placeholder='Email'
       value={email}
-      onChange={onEmailChange}
+      onChanged={onEmailChange}
     />
-    <input
-      form='emailPassword'
-      id='password'
+    <FormTextField
+      label='Password'
       name='password'
       type='password'
       placeholder='Password'
       value={password}
-      onChange={onPasswordChange}
+      onChanged={onPasswordChange}
     />
-    <input
-      form='emailPassword'
-      type='submit'
-      value='Sign In'
+    <FormButton
+      text='Sign In'
+      primary={true}
+      onClick={onEmailSubmit}
     />
-    <form id='facebook' onSubmit={onFacebookSubmit}/>
-    <input
-      form='facebook'
-      type='submit'
-      value='Sign in with Facebook'
+    <FormButton
+      text='Sign in with Facebook'
+      primary={true}
+      onClick={onFacebookSubmit}
     />
-    <form id='google' onSubmit={onGoogleSubmit}/>
-    <input
-      form='google'
-      type='submit'
-      value='Sign in with Google'
+    <FormButton
+      text='Sign in with Google'
+      primary={true}
+      onClick={onGoogleSubmit}
     />
     <Link to='/auth/register'>Register</Link>
-  </div>
+  </Container>
 )
 
 export default enhance(LoginView)

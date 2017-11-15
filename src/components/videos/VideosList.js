@@ -15,7 +15,8 @@ const Card = styled(VideoPreviewCard)`
   display: flex;
   flex: 1;
   justify-content: center;
-  margin: 1em;
+  margin: 0.5em;
+  flex-grow: 0;
 `
 
 const VideosList = ({videoIds}) => (
