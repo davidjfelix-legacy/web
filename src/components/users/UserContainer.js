@@ -21,6 +21,12 @@ import UserVideosView from './UserVideosView'
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+`
+
+const NonSwitchedContent = styled.div`
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
 `
@@ -71,20 +77,22 @@ export const navLinks = {
 
 const UserContainer = ({basePath, baseUrl, children, userId, users}) => (
   <Container>
-    <img
-      src='http://placekitten.com/g/200/200'
-      alt={`${users[userId].username}`}
-    />
-    <div>
-      <NavLink to={baseUrl}>{navLinks.overview}</NavLink>
-      <NavLink to={`${baseUrl}/videos`}>{navLinks.videos}</NavLink>
-      <NavLink to={`${baseUrl}/groups`}>{navLinks.groups}</NavLink>
-      <NavLink to={`${baseUrl}/following`}>{navLinks.following}</NavLink>
-      <NavLink to={`${baseUrl}/followers`}>{navLinks.followers}</NavLink>
-      <NavLink to={`${baseUrl}/shows`}>{navLinks.shows}</NavLink>
-      <NavLink to={`${baseUrl}/series`}>{navLinks.series}</NavLink>
-      <NavLink to={`${baseUrl}/playlists`}>{navLinks.playlists}</NavLink>
-    </div>
+    <NonSwitchedContent>
+      <img
+        src='http://placekitten.com/g/200/200'
+        alt={`${users[userId].username}`}
+      />
+      <div>
+        <NavLink to={baseUrl}>{navLinks.overview}</NavLink>
+        <NavLink to={`${baseUrl}/videos`}>{navLinks.videos}</NavLink>
+        <NavLink to={`${baseUrl}/groups`}>{navLinks.groups}</NavLink>
+        <NavLink to={`${baseUrl}/following`}>{navLinks.following}</NavLink>
+        <NavLink to={`${baseUrl}/followers`}>{navLinks.followers}</NavLink>
+        <NavLink to={`${baseUrl}/shows`}>{navLinks.shows}</NavLink>
+        <NavLink to={`${baseUrl}/series`}>{navLinks.series}</NavLink>
+        <NavLink to={`${baseUrl}/playlists`}>{navLinks.playlists}</NavLink>
+      </div>
+    </NonSwitchedContent>
     <Switch>
       <Route path={`${basePath}/videos`} component={UserVideosView}/>
       <Route path={`${basePath}/groups`} component={UserGroups}/>
