@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Route, Switch} from 'react-router'
 import {NavLink} from 'react-router-dom'
 import {compose, withProps} from 'recompose'
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 
 import {updateUser} from '../../actions/users'
 import {withDatabaseSubscribe, withLoading, withNotFound} from '../hocs'
