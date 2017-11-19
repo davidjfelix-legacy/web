@@ -1,19 +1,21 @@
 import * as _ from 'lodash'
-import {IconButton, Panel, Persona, PersonaInitialsColor, PersonaSize} from 'office-ui-fabric-react'
+import {IconButton, Persona, PersonaInitialsColor, PersonaSize} from 'office-ui-fabric-react'
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {compose, withHandlers, withState} from 'recompose'
+import {compose} from 'recompose'
 import styled from 'styled-components'
 
 import Logo from './Logo.js'
 
 
+export const navHeight = '3em'
+
 const Nav = styled.nav`
     align-items: center;
     background-color: #212121;
     display: flex;
-    height: 3em;
+    height: ${navHeight};
     justify-content: space-between;
     width: 100%;
 `
@@ -47,28 +49,19 @@ const mapStateToProps = ({auth}) => ({
 
 const enhance = compose(
   connect(mapStateToProps),
-  withState('isPanelOpen', 'setIsPanelOpen', false),
-  withHandlers(
-    {
-      togglePanelOpen: ({isPanelOpen, setIsPanelOpen}) => () => {
-        setIsPanelOpen(!isPanelOpen)
-      },
-    }),
 )
 
 const PageHeader = (
   {
     auth,
-    isPanelOpen,
-    togglePanelOpen,
+    onClickMenu,
   }) => (
   <Nav>
     <Inner>
       <IconButton
-        onClick={togglePanelOpen}
+        onClick={onClickMenu}
         iconProps={{iconName: 'CollapseMenu', style: {color: 'white'}}}
       />
-      <Panel isOpen={isPanelOpen}>ContentGoesHere</Panel>
       <BrandLink to='/'>
         <Logo/>
       </BrandLink>

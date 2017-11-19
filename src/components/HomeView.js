@@ -4,7 +4,6 @@ import {compose} from 'recompose'
 
 import {refreshVideos} from '../actions/videos'
 import {withDatabaseSubscribe} from './hocs'
-import MenuLayout from './MenuLayout'
 import VideosList from './videos/VideosList'
 
 
@@ -24,14 +23,12 @@ const enhance = compose(
 )
 
 const HomeView = ({videos}) => (
-  <MenuLayout>
-    <div>
-      {videos === {} ? //FIXME: make this check work and provide a sensible default
-        <div>No videos found</div> :
-        <VideosList videoIds={Object.keys(videos)}/>
-      }
-    </div>
-  </MenuLayout>
+  <div>
+    {videos === {} ? //FIXME: make this check work and provide a sensible default
+      <div>No videos found</div> :
+      <VideosList videoIds={Object.keys(videos)}/>
+    }
+  </div>
 )
 
 export default enhance(HomeView)

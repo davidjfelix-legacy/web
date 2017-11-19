@@ -21,6 +21,7 @@ import UserVideosView from './UserVideosView'
 
 const Container = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   flex-wrap: wrap;
 `

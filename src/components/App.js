@@ -3,8 +3,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Route, Switch} from 'react-router'
 import {ConnectedRouter} from 'react-router-redux'
-import {compose, lifecycle} from 'recompose'
-import {injectGlobal} from 'styled-components'
+import {compose, lifecycle, withHandlers, withState} from 'recompose'
+import styled, {injectGlobal} from 'styled-components'
 
 import {updateAuth} from '../actions/auth'
 import {hideUploadPane} from '../actions/videoUploader'
@@ -17,7 +17,7 @@ import LoginView from './LoginView'
 import NewPerformanceView from './NewPerformanceView'
 import NewSeriesView from './NewSeriesView'
 import NewShowView from './NewShowView'
-import PageHeader from './PageHeader'
+import PageHeader, {navHeight} from './PageHeader'
 import PerformanceContainer from './PerformanceContainer'
 import RegisterView from './RegisterView'
 import SeriesContainer from './SeriesContainer'
@@ -37,12 +37,31 @@ injectGlobal`
   }
 `
 
+const Menu = styled.nav`
+  background-color: #d1d1d1;
+  height: calc(100vh - ${navHeight});
+  width: 25em;
+`
+
+const MenuLayout = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
 const mapStateToProps = ({videoUploader}) => ({
   videoUploader,
 })
 
 const enhance = compose(
   connect(mapStateToProps),
+  withState('isMenuVisible', 'setIsMenuVisible', false),
+  withHandlers(
+    {
+      toggleMenuVisible: ({isMenuVisible, setIsMenuVisible}) => () => {
+        setIsMenuVisible(!isMenuVisible)
+      },
+    }
+  ),
   lifecycle(
     {
       componentWillMount() {
@@ -57,28 +76,42 @@ const enhance = compose(
     }),
 )
 
-const App = ({dispatch, history, videoUploader}) => (
+const App = (
+  {
+    dispatch,
+    history,
+    isMenuVisible,
+    toggleMenuVisible,
+    videoUploader,
+  }) => (
   <Fabric>
     <ConnectedRouter history={history}>
       <div>
-        <PageHeader/>
-        <Switch>
-          <Route exact path='/' component={HomeView}/>
-          <Route exact path='/auth/login' component={LoginView}/>
-          <Route exact path='/auth/register' component={RegisterView}/>
-          <Route exact path='/groups/new' component={NewGroupView}/>
-          <Route path='/groups/:groupId' component={GroupContainer}/>
-          <Route exact path='/performances/new' component={NewPerformanceView}/>
-          <Route path='/performances/:performanceId' component={PerformanceContainer}/>
-          <Route exact path='/series/new' component={NewSeriesView}/>
-          <Route path='/series/:seriesNameId' component={SeriesContainer}/>
-          <Route exact path='/shows/new' component={NewShowView}/>
-          <Route path='/shows/:showNameId' component={ShowContainer}/>
-          <Route exact path='/uploads' component={UploadsView}/>
-          <Route path='/users/:userId' component={UserContainer}/>
-          <Route path='/videos/:videoId' component={VideoView}/>
-          <Route component={HomeView}/>
-        </Switch>
+        <PageHeader onClickMenu={toggleMenuVisible}/>
+        <MenuLayout>
+          {isMenuVisible &&
+          <Menu>
+            Test
+          </Menu>
+          }
+          <Switch>
+            <Route exact path='/' component={HomeView}/>
+            <Route exact path='/auth/login' component={LoginView}/>
+            <Route exact path='/auth/register' component={RegisterView}/>
+            <Route exact path='/groups/new' component={NewGroupView}/>
+            <Route path='/groups/:groupId' component={GroupContainer}/>
+            <Route exact path='/performances/new' component={NewPerformanceView}/>
+            <Route path='/performances/:performanceId' component={PerformanceContainer}/>
+            <Route exact path='/series/new' component={NewSeriesView}/>
+            <Route path='/series/:seriesNameId' component={SeriesContainer}/>
+            <Route exact path='/shows/new' component={NewShowView}/>
+            <Route path='/shows/:showNameId' component={ShowContainer}/>
+            <Route exact path='/uploads' component={UploadsView}/>
+            <Route path='/users/:userId' component={UserContainer}/>
+            <Route path='/videos/:videoId' component={VideoView}/>
+            <Route component={HomeView}/>
+          </Switch>
+        </MenuLayout>
       </div>
     </ConnectedRouter>
     {videoUploader.isUploadPaneVisible ?
