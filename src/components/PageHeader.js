@@ -1,12 +1,12 @@
 import * as _ from 'lodash'
+import {IconButton, Panel, Persona, PersonaInitialsColor, PersonaSize} from 'office-ui-fabric-react'
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {compose} from 'recompose'
+import {compose, withHandlers, withState} from 'recompose'
 import styled from 'styled-components'
 
 import Logo from './Logo.js'
-import {Persona, PersonaInitialsColor, PersonaSize} from 'office-ui-fabric-react'
 
 
 const Nav = styled.nav`
@@ -41,33 +41,47 @@ const SignInLink = styled(Link)`
   padding-right: 1em;
 `
 
-const PersonaLink = styled(Link)`
-  text-decoration: none;
-`
-
 const mapStateToProps = ({auth}) => ({
   auth
 })
 
 const enhance = compose(
   connect(mapStateToProps),
+  withState('isPanelOpen', 'setIsPanelOpen', false),
+  withHandlers(
+    {
+      togglePanelOpen: ({isPanelOpen, setIsPanelOpen}) => () => {
+        setIsPanelOpen(!isPanelOpen)
+      },
+    }),
 )
 
-const PageHeader = ({auth}) => (
+const PageHeader = (
+  {
+    auth,
+    isPanelOpen,
+    togglePanelOpen,
+  }) => (
   <Nav>
     <Inner>
+      <IconButton
+        onClick={togglePanelOpen}
+        iconProps={{iconName: 'CollapseMenu', style: {color: 'white'}}}
+      />
+      <Panel isOpen={isPanelOpen}>ContentGoesHere</Panel>
       <BrandLink to='/'>
         <Logo/>
       </BrandLink>
     </Inner>
     {_.has(auth, 'user') && _.has(auth, 'user.uid') ?
-      <PersonaLink to={`/users/${auth.user.uid}`}>
+      <Link to={`/users/${auth.user.uid}`}>
         <Persona
           imageUrl={'http://placekitten.com/g/50/50'}
           initialsColor={PersonaInitialsColor.darkBlue}
           imageInitials={'ME'}
-          size={PersonaSize.extraSmall}/>
-      </PersonaLink> :
+          size={PersonaSize.extraSmall}
+        />
+      </Link> :
       <SignInLink to='/auth/login'>Sign in</SignInLink>
     }
   </Nav>
