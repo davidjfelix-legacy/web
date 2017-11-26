@@ -129,30 +129,35 @@ const UserContainer = ({basePath, baseUrl, children, userId, users}) => (
         </ProfileNavLink>
         <ProfileNavLink
           activeClassName={activeProfileNavLinkClassName}
+          exact
           to={`${baseUrl}/videos`}
         >
           {navLinks.videos}
         </ProfileNavLink>
         <ProfileNavLink
           activeClassName={activeProfileNavLinkClassName}
+          exact
           to={`${baseUrl}/groups`}
         >
           {navLinks.groups}
         </ProfileNavLink>
         <ProfileNavLink
           activeClassName={activeProfileNavLinkClassName}
+          exact
           to={`${baseUrl}/following`}
         >
           {navLinks.following}
         </ProfileNavLink>
         <ProfileNavLink
           activeClassName={activeProfileNavLinkClassName}
+          exact
           to={`${baseUrl}/followers`}
         >
           {navLinks.followers}
         </ProfileNavLink>
         <ProfileNavLink
           activeClassName={activeProfileNavLinkClassName}
+          exact
           to={`${baseUrl}/shows`}
         >
           {navLinks.shows}

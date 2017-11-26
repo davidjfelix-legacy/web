@@ -10,6 +10,7 @@ const Container = styled.div`
 `
 
 
+// FIXME: center inside of outer container somehow
 const LoadingView = () => (
   <Container>
     <Spinner label='Loading...'/>
