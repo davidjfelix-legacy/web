@@ -1,11 +1,13 @@
+import * as _ from 'lodash'
 import React from 'react'
 import {connect} from 'react-redux'
-import {Route, Switch} from 'react-router'
-import {NavLink} from 'react-router-dom'
 import {compose, withProps} from 'recompose'
 
 import {updateGroup} from '../../actions/groups'
-import {withDatabaseSubscribe} from '../hocs'
+import {withDatabaseSubscribe, withLoading, withNotFound} from '../hocs'
+import LoadingView from '../LoadingView'
+import NotFoundView from '../NotFoundView'
+import ProfileView from '../profile/ProfileView'
 import GroupMembersView from './GroupMembersView'
 import GroupPerformancesView from './GroupPerformancesView'
 import GroupRolesView from './GroupRolesView'
@@ -27,32 +29,80 @@ const enhance = compose(
   })),
   withDatabaseSubscribe(
     'value',
-    (props) => (`groups/${props.groupId}`),
-    (props) => (snapshot) => (props.dispatch(updateGroup({
-                                                           groupId: props.groupId,
-                                                           groupSnapshot: snapshot.val(),
-                                                         }
-    )))
-  )
+    ({groupId}) => (`groups/${groupId}`),
+    ({dispatch, groupId}) => (snapshot) => (
+      dispatch(updateGroup(
+        {
+          groupId: groupId,
+          groupSnapshot: snapshot.val(),
+        }
+      )))
+  ),
+  withLoading(
+    ({groupId, groups}) => !(_.has(groups, groupId)),
+    LoadingView,
+  ),
+  withNotFound(
+    ({groupId, groups}) => (_.isNull(_.get(groups, groupId, null))),
+    NotFoundView,
+  ),
 )
 
-const GroupContainer = ({basePath, baseUrl, groupId}) => (
-  <div>
-    <NavLink to={`${baseUrl}/members`}>members</NavLink>
-    <NavLink to={`${baseUrl}/roles`}>roles</NavLink>
-    <NavLink to={`${baseUrl}/series`}>series</NavLink>
-    <NavLink to={`${baseUrl}/shows`}>shows</NavLink>
-    <NavLink to={`${baseUrl}/performances`}>performances</NavLink>
-    <NavLink to={`${baseUrl}/videos`}>videos</NavLink>
-    <Switch>
-      <Route path={`${basePath}/members`} component={GroupMembersView}/>
-      <Route path={`${basePath}/roles`} component={GroupRolesView}/>
-      <Route path={`${basePath}/series`} component={GroupSeriesView}/>
-      <Route path={`${basePath}/shows`} component={GroupShowsView}/>
-      <Route path={`${basePath}/performances`} component={GroupPerformancesView}/>
-      <Route path={`${basePath}/videos`} component={GroupVideosView}/>
-    </Switch>
-  </div>
+export const navLinks = {
+  overview: 'Overview',
+  members: 'Members',
+  roles: 'Roles',
+  series: 'Series',
+  shows: 'Shows',
+  performances: 'Performances',
+  videos: 'Videos',
+}
+
+const GroupContainer = (
+  {
+    basePath,
+    baseUrl,
+    groupId,
+    groups,
+  }) => (
+  <ProfileView
+    basePath={basePath}
+    baseUrl={baseUrl}
+    baseView={{
+      component: GroupMembersView,
+      linkText: navLinks.overview,
+    }}
+    image={{
+      src: 'http://placekitten.com/g/200/200',
+      alt: `${_.get(groups, `${groupId}.groupname`, 'group')}\'s avatar`,
+    }}
+    subViews={{
+      [navLinks.members]: {
+        path: 'members',
+        component: GroupMembersView,
+      },
+      [navLinks.roles]: {
+        path: 'roles',
+        component: GroupRolesView,
+      },
+      [navLinks.series]: {
+        path: 'series',
+        component: GroupSeriesView,
+      },
+      [navLinks.shows]: {
+        path: 'shows',
+        component: GroupShowsView,
+      },
+      [navLinks.performances]: {
+        path: 'performances',
+        component: GroupPerformancesView,
+      },
+      [navLinks.videos]: {
+        path: 'videos',
+        component: GroupVideosView,
+      },
+    }}
+  />
 )
 
 export default enhance(GroupContainer)
