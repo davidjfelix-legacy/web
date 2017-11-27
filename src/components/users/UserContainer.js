@@ -78,7 +78,7 @@ const UserContainer = (
     }}
     image={{
       src: 'http://placekitten.com/g/200/200',
-      alt: `${_.get(users, `${userId}.username`, 'user')}\'s avatar`,
+      alt: `${_.get(users, `${userId}.username`, 'user')}'s avatar`,
     }}
     subViews={{
       [navLinks.videos]: {

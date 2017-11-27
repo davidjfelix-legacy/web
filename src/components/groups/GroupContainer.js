@@ -74,7 +74,7 @@ const GroupContainer = (
     }}
     image={{
       src: 'http://placekitten.com/g/200/200',
-      alt: `${_.get(groups, `${groupId}.groupname`, 'group')}\'s avatar`,
+      alt: `${_.get(groups, `${groupId}.groupname`, 'group')}'s avatar`,
     }}
     subViews={{
       [navLinks.members]: {
