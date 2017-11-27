@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 
 import configureStore from '../store'
 import PerformanceFrame from '../components/PerformanceFrame'
-import VideoStream from '../components/VideoStream'
+import VideoStream from '../components/videos/VideoStream'
 import PageHeader from "../components/PageHeader"
 
 const store = configureStore()

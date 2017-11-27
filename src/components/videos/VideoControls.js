@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Icon, { IconTypes } from './Icon'
+import Icon, { IconTypes } from '../Icon'
 import { videoStates } from './VideoStream'
 
 const style = {

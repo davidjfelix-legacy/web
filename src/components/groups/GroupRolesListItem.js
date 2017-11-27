@@ -6,7 +6,7 @@ import {compose, withHandlers, withProps} from 'recompose'
 
 import {addMemberToRole, updateRole} from '../../actions/roles'
 import {withDatabaseSubscribe} from '../hocs'
-import Username from '../Username'
+import Username from '../users/Username'
 
 
 const mapStateToProps = ({roles}) => ({

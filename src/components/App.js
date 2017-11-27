@@ -9,14 +9,10 @@ import styled, {injectGlobal} from 'styled-components'
 import {updateAuth} from '../actions/auth'
 import {hideUploadPane} from '../actions/videoUploader'
 import auth from '../auth'
-import '../css/App.css'
 import GroupContainer from './groups/GroupContainer'
 import NewGroupView from './groups/NewGroupView'
 import HomeView from './HomeView'
 import LoginView from './LoginView'
-import NewPerformanceView from './NewPerformanceView'
-import NewSeriesView from './NewSeriesView'
-import NewShowView from './NewShowView'
 import PageHeader, {navHeight} from './PageHeader'
 import PerformanceContainer from './PerformanceContainer'
 import RegisterView from './RegisterView'
@@ -100,11 +96,8 @@ const App = (
             <Route exact path='/auth/register' component={RegisterView}/>
             <Route exact path='/groups/new' component={NewGroupView}/>
             <Route path='/groups/:groupId' component={GroupContainer}/>
-            <Route exact path='/performances/new' component={NewPerformanceView}/>
             <Route path='/performances/:performanceId' component={PerformanceContainer}/>
-            <Route exact path='/series/new' component={NewSeriesView}/>
             <Route path='/series/:seriesNameId' component={SeriesContainer}/>
-            <Route exact path='/shows/new' component={NewShowView}/>
             <Route path='/shows/:showNameId' component={ShowContainer}/>
             <Route exact path='/uploads' component={UploadsView}/>
             <Route path='/users/:userId' component={UserContainer}/>

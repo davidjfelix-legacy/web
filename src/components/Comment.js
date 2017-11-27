@@ -5,7 +5,7 @@ import { compose } from 'recompose'
 import { updateComment } from '../actions/comments'
 
 import { withDatabaseSubscribe } from './hocs'
-import Username from './Username'
+import Username from './users/Username'
 
 const styles = {
   comment: {

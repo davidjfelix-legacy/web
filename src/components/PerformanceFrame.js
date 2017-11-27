@@ -1,8 +1,8 @@
 import React from 'react'
 import { compose, withHandlers, withState } from 'recompose'
 
-import VideoStream, { videoStates } from './VideoStream'
-import VideoControls from './VideoControls'
+import VideoStream, { videoStates } from './videos/VideoStream'
+import VideoControls from './videos/VideoControls'
 
 
 const enhance = compose(

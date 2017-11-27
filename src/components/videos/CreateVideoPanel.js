@@ -7,8 +7,8 @@ import {withHandlers, withProps, withState} from 'recompose'
 
 import {refreshVideo, updateVideo, VideoOwnerTypes, VideoStates, VideoTypes} from '../../actions/videos'
 import EditableLabel from '../EditableLabel'
-import Groupname from '../Groupname'
-import Username from '../Username'
+import Groupname from '../groups/Groupname'
+import Username from '../users/Username'
 import {withDatabaseSubscribe, withLoading} from '../hocs'
 import LoadingView from '../LoadingView'
 

@@ -3,10 +3,10 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {compose} from 'recompose'
 
-import {updateGroup} from '../actions/groups'
-import {withDatabaseSubscribe, withLoading, withNotFound} from './hocs'
-import LoadingView from './LoadingView'
-import NotFoundView from './NotFoundView'
+import {updateGroup} from '../../actions/groups'
+import {withDatabaseSubscribe, withLoading, withNotFound} from '../hocs'
+import LoadingView from '../LoadingView'
+import NotFoundView from '../NotFoundView'
 
 
 const mapStateToProps = ({groups}) => ({
