@@ -42,6 +42,7 @@ const Menu = styled.nav`
 const MenuLayout = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
 `
 
 const mapStateToProps = ({videoUploader}) => ({
