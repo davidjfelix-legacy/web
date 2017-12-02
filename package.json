@@ -36,7 +36,8 @@
     "redux-logger": "^3.0.1",
     "redux-thunk": "^2.2.0",
     "rxjs": "^5.0.0",
-    "styled-components": "^2.2.1"
+    "styled-components": "^2.2.1",
+    "snyk": "^1.53.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,6 +45,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
-  }
+    "build-storybook": "build-storybook -s public",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "snyk": true
 }
