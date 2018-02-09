@@ -19,7 +19,7 @@
     "hls.js": "^0.8.2",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.4",
-    "normalize.css": "^7.0.0",
+    "normalize.css": "^8.0.0",
     "office-ui-fabric-react": "^5.10.0",
     "prop-types": "^15.6.0",
     "query-string": "^5.0.0",
