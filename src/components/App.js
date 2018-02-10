@@ -1,14 +1,9 @@
 import {Fabric, Layer, MessageBar} from 'office-ui-fabric-react'
 import React from 'react'
-import {connect} from 'react-redux'
-import {Route, Switch} from 'react-router'
-import {ConnectedRouter} from 'react-router-redux'
-import {compose, lifecycle, withHandlers, withState} from 'recompose'
+import {Route, Router, Switch} from 'react-router'
+import {compose, withHandlers, withState} from 'recompose'
 import styled, {injectGlobal} from 'styled-components'
 
-import {updateAuth} from '../actions/auth'
-import {hideUploadPane} from '../actions/videoUploader'
-import auth from '../auth'
 import GroupContainer from './groups/GroupContainer'
 import NewGroupView from './groups/NewGroupView'
 import HomeView from './HomeView'
@@ -50,7 +45,6 @@ const mapStateToProps = ({videoUploader}) => ({
 })
 
 const enhance = compose(
-  connect(mapStateToProps),
   withState('isMenuVisible', 'setIsMenuVisible', false),
   withHandlers(
     {
@@ -59,18 +53,6 @@ const enhance = compose(
       },
     }
   ),
-  lifecycle(
-    {
-      componentWillMount() {
-        this.unsubscribeAuth = auth.onAuthStateChanged((user) => (
-          this.props.dispatch(updateAuth({user}))
-        ))
-      },
-
-      componentWillUnmount() {
-        this.unsubscribeAuth()
-      },
-    }),
 )
 
 const App = (
@@ -82,7 +64,7 @@ const App = (
     videoUploader,
   }) => (
   <Fabric>
-    <ConnectedRouter history={history}>
+    <Router history={history}>
       <div>
         <PageHeader onClickMenu={toggleMenuVisible}/>
         <MenuLayout>
@@ -107,7 +89,7 @@ const App = (
           </Switch>
         </MenuLayout>
       </div>
-    </ConnectedRouter>
+    </Router>
     {videoUploader.isUploadPaneVisible ?
       <Layer>
         <MessageBar

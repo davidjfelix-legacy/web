@@ -1,18 +1,13 @@
 import * as _ from 'lodash'
 import React from 'react'
-import {connect} from 'react-redux'
 import {compose, withHandlers, withProps} from 'recompose'
 
-import {createVideo, VideoOwnerTypes} from '../../actions/videos'
 import VideosList from '../videos/VideosList'
 
 
-const mapStateToProps = ({users}) => ({
-  users,
-})
+
 
 const enhance = compose(
-  connect(mapStateToProps),
   withProps(({match}) => ({
     userId: match.params.userId
   })),

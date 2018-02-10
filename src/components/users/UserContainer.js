@@ -1,10 +1,8 @@
 import * as _ from 'lodash'
 import React from 'react'
-import {connect} from 'react-redux'
 import {compose, withProps} from 'recompose'
 
-import {updateUser} from '../../actions/users'
-import {withDatabaseSubscribe, withLoading, withNotFound} from '../hocs'
+import {withLoading, withNotFound} from '../hocs'
 import LoadingView from '../LoadingView'
 import NotFoundView from '../NotFoundView'
 import ProfileView from '../profile/ProfileView'
@@ -18,29 +16,12 @@ import UserShows from './UserShows'
 import UserVideosView from './UserVideosView'
 
 
-const mapStateToProps = ({users}) => ({
-  users
-})
-
 const enhance = compose(
-  connect(mapStateToProps),
   withProps(({match}) => ({
     basePath: match.path,
     baseUrl: match.url,
     userId: match.params.userId
   })),
-  withDatabaseSubscribe(
-    'value',
-    ({userId}) => (`users/${userId}`),
-    ({dispatch, userId}) => (snapshot) => (
-      dispatch(updateUser(
-        {
-          userId: userId,
-          userSnapshot: snapshot.val()
-        })
-      )
-    )
-  ),
   withLoading(
     ({userId, users}) => !(_.has(users, userId)),
     LoadingView
