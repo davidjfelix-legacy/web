@@ -15,12 +15,6 @@ const enhance = compose(
     {
       onNewVideoSubmit: props => event => {
         event.preventDefault()
-        props.dispatch(createVideo(
-          {
-            videoOwnerType: VideoOwnerTypes.USER_VIDEO,
-            ownerId: props.userId
-          })
-        )
       }
     }
   )

@@ -1,9 +1,7 @@
 import * as _ from 'lodash'
 import {IconButton, Persona, PersonaInitialsColor, PersonaSize} from 'office-ui-fabric-react'
 import React from 'react'
-import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {compose} from 'recompose'
 import styled from 'styled-components'
 
 import Logo from './Logo.js'
@@ -43,14 +41,6 @@ const SignInLink = styled(Link)`
   padding-right: 1em;
 `
 
-const mapStateToProps = ({auth}) => ({
-  auth
-})
-
-const enhance = compose(
-  connect(mapStateToProps),
-)
-
 const PageHeader = (
   {
     auth,
@@ -80,4 +70,4 @@ const PageHeader = (
   </Nav>
 )
 
-export default enhance(PageHeader)
+export default PageHeader

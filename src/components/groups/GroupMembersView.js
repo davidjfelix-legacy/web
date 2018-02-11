@@ -1,18 +1,12 @@
 import * as _ from 'lodash'
 import * as React from 'react'
-import {connect} from 'react-redux'
 import {compose, withHandlers, withProps, withState} from 'recompose'
 
 import GroupMembersList from './GroupMembersList'
-import {addMemberToGroup} from '../../actions/groups'
 
 
-const mapStateToProps = ({groups}) => ({
-  groups
-})
 
 const enhance = compose(
-  connect(mapStateToProps),
   withProps(({match}) => ({
     groupId: match.params.groupId
   })),
@@ -24,12 +18,6 @@ const enhance = compose(
       },
       onNewGroupMemberSubmit: props => event => {
         event.preventDefault()
-        props.dispatch(addMemberToGroup(
-          {
-            groupId: props.groupId,
-            memberId: props.newGroupMember,
-          }
-        ))
       }
     }
   ),

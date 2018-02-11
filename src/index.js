@@ -1,19 +1,26 @@
+import {InMemoryCache} from 'apollo-cache-inmemory'
+import {ApolloClient} from 'apollo-client'
+import {HttpLink} from 'apollo-link-http'
 import React from 'react'
+import {ApolloProvider} from 'react-apollo'
 import ReactDOM from 'react-dom'
-import {Provider} from 'react-redux'
 
 import App from './components/App'
 
-import configureStore, {browserHistory} from './store'
 
-import './index.css'
 import 'normalize.css/normalize.css'
+import './index.css'
 
-const store = configureStore()
+
+const apolloClient = new ApolloClient(
+  {
+    link: new HttpLink(),
+    cache: new InMemoryCache()
+  })
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App history={browserHistory}/>
-  </Provider>,
+  <ApolloProvider client={apolloClient}>
+    <App/>
+  </ApolloProvider>,
   document.getElementById('root')
 )

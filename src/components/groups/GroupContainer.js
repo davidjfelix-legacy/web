@@ -1,10 +1,8 @@
 import * as _ from 'lodash'
 import React from 'react'
-import {connect} from 'react-redux'
 import {compose, withProps} from 'recompose'
 
-import {updateGroup} from '../../actions/groups'
-import {withDatabaseSubscribe, withLoading, withNotFound} from '../hocs'
+import {withLoading, withNotFound} from '../hocs'
 import LoadingView from '../LoadingView'
 import NotFoundView from '../NotFoundView'
 import ProfileView from '../profile/ProfileView'
@@ -16,28 +14,12 @@ import GroupShowsView from './GroupShowsView'
 import GroupVideosView from './GroupVideosView'
 
 
-const mapStateToProps = ({auth, groups}) => ({
-  groups
-})
-
 const enhance = compose(
-  connect(mapStateToProps),
   withProps(({match}) => ({
     basePath: match.path,
     baseUrl: match.url,
     groupId: match.params.groupId
   })),
-  withDatabaseSubscribe(
-    'value',
-    ({groupId}) => (`groups/${groupId}`),
-    ({dispatch, groupId}) => (snapshot) => (
-      dispatch(updateGroup(
-        {
-          groupId: groupId,
-          groupSnapshot: snapshot.val(),
-        }
-      )))
-  ),
   withLoading(
     ({groupId, groups}) => !(_.has(groups, groupId)),
     LoadingView,

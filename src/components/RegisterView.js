@@ -1,19 +1,9 @@
 import React from 'react'
-import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {compose, withHandlers, withState} from 'recompose'
 
-import auth from '../auth'
-import {ensureNotAuthenticated} from './hocs'
-
-
-const mapStateToProps = ({auth}) => ({
-  auth
-})
 
 const enhance = compose(
-  connect(mapStateToProps),
-  ensureNotAuthenticated(auth),
   withState('email', 'updateEmail', ''),
   withState('password', 'updatePassword', ''),
   withState('username', 'updateUsername', ''),
@@ -30,26 +20,6 @@ const enhance = compose(
       },
       onRegisterSubmit: props => event => {
         event.preventDefault()
-        auth.createUserWithEmailAndPassword(props.email, props.password)
-          .then(
-            (user) => {
-              // TODO: add loading
-              props.dispatch(
-                {
-                  user,
-                  profile: {
-                    username: props.username,
-                    has_username: true
-                  }
-                })
-            }
-          )
-          .catch(
-            (error) => {
-              // TODO: add fail message
-              console.log(error)
-            }
-          )
       }
     })
 )

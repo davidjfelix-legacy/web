@@ -1,6 +1,7 @@
-import {Fabric, Layer, MessageBar} from 'office-ui-fabric-react'
-import React from 'react'
-import {Route, Router, Switch} from 'react-router'
+import {Fabric} from 'office-ui-fabric-react'
+import * as React from 'react'
+import {Route, Switch} from 'react-router'
+import {BrowserRouter} from 'react-router-dom'
 import {compose, withHandlers, withState} from 'recompose'
 import styled, {injectGlobal} from 'styled-components'
 
@@ -40,9 +41,6 @@ const MenuLayout = styled.div`
   justify-content: center;
 `
 
-const mapStateToProps = ({videoUploader}) => ({
-  videoUploader,
-})
 
 const enhance = compose(
   withState('isMenuVisible', 'setIsMenuVisible', false),
@@ -57,14 +55,11 @@ const enhance = compose(
 
 const App = (
   {
-    dispatch,
-    history,
     isMenuVisible,
     toggleMenuVisible,
-    videoUploader,
   }) => (
   <Fabric>
-    <Router history={history}>
+    <BrowserRouter>
       <div>
         <PageHeader onClickMenu={toggleMenuVisible}/>
         <MenuLayout>
@@ -89,17 +84,7 @@ const App = (
           </Switch>
         </MenuLayout>
       </div>
-    </Router>
-    {videoUploader.isUploadPaneVisible ?
-      <Layer>
-        <MessageBar
-          onDismiss={() => dispatch(hideUploadPane())}
-        >
-          <UploadsView/>
-        </MessageBar>
-      </Layer> :
-      ''
-    }
+    </BrowserRouter>
   </Fabric>
 )
 

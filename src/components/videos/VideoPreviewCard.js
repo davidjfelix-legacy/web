@@ -1,32 +1,7 @@
+import * as _ from 'lodash'
 import {DocumentCard, DocumentCardPreview, DocumentCardTitle} from 'office-ui-fabric-react'
 import React from 'react'
-import {connect} from 'react-redux'
-import {compose} from 'recompose'
 
-import {refreshVideo} from '../../actions/videos'
-import {withDatabaseSubscribe} from '../hocs'
-import * as _ from 'lodash'
-
-
-const mapStateToProps = ({videos}) => ({
-  videos
-})
-
-const enhance = compose(
-  connect(mapStateToProps),
-  withDatabaseSubscribe(
-    'value',
-    (props) => (`videos/${props.videoId}`),
-    (props) => (snapshot) => (
-      props.dispatch(refreshVideo(
-        {
-          videoId: props.videoId,
-          videoSnapshot: snapshot.val()
-        })
-      )
-    )
-  )
-)
 
 const VideoPreviewCard = (
   {
@@ -53,4 +28,4 @@ const VideoPreviewCard = (
   </div>
 )
 
-export default enhance(VideoPreviewCard)
+export default VideoPreviewCard

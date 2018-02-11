@@ -1,15 +1,9 @@
+import {DefaultButton, TextField} from 'office-ui-fabric-react'
 import queryString from 'query-string'
 import React from 'react'
-import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {replace} from 'react-router-redux'
 import {compose, withHandlers, withProps, withState} from 'recompose'
 import styled from 'styled-components'
-
-import {createOrUpdateUserProfile} from '../actions/users'
-import auth, {facebookProvider, googleProvider} from '../auth'
-import {ensureNotAuthenticated} from './hocs'
-import {DefaultButton, TextField} from 'office-ui-fabric-react'
 
 
 const Container = styled.div`
@@ -36,72 +30,23 @@ const FormTextField = styled(TextField)`
   width: 25em;
 `
 
-const mapStateToProps = ({auth}) => ({
-  auth
-})
 
 const enhance = compose(
-  connect(mapStateToProps),
   withProps((props) => {
     const qs = queryString.parse(props.location.search)
     return {
       redirectUrl: qs['redirect'] ? qs['redirect'] : '/'
     }
   }),
-  ensureNotAuthenticated(auth),
   withState('email', 'updateEmail', ''),
   withState('password', 'updatePassword', ''),
   withHandlers(
     {
       onEmailChange: ({updateEmail}) => newValue => (updateEmail(newValue)),
       onPasswordChange: ({updatePassword}) => newValue => (updatePassword(newValue)),
-      onEmailSubmit: ({dispatch, email, password, redirectUrl}) => () => (
-        auth.signInWithEmailAndPassword(email, password)
-          .then(
-            dispatch(replace(redirectUrl))
-          )
-      ),
-      onFacebookSubmit: ({dispatch, redirectUrl}) => () => (
-        auth.signInWithPopup(facebookProvider)
-          .then(
-            (userCredential) => {
-              dispatch(createOrUpdateUserProfile(
-                {
-                  user: userCredential.user,
-                  profile: {
-                    display_name: userCredential.user.displayName
-                  },
-                }))
-              dispatch(replace(redirectUrl))
-            }
-          )
-          .catch(
-            (error) => {
-              // Display Error
-            }
-          )
-      ),
-      onGoogleSubmit: ({dispatch, redirectUrl}) => () => (
-        auth.signInWithPopup(googleProvider)
-          .then(
-            (userCredential) => {
-              auth.signInWithCredential()
-              dispatch(createOrUpdateUserProfile(
-                {
-                  user: userCredential.user,
-                  profile: {
-                    display_name: userCredential.user.displayName
-                  },
-                }))
-              dispatch(replace(redirectUrl))
-            }
-          )
-          .catch(
-            (error) => {
-              // Display Error
-            }
-          )
-      ),
+      onEmailSubmit: ({email, password, redirectUrl}) => () => null,
+      onFacebookSubmit: ({dispatch, redirectUrl}) => () => null,
+      onGoogleSubmit: ({dispatch, redirectUrl}) => () => null,
     })
 )
 
