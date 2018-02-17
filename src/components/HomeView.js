@@ -1,7 +1,17 @@
-import React from 'react'
+import * as gql from 'graphql-tag'
+import * as React from 'react'
+import {graphql} from 'react-apollo'
 
 import VideosList from './videos/VideosList'
 
+
+const HomeQuery = gql`
+  query {
+    videos {
+      id
+    }
+  }
+`
 
 const HomeView = ({videos={}}) => (
   <div>
@@ -12,4 +22,4 @@ const HomeView = ({videos={}}) => (
   </div>
 )
 
-export default HomeView
+export default graphql(HomeQuery)(HomeView)
