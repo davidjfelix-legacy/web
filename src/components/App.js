@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.css'
 import {Fabric} from 'office-ui-fabric-react'
 import * as React from 'react'
 import {Route, Switch} from 'react-router'

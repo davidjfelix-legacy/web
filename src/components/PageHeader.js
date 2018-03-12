@@ -1,44 +1,25 @@
 import * as _ from 'lodash'
-import {IconButton, Persona, PersonaInitialsColor, PersonaSize} from 'office-ui-fabric-react'
+import {Persona, PersonaInitialsColor, PersonaSize} from 'office-ui-fabric-react'
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Nav, Navbar, NavbarBrand, NavItem, NavLink} from 'reactstrap'
 import styled from 'styled-components'
 
-import Logo from './Logo.js'
+import Logo from './Logo'
 
 
 export const navHeight = '3em'
 
-const Nav = styled.nav`
-    align-items: center;
-    background-color: #212121;
-    display: flex;
-    height: ${navHeight};
-    justify-content: space-between;
-    width: 100%;
-`
 
-const BrandLink = styled(Link)`
+const BrandLink = styled(NavbarBrand)`
     color: white;
-    background-color: #212121;
+    background-color: inherit;
     display: inline-block;
     font-family: Arvo,sans-serif;
     font-size: 1.5em;
     font-weight: 700;
     font-style: italic;
-    padding-left: .5em;
     text-decoration: none;
     width: 80px;
-`
-
-const Inner = styled.div`
-  align-items: center;
-  display: flex;
-`
-
-const SignInLink = styled(Link)`
-  color: white;
-  padding-right: 1em;
 `
 
 const PageHeader = (
@@ -46,28 +27,26 @@ const PageHeader = (
     auth,
     onClickMenu,
   }) => (
-  <Nav>
-    <Inner>
-      <IconButton
-        onClick={onClickMenu}
-        iconProps={{iconName: 'CollapseMenu', style: {color: 'white'}}}
-      />
-      <BrandLink to='/'>
-        <Logo/>
-      </BrandLink>
-    </Inner>
-    {_.has(auth, 'user') && _.has(auth, 'user.uid') ?
-      <Link to={`/users/${auth.user.uid}`}>
-        <Persona
-          imageUrl={'http://placekitten.com/g/50/50'}
-          initialsColor={PersonaInitialsColor.darkBlue}
-          imageInitials={'ME'}
-          size={PersonaSize.extraSmall}
-        />
-      </Link> :
-      <SignInLink to='/auth/login'>Sign in</SignInLink>
-    }
-  </Nav>
+  <Navbar dark color="dark" expand>
+    <BrandLink href="/">
+      <Logo/>
+    </BrandLink>
+    <Nav className="ml-auto" navbar>
+      <NavItem>
+        {_.has(auth, 'user') && _.has(auth, 'user.uid') ?
+          <NavLink to={`/users/${auth.user.uid}`}>
+            <Persona
+              imageUrl={'http://placekitten.com/g/50/50'}
+              initialsColor={PersonaInitialsColor.darkBlue}
+              imageInitials={'ME'}
+              size={PersonaSize.extraSmall}
+            />
+          </NavLink> :
+          <NavLink to='/auth/login'>Sign in</NavLink>
+        }
+      </NavItem>
+    </Nav>
+  </Navbar>
 )
 
 export default PageHeader
