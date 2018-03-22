@@ -3167,11 +3167,12 @@ history@^4.7.2:
     value-equal "^0.4.0"
     warning "^3.0.0"
 
-hls.js@^0.8.2:
-  version "0.8.9"
-  resolved "https://registry.yarnpkg.com/hls.js/-/hls.js-0.8.9.tgz#db367cc99ce5b0976ea3e059a1d044d7b0790697"
+hls.js@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/hls.js/-/hls.js-0.9.0.tgz#8a4d4e8ac547a6d98bec32b81e02a2bfdd4eb4be"
   dependencies:
-    url-toolkit "^2.0.1"
+    string.prototype.endswith "^0.2.0"
+    url-toolkit "^2.1.2"
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
@@ -6378,6 +6379,10 @@ string-width@^2.0.0, string-width@^2.1.0, string-width@^2.1.1:
     is-fullwidth-code-point "^2.0.0"
     strip-ansi "^4.0.0"
 
+string.prototype.endswith@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/string.prototype.endswith/-/string.prototype.endswith-0.2.0.tgz#a19c20dee51a98777e9a47e10f09be393b9bba75"
+
 string_decoder@^1.0.0, string_decoder@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.0.3.tgz#0fc67d7c141825de94282dd536bec6b9bce860ab"
@@ -6807,7 +6812,7 @@ url-parse@^1.1.8:
     querystringify "~1.0.0"
     requires-port "~1.0.0"
 
-url-toolkit@^2.0.1:
+url-toolkit@^2.1.2:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/url-toolkit/-/url-toolkit-2.1.4.tgz#e0dac60e5fdd50b8ac984307699e8b72439b3fd3"
 
