@@ -34,7 +34,7 @@ const PageHeader = (
     <Nav className="ml-auto" navbar>
       <NavItem>
         {_.has(auth, 'user') && _.has(auth, 'user.uid') ?
-          <NavLink to={`/users/${auth.user.uid}`}>
+          <NavLink href={`/users/${auth.user.uid}`}>
             <Persona
               imageUrl={'http://placekitten.com/g/50/50'}
               initialsColor={PersonaInitialsColor.darkBlue}
@@ -42,7 +42,7 @@ const PageHeader = (
               size={PersonaSize.extraSmall}
             />
           </NavLink> :
-          <NavLink to='/auth/login'>Sign in</NavLink>
+          <NavLink href='/auth/login'>Sign in</NavLink>
         }
       </NavItem>
     </Nav>

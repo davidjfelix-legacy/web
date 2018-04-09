@@ -14,9 +14,10 @@ import './index.css'
 
 const apolloClient = new ApolloClient(
   {
-    link: new HttpLink(),
+    link: new HttpLink({uri: 'http://localhost:4000/graph'}),
     cache: new InMemoryCache()
-  })
+  }
+)
 
 ReactDOM.render(
   <ApolloProvider client={apolloClient}>

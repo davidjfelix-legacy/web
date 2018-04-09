@@ -1,34 +1,8 @@
-import {DefaultButton, TextField} from 'office-ui-fabric-react'
 import queryString from 'query-string'
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {Button, Col, Container, Form, FormGroup, Input, Label, Row} from 'reactstrap'
 import {compose, withHandlers, withProps, withState} from 'recompose'
-import styled from 'styled-components'
-
-
-const Container = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-shrink: 1;
-  height: 100%;
-  justify-content: center;
-  padding-top: 10em;
-`
-
-const FormButton = styled(DefaultButton)`
-  display: flex;
-  justify-content: center;
-  margin: 0.5em;
-  width: 25em;
-`
-
-const FormTextField = styled(TextField)`
-  display: block;
-  margin: 0.5em;
-  width: 25em;
-`
 
 
 const enhance = compose(
@@ -42,9 +16,9 @@ const enhance = compose(
   withState('password', 'updatePassword', ''),
   withHandlers(
     {
-      onEmailChange: ({updateEmail}) => newValue => (updateEmail(newValue)),
-      onPasswordChange: ({updatePassword}) => newValue => (updatePassword(newValue)),
-      onEmailSubmit: ({email, password, redirectUrl}) => () => null,
+      onEmailChange: ({updateEmail}) => event => (updateEmail(event.target.value)),
+      onPasswordChange: ({updatePassword}) => event => (updatePassword(event.target.value)),
+      onEmailSubmit: ({email, password, mutate, redirectUrl}) => () => null,
       onFacebookSubmit: ({dispatch, redirectUrl}) => () => null,
       onGoogleSubmit: ({dispatch, redirectUrl}) => () => null,
     })
@@ -52,37 +26,62 @@ const enhance = compose(
 
 const LoginView = ({email, password, onEmailChange, onPasswordChange, onEmailSubmit, onFacebookSubmit, onGoogleSubmit}) => (
   <Container>
-    <FormTextField
-      label='Email'
-      type='email'
-      placeholder='Email'
-      value={email}
-      onChanged={onEmailChange}
-    />
-    <FormTextField
-      label='Password'
-      name='password'
-      type='password'
-      placeholder='Password'
-      value={password}
-      onChanged={onPasswordChange}
-    />
-    <FormButton
-      text='Sign In'
-      primary={true}
-      onClick={onEmailSubmit}
-    />
-    <FormButton
-      text='Sign in with Facebook'
-      primary={true}
-      onClick={onFacebookSubmit}
-    />
-    <FormButton
-      text='Sign in with Google'
-      primary={true}
-      onClick={onGoogleSubmit}
-    />
-    <Link to='/auth/register'>Register</Link>
+    <Row>
+      <Col xl={{size: 4, offset: 4}}>
+        <Form>
+          <FormGroup>
+            <Label
+              for='email'
+            >Email</Label>
+            <Input
+              type='email'
+              name='email'
+              id='email'
+              placeholder='Email'
+              value={email}
+              onChange={onEmailChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label
+              for='password'
+            >Password</Label>
+            <Input
+              type='password'
+              name='password'
+              id='password'
+              placeholder='Password'
+              value={password}
+              onChange={onPasswordChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Button
+              block
+              color='primary'
+              onClick={onEmailSubmit}
+            >Sign In</Button>
+            <Button
+              block
+              color='primary'
+              onClick={onFacebookSubmit}
+            >Sign in with Facebook</Button>
+            <Button
+              block
+              color='primary'
+              onClick={onGoogleSubmit}
+            >Sign in with Google</Button>
+          </FormGroup>
+        </Form>
+      </Col>
+    </Row>
+    <Row>
+      <Col className='text-center' xl={{size: 2, offset: 5}}>
+        <p>
+          <Link to='/auth/register'>Register</Link>
+        </p>
+      </Col>
+    </Row>
   </Container>
 )
 
