@@ -1,17 +1,10 @@
-import queryString from 'query-string'
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Button, Col, Container, Form, FormGroup, Input, Label, Row} from 'reactstrap'
-import {compose, withHandlers, withProps, withState} from 'recompose'
+import {compose, withHandlers, withState} from 'recompose'
 
 
 const enhance = compose(
-  withProps((props) => {
-    const qs = queryString.parse(props.location.search)
-    return {
-      redirectUrl: qs['redirect'] ? qs['redirect'] : '/'
-    }
-  }),
   withState('email', 'updateEmail', ''),
   withState('password', 'updatePassword', ''),
   withHandlers(

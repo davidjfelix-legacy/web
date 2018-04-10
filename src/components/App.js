@@ -6,6 +6,7 @@ import {BrowserRouter} from 'react-router-dom'
 import {compose, withHandlers, withState} from 'recompose'
 import styled, {injectGlobal} from 'styled-components'
 
+import UnauthenticatedRoute from './auth/UnauthenticatedRoute'
 import GroupContainer from './groups/GroupContainer'
 import NewGroupView from './groups/NewGroupView'
 import HomeView from './HomeView'
@@ -71,8 +72,8 @@ const App = (
           }
           <Switch>
             <Route exact path='/' component={HomeView}/>
-            <Route exact path='/auth/login' component={LoginView}/>
-            <Route exact path='/auth/register' component={RegisterView}/>
+            <UnauthenticatedRoute exact path='/auth/login' component={LoginView}/>
+            <UnauthenticatedRoute exact path='/auth/register' component={RegisterView}/>
             <Route exact path='/groups/new' component={NewGroupView}/>
             <Route path='/groups/:groupId' component={GroupContainer}/>
             <Route path='/performances/:performanceId' component={PerformanceContainer}/>
