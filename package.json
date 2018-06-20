@@ -34,7 +34,7 @@
     "reactstrap": "^5.0.0-beta.2",
     "recompose": "^0.26.0",
     "rxjs": "^5.0.0",
-    "styled-components": "^2.2.1"
+    "styled-components": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
