@@ -1,0 +1,18 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.8.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:minimatch:20160620':
+    - aws-appsync > paho-client > jasmine-node > gaze > minimatch:
+        patched: '2017-12-02T20:27:44.783Z'
+    - aws-appsync-react > aws-appsync > paho-client > jasmine-node > gaze > minimatch:
+        patched: '2017-12-02T20:27:44.783Z'
+    - aws-appsync > paho-client > jasmine-node > gaze > fileset > minimatch:
+        patched: '2017-12-02T20:27:44.783Z'
+    - aws-appsync-react > aws-appsync > paho-client > jasmine-node > gaze > fileset > minimatch:
+        patched: '2017-12-02T20:27:44.783Z'
+    - aws-appsync > paho-client > jasmine-node > gaze > fileset > glob > minimatch:
+        patched: '2017-12-02T20:27:44.783Z'
+    - aws-appsync-react > aws-appsync > paho-client > jasmine-node > gaze > fileset > glob > minimatch:
+        patched: '2017-12-02T20:27:44.783Z'
